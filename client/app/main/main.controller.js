@@ -3,11 +3,14 @@
 angular.module('womenWorkingWithWomenApp')
   .controller('MainCtrl', function ($scope, $http, socket, Auth) {
     $scope.awesomeThings = [];
+    $scope.settings = {};
 
     // A timeout with a delay of 0 will add this function to the browser event queue.
     // This is necessary to let other stuff finish before checking if the user is an admin.
     setTimeout(function(){
-      $scope.isAdmin = Auth.isAdmin();
+      // TODO: When you log in, you have to refresh the page to be able to edit.
+      // TODO: To enable two way data binding, create a custom contenteditable directive.
+      $scope.settings.canEdit = Auth.isAdmin();
     }, 0)
 
 

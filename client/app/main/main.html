@@ -12,6 +12,6 @@
     </md-button>
 
     <md-icon class="avatar-icon" md-svg-icon="avatar:svg-{{ ($index + 1) % 11 }}"></md-icon>
-    <md-grid-tile-footer><h3 contenteditable="{{isAdmin}}" ng-focus="onFocus(thing)" ng-blur="onBlur(thing)">{{thing.name}}</h3></md-grid-tile-footer>
+    <md-grid-tile-footer><h3 contenteditable="{{settings.canEdit}}" ng-focus="onFocus(thing)" ng-blur="onBlur(thing)">{{thing.name}}</h3></md-grid-tile-footer>
   </md-grid-tile>
 </md-grid-list>
