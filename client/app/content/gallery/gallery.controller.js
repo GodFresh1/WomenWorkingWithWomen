@@ -2,5 +2,6 @@
 
 angular.module('womenWorkingWithWomenApp')
   .controller('GalleryCtrl', function($scope){
-    $scope.title = "Checkout these sweet photos!"
+    $scope.title = "Gallery"
   })
+  
