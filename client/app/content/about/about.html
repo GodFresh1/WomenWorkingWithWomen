@@ -1,3 +1,13 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <h1>{{title}}</h1>
+
+
+<ul>
+  <li><a ui-sref="about.board">Show Board</a></li>
+  <li><a ui-sref="about.story">Show Stoary</a></li>
+  <li><a ui-sref="about.partners">Show Partners</a></li>
+  <li><a ui-sref="about.testimonials">Show Testimonails</a></li>
+</ul>
+
+<div ui-view></div>

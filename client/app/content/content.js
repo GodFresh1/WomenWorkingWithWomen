@@ -13,6 +13,26 @@ angular.module('womenWorkingWithWomenApp')
         templateUrl: 'app/content/about/about.html',
         controller: 'AboutCtrl'
       })
+      .state('about.story', {
+        url: '/story',
+        templateUrl: 'app/content/about/story.html',
+        controller: 'AboutCtrl'
+      })
+      .state('about.board', {
+        url: '/board',
+        templateUrl: 'app/content/about/board.html',
+        controller: 'AboutCtrl'
+      })
+      .state('about.partners', {
+        url: '/partners',
+        templateUrl: 'app/content/about/partners.html',
+        controller: 'AboutCtrl'
+      })
+      .state('about.testimonials', {
+        url: '/testimonials',
+        templateUrl: 'app/content/about/testimonials.html',
+        controller: 'AboutCtrl'
+      })
       .state('contact_us', {
         url: '/contact_us',
         templateUrl: 'app/content/contact_us/contact_us.html',

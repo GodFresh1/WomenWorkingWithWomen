@@ -1,7 +1,25 @@
 
-/*This is used so the links will take up the entire size of the button.*/
-.navbar-button-container a{
-   display:inline-block;
-   width:100%;
-   height:100%;
+nav{
+  height: 100px;
+  background-color: rgba(116,59,140,.99999999999);
+}
+
+.brand-logo{
+  height: 100%;
+}
+
+.nav-component-center{
+  margin-top: 18px;
+}
+
+#logo {
+    height: auto;
+    width: auto;
+    max-height: 90px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.dropdown-content li > a{
+  color: rgba(116,59,140,.99999999999);
 }
