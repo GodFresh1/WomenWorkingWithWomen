@@ -2,5 +2,6 @@
 
 angular.module('womenWorkingWithWomenApp')
   .controller('DonationsCtrl', function($scope){
-    $scope.title = "Gimme yo money fool."
+    $scope.title = "Donate"
+    $scope.subtitle = "Be the change you want to see"
   })
