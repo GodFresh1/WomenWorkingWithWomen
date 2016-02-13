@@ -5,7 +5,7 @@ angular.module('womenWorkingWithWomenApp')
     $timeout(function(){
       $(".dropdown-button").dropdown();
       $('.button-collapse').sideNav({
-            closeOnClick: false, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+            closeOnClick: false, 
             edge: 'right'
           }
       );
