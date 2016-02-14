@@ -1,14 +1,14 @@
-<div class="row header">
+<div class="row content-header">
   <div class="col s12 title-continer">
     <h1 class="header-text">The Board</h1>
   </div>
 </div>
 
-<div id="content" class="container">
+<div class="container">
   <div class="row">
     <div class="col m3 l2 link-container hide-on-small-only">
       <h5>About</h5>
-      <ul id="links-list">
+      <ul class="links-list">
         <li><a ui-sref="about.story">OUR STORY</a></li>
         <li><a ui-sref="about.board">THE BOARD</a></li>
         <li><a ui-sref="about.partners">PARTNERS</a></li>
@@ -17,10 +17,10 @@
     </div>
     <div class="col s12 m9 l8 offset-l1 content-main">
       <div ng-repeat="member in boardMembers">
-        <div class="image-container col s12 m6 l6" >
+        <div class="board-image-container col s12 m6 l6" >
           <img id="board-image" src="{{member.imgSrc}}"></img>
         </div>
-        <div class="board-member-item col s12 m6 l6">
+        <div class="board-member-info col s12 m6 l6">
           <h4>{{member.name}}</h4>
           <h5>{{member.title}}</h5>
           <p>{{member.description}}</p>
