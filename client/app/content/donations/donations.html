@@ -1,18 +1,32 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<div layout="column">
-	<div flex>
-		<h1 align="center">{{title}}</h1>
-	</div>
-	<div flex>
-		<h1 align="center">{{subtitle}}</h1>
-	</div>
+<div class="row header">
+  <div class="col s12 title-continer">
+    <h2 class="header-text">Donate</h1>
+    <h3 class="header-text">Be the change you want to see</h2>
+  </div>
 </div>
 
-<h2 align="center">Donations go to helping us improve all our programs that enhance the lives of people in the community.</h2>
-<h4 align="center">There are four different levels of donations but we are grateful for any and all donations that are provided.</h4>
+<div id="content" class="container">
+  <div class="row">
+    <div class="content-main" align="center">
+      <h4>Donations go to helping us improve all our programs that enhance the lives of people in the community.</h4>
+      <p>There are four different levels of donations but we are grateful for any and all donations that are provided.</p>
+      <p align="center"><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2EL4AHWPFR8R4" target="_blank"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif"></a></p>
 
-<p align="center"><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2EL4AHWPFR8R4" target="_blank"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif"></a></p>
+      <!--<div ng-repeat="level in donationLevels">
+      	<p>Testing</p>
+    	<h4>{{level.name}}</h4>
+    	<img id="donation-image" src="{{level.image}}"></img>
+    	<div ng-repeat="benefit in level.benefits">
+    		<p>{{benefit}}</p>
+		</div>
+		</div>-->
+    </div>
+  </div>
+</div>
+
+
 
 
 <div layout="row">
