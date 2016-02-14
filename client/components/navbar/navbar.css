@@ -1,7 +1,7 @@
 
 nav{
   height: 100px;
-  background-color: rgba(116,59,140,.99999999999);
+  background-color: white;
 }
 
 .brand-logo{
@@ -10,6 +10,15 @@ nav{
 
 .nav-component-center{
   margin-top: 18px;
+}
+
+.nav-component-center li > a, .side-nav li > a{
+  color: rgba(116,59,140,.99999999999);
+}
+
+.button-collapse{
+  color: rgba(116,59,140,.99999999999);
+  margin-right: 5px;
 }
 
 #logo {

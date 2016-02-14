@@ -1,6 +1,11 @@
 /**
  * App-wide Styles
  */
+ body {
+   font-family: 'Lora', serif;
+}
+
+
 
  .main-shell .profile-container {
    height: 100%;
