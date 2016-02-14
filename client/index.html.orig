@@ -23,8 +23,11 @@
       <link rel="stylesheet" href="app/account/login/login.css">
       <link rel="stylesheet" href="app/admin/admin.css">
       <link rel="stylesheet" href="app/app.css">
+<<<<<<< HEAD
       <link rel="stylesheet" href="app/content/about/about.css">
+=======
       <link rel="stylesheet" href="app/content/contact_us/contact_us.css">
+>>>>>>> contactus_feature
       <link rel="stylesheet" href="app/main/main.css">
       <link rel="stylesheet" href="components/navbar/navbar.css">
       <!-- endinjector -->

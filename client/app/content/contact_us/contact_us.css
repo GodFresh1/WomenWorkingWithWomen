@@ -1,0 +1,42 @@
+h1{
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+}
+
+p{
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+}
+
+b{
+    text-align: left;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 125%;
+}
+
+.form-card{
+  width: 90%;
+}
+
+md-icon.email {
+    color: green;
+}
+
+md-icon.name {
+    color: blue;
+}
+
+md-icon.phone {
+    color: blue;
+}
+
+md-icon.subject {
+    color: blue;
+}
+
+md-icon.message {
+    color: blue;
+}
