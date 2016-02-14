@@ -68,3 +68,13 @@ hr{
   text-align: center;
   /*width: inherit;*/
 }
+
+.testimonial-item{
+  text-align: center;
+  line-height: 2;
+}
+
+.gray{
+  color: gray;
+  font-family: "adobe-garamond";
+}

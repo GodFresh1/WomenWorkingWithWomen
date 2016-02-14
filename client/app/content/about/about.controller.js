@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('womenWorkingWithWomenApp')
-  .controller('AboutCtrl', ['$scope', "BoardMembers", function($scope, BoardMembers){
+  .controller('AboutCtrl', ['$scope', "BoardMembers", "Testimonials", function($scope, BoardMembers, Testimonials){
     $scope.boardMembers = BoardMembers.members;
-    $scope.title = "ABOUT PAGE DAWG!"
+    $scope.testimonials = Testimonials;
   }]);
