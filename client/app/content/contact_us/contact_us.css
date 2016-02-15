@@ -1,23 +1,14 @@
-h1{
-    text-align: center;
-    font-family: "Roboto", sans-serif;
-    font-weight: 700;
-}
 
-p{
-    text-align: center;
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
+.contact-info p{
+  text-align: center;
+  font-weight: 400;
 }
-
-b{
-    text-align: left;
-    font-family: "Roboto", sans-serif;
-    font-weight: 700;
-    font-size: 125%;
-    color: rgba(116, 59, 140, 0.999999);
+.contact-info b{
+  text-align: left;
+  font-weight: 700;
+  font-size: 125%;
+  color: rgba(116, 59, 140, 0.999999);
 }
-
 .form-card{
   width: 95%;
 }
