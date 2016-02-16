@@ -12,25 +12,25 @@ angular.module('womenWorkingWithWomenApp')
            "imgSrc": "http://i.imgur.com/kv7bOlc.jpg"
         },
         {
-          "name":  "MAXINE BETHEA B.S. Religion/Psychology Healthcare Administration",
-          "title": "SECRETARY/TREASURER",
+          "name":  "Maxine Bethea B.S. Religion/ Psychology Healthcare Administration",
+          "title": "Secretary/Treasurer",
            "description": "Bible Instructor, and Director of Maxine's Place (a community service facility)",
            "telephone": "(352) 871 5233",
            "email": "Crimetochrist@gmail.com",
            "imgSrc": "http://i.imgur.com/tJzo1r2.jpg"
         },
         {
-          "name":  "KAYLA SUTHERLAND, MPH",
-          "title": "BOARD MEMBER",
+          "name":  "Kayla Sutherland, MPH",
+          "title": "Board Member",
            "description": "Teen and Youth Workshop Presenter and Registration Director. " ,
            "telephone": "(786) 445 7266",
            "email": "kayla.hsutherland@gmail.com",
            "imgSrc": "http://i.imgur.com/IlD1TwP.jpg"
         },
         {
-          "name":  "PURETTE D. MILLS",
-          "title": "VICE PRESIDENT",
-           "description": "Parenting specialist/counselor, keynote speaker, balloon artist, workshop presenter, Children Ministries coordinator,  40yr/elementary/secondary teacher" ,
+          "name":  "Purette D. Mills",
+          "title": "Vice President",
+           "description": "Parenting specialist / counselor, keynote speaker, balloon artist, workshop presenter, Children Ministries coordinator,  40yr/elementary/secondary teacher" ,
            "telephone": "(256) 457 4766",
            "email": "my4atms@aol.com",
            "imgSrc": "http://i.imgur.com/XkiUykI.jpg"

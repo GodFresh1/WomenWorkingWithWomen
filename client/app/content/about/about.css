@@ -29,10 +29,10 @@ Styling for the about page.
   text-align: center;
 }
 #board-image{
-  width: 90%;
+  width: 80%;
 }
 .board-member-info{
-  overflow: auto;
+  /*overflow: auto;*/
 }
 
 /*Styling for testimonials subpage*/
@@ -43,4 +43,18 @@ Styling for the about page.
 .light-font{
   color: gray;
   font-family: "adobe-garamond";
+}
+.partners-description{
+  text-align: center;
+  color: rgba(116,59,140,.99999999999);
+}
+.partners-container h5{
+  color: black;
+}
+.partners-image-container{
+  overflow: auto;
+  text-align: center;
+}
+.partners-image-container img{
+  width: 90%;
 }
