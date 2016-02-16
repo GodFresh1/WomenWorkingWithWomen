@@ -14,6 +14,9 @@ Styling for the about page.
 }
 .links-list li > a{
   position: relative;
+  color: gray;
+}
+.links-list li.active-page > a{
   color: black;
 }
 
@@ -29,10 +32,10 @@ Styling for the about page.
   text-align: center;
 }
 #board-image{
-  width: 90%;
+  width: 80%;
 }
 .board-member-info{
-  overflow: auto;
+  /*overflow: auto;*/
 }
 
 /*Styling for testimonials subpage*/
@@ -43,4 +46,24 @@ Styling for the about page.
 .light-font{
   color: gray;
   font-family: "adobe-garamond";
+}
+.partners-description{
+  text-align: center;
+  color: rgba(116,59,140,.99999999999);
+  line-height: 1.5;
+}
+.partners-container h5, .become-a-partner-container h5{
+  color: black;
+}
+.partners-image-container{
+  height: 200px;
+  position: relative;
+}
+.partners-image-container img{
+  max-height: 95%;
+  max-width: 95%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }

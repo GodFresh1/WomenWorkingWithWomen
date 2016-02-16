@@ -16,6 +16,16 @@ nav{
   color: rgba(116,59,140,.99999999999);
 }
 
+.nav-component-center li.active-page > a{
+  color: #a864cf;
+}
+.side-nav li.active-page > a{
+  color: #a864cf;
+}
+.dropdown-content li.active-page > a{
+  color: #a864cf;
+}
+
 .button-collapse{
   color: rgba(116,59,140,.99999999999);
   margin-right: 5px;
@@ -31,4 +41,8 @@ nav{
 
 .dropdown-content li > a{
   color: rgba(116,59,140,.99999999999);
+}
+
+.nav-active{
+  color: black;
 }
