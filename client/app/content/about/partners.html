@@ -1,1 +1,33 @@
-<h1>Partners</h1>
+<div class="row content-header">
+  <div class="col s12 title-container">
+    <h1 class="header-text">Partners</h1>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col m3 l2 link-container hide-on-small-only">
+      <h5>About</h5>
+      <ul class="links-list">
+        <li><a ui-sref="about.story">OUR STORY</a></li>
+        <li><a ui-sref="about.board">THE BOARD</a></li>
+        <li><a ui-sref="about.partners">PARTNERS</a></li>
+        <li><a ui-sref="about.testimonials">TESTIMONIALS</a></li>
+      </ul>
+    </div>
+    <div class="col s12 m9 l8 offset-l1 content-main">
+      <h5 class="partners-description">We would like to recognize our partners as they are vital to the
+        progress we have accomplished within the community. Thank you for your
+        generosity!
+      </h5>
+      <hr>
+      <div class="partners-container">
+        <h5>Partners</h5>
+        <br>
+        <div class="partners-image-container col l3 m4 s4" ng-repeat="partner in partners">
+          <img src="{{partner.imgUrl}}"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
