@@ -5,4 +5,10 @@ angular.module('womenWorkingWithWomenApp')
     $scope.boardMembers = BoardMembers.members;
     $scope.testimonials = Testimonials;
     $scope.partners = Partners;
+    $scope.newPartner = {};
+
+    $scope.becomeAPartner = function(){
+      console.log($scope.newPartner);
+      $scope.newPartner = {};
+    }
   }]);

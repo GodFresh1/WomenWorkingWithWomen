@@ -52,7 +52,43 @@ hr{
   transform: translateY(-100%);
   color: rgba(116,59,140,.99999999999);
 }
-
 .container{
   width: 80%;
+}
+
+/*Forms*/
+
+/* label focus color */
+.input-field input[type=text].valid, .input-field input[type=tel].valid, .input-field textarea[type=text].valid  {
+   border-bottom: none;
+   box-shadow: none;
+   border: 1px solid #ccc;
+}
+.input-field input[type=text].valid + label, .input-field input[type=tel].valid + label, .input-field textarea[type=text].valid + label {
+   padding-bottom: 7px;
+}
+.input-field input[type=text]:focus + label, .input-field input[type=tel]:focus + label, .input-field textarea[type=text]:focus + label {
+  color: rgba(116,59,140,.99999999999);
+  padding-bottom: 7px;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus,  .input-field input[type=tel]:focus, .input-field textarea[type=text]:focus {
+ border-bottom: 1px solid rgba(116,59,140,.99999999999);
+ box-shadow: 0 1px 0 0 rgba(116,59,140,.99999999999);
+}
+/* icon prefix focus color */
+.input-field .prefix.active {
+ color: rgba(116,59,140,.99999999999);
+}
+.input-field input, .input-field textarea{
+  border: 1px solid #ccc;
+  background: #fafafa;
+  padding-left: 5px;
+}
+.input-field label{
+  padding-left: 5px;
+}
+.submit-btn{
+  background-color: #00746b;
+  color: white;
 }

@@ -27,20 +27,52 @@ angular.module('womenWorkingWithWomenApp')
         imgUrl: "http://i.imgur.com/uXlFOwZ.png"
       },
       {
-        name: "Adventist Community Service",
-        imgUrl: "http://i.imgur.com/jTymVLE.gif"
+        name: "Gacta",
+        imgUrl: "http://i.imgur.com/AAZceLw.png"
       },
       {
-        name: "Adventist Community Service",
-        imgUrl: "http://i.imgur.com/jTymVLE.gif"
+        name: "Landers",
+        imgUrl: "http://i.imgur.com/JDSbZj6.jpg"
       },
       {
-        name: "Adventist Community Service",
-        imgUrl: "http://i.imgur.com/jTymVLE.gif"
+        name: "Larry's",
+        imgUrl: "http://i.imgur.com/krTbEDe.png"
       },
       {
-        name: "Adventist Community Service",
-        imgUrl: "http://i.imgur.com/jTymVLE.gif"
+        name: "Lucky's",
+        imgUrl: "http://i.imgur.com/RgAdoph.png"
       },
+      {
+        name: "Paris Leaf",
+        imgUrl: "http://i.imgur.com/P4daQ8P.jpg"
+      },
+      {
+        name: "GPD",
+        imgUrl: "http://i.imgur.com/10IX89C.png"
+      },
+      {
+        name: "Publix",
+        imgUrl: "http://i.imgur.com/deQnbtO.jpg"
+      },
+      {
+        name: "Seventh-Day",
+        imgUrl: "http://i.imgur.com/tWyYJ55.gif"
+      },
+      {
+        name: "UOW",
+        imgUrl: "http://i.imgur.com/SwhoG7q.png"
+      },
+      {
+        name: "Walmart",
+        imgUrl: "http://i.imgur.com/mTuXIQ5.jpg"
+      },
+      {
+        name: "Ward's",
+        imgUrl: "http://i.imgur.com/CayOzS2.png"
+      },
+      {
+        name: "Winn Dixie",
+        imgUrl: "http://i.imgur.com/GSOc5lG.jpg"
+      }
     ]
   });

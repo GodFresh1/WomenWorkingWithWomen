@@ -47,14 +47,20 @@ Styling for the about page.
 .partners-description{
   text-align: center;
   color: rgba(116,59,140,.99999999999);
+  line-height: 1.5;
 }
-.partners-container h5{
+.partners-container h5, .become-a-partner-container h5{
   color: black;
 }
 .partners-image-container{
-  overflow: auto;
-  text-align: center;
+  height: 200px;
+  position: relative;
 }
 .partners-image-container img{
-  width: 90%;
+  max-height: 95%;
+  max-width: 95%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
