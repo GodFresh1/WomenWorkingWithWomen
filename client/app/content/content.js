@@ -62,5 +62,15 @@ angular.module('womenWorkingWithWomenApp')
         url: '/services',
         templateUrl: 'app/content/services/services.html',
         controller: 'ServicesCtrl'
+      })
+      .state('services.professional', {
+        url: '/professional',
+        templateUrl: 'app/content/services/professional.html',
+        controller: 'ServicesCtrl'
+      })
+      .state('services.personal', {
+        url: '/personal',
+        templateUrl: 'app/content/services/personal.html',
+        controller: 'ServicesCtrl'
       });
   });
