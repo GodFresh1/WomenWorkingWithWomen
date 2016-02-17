@@ -1,0 +1,17 @@
+.footer-container{
+  background-color: #174144;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  margin-top: 5%;
+  padding: 2% 2% 2% 2%;
+}
+
+.footer-container p {
+	color: #ccc;
+	font-size: 100%;
+}
+
+.footer-container p b {
+	font-size: 120%;
+}
