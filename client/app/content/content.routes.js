@@ -15,22 +15,22 @@ angular.module('womenWorkingWithWomenApp')
       })
       .state('about.story', {
         url: '/story',
-        templateUrl: 'app/content/about/story.html',
+        templateUrl: 'app/content/about/story/story.html',
         controller: 'AboutCtrl'
       })
       .state('about.board', {
         url: '/board',
-        templateUrl: 'app/content/about/board.html',
+        templateUrl: 'app/content/about/board/board.html',
         controller: 'AboutCtrl'
       })
       .state('about.partners', {
         url: '/partners',
-        templateUrl: 'app/content/about/partners.html',
+        templateUrl: 'app/content/about/partners/partners.html',
         controller: 'AboutCtrl'
       })
       .state('about.testimonials', {
         url: '/testimonials',
-        templateUrl: 'app/content/about/testimonials.html',
+        templateUrl: 'app/content/about/testimonials/testimonials.html',
         controller: 'AboutCtrl'
       })
       .state('contact_us', {
