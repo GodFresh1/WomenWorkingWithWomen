@@ -1,0 +1,23 @@
+/*Styling for the navigation links*/
+.link-container{
+  overflow: visible;
+  position: relative;
+  height: inherit;
+  margin-top: 50px;
+}
+.links-list li{
+  margin: 5px;
+}
+.links-list li > a{
+  position: relative;
+  color: gray;
+}
+.links-list li.active-page > a{
+  color: black;
+}
+
+/*Styling for the main page content*/
+.content-main{
+  margin-top: 40px;
+  margin-bottom: 60px;
+}
