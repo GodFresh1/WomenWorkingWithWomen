@@ -6,3 +6,7 @@ angular.module('womenWorkingWithWomenApp')
     $scope.title = "Changing Lives."
     $scope.subtitle = "Making a Difference."
   })
+$(document).ready(function () {
+    // Plugin initialization
+    $('.slider').slider();
+})
