@@ -9,8 +9,10 @@
   <h5 class="gallery-description">Some pictures of our past events and conferences!
       </h5>
       <hr>
-      <div class="gallery-container">
-        <div class="gallery-image-container col l3 m4 s6" ng-repeat="image in gallery"
+<div class="container">
+  <div class="row">
+    <div class="gallery-container">
+        <div class="gallery-image-container col l3 m4 s6" ng-repeat="image in gallery">
           <img src="{{image.imgUrl}}"/>
         </div>
       </div>
@@ -18,4 +20,3 @@
         <hr  class="col s12 l12 m12">
       </div>
 </div>
-
