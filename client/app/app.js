@@ -8,7 +8,8 @@ angular.module('womenWorkingWithWomenApp', [
   'ngMessages',
   'btford.socket-io',
   'ui.router',
-  'ngMaterial'
+  'ngMaterial',
+  'ui.calendar'
 ])
   .config(function($mdIconProvider) {
     $mdIconProvider
