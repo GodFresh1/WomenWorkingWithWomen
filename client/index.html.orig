@@ -28,6 +28,7 @@
 =======
       <link rel="stylesheet" href="app/content/contact_us/contact_us.css">
 >>>>>>> contactus_feature
+      <link rel="stylesheet" href="app/content/events/events.css">
       <link rel="stylesheet" href="app/main/main.css">
       <link rel="stylesheet" href="components/navbar/navbar.css">
       <!-- endinjector -->
