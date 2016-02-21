@@ -1,7 +1,8 @@
 'use strict';
 
 
-angular.module('womenWorkingWithWomenApp').controller('EventsCtrl', function($scope, $compile, $timeout, uiCalendarConfig) {
+angular.module('womenWorkingWithWomenApp')
+  .controller('EventsCtrl', ['$scope', '$compile', '$timeout', 'uiCalendarConfig', function($scope, $compile, $timeout, uiCalendarConfig) {
   $scope.title = "HOW TO GET INVOLVED";
     var date = new Date();
     var d = date.getDate();
@@ -17,4 +18,18 @@ angular.module('womenWorkingWithWomenApp').controller('EventsCtrl', function($sc
           {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
         ]
     };
-});
+    $scope.uiConfig = {
+      calendar:{
+        editable: true,
+        header:{
+          left: 'prev',
+          center: 'title',
+          right: 'next'
+        },
+        eventClick: $scope.alertOnEventClick,
+        eventDrop: $scope.alertOnDrop,
+        eventResize: $scope.alertOnResize,
+        eventRender: $scope.eventRender
+      }
+    };
+}]);
