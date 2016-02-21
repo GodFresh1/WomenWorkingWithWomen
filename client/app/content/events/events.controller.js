@@ -17,4 +17,18 @@ angular.module('womenWorkingWithWomenApp').controller('EventsCtrl', function($sc
           {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
         ]
     };
+    $scope.uiConfig = {
+      calendar:{
+        editable: true,
+        header:{
+          left: 'prev',
+          center: 'title',
+          right: 'next'
+        },
+        eventClick: $scope.alertOnEventClick,
+        eventDrop: $scope.alertOnDrop,
+        eventResize: $scope.alertOnResize,
+        eventRender: $scope.eventRender
+      }
+    };
 });
