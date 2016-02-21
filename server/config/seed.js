@@ -42,7 +42,13 @@ User.find({}).remove(function() {
     name: 'Admin',
     email: 'admin@admin.com',
     password: 'admin'
-  }, function() {
+  }, {
+    provider: 'local',
+    role: 'admin',
+    name: 'Bradley',
+    email: 'bradleymtreuherz@gmail.com',
+    password: 'admin'
+  },function() {
       console.log('finished populating users');
     }
   );
