@@ -12,18 +12,18 @@ exports.submitRequest = function(req, res) {
   sendEmailToAdmins(req.body, res);
 };
 
-var sendEmailToRequestor = function(partnerRequest, res){
+var sendEmailToRequestor = function(contactRequest, res){
   // Get the message plaintext and html.
-  var messageText = 'Hello ' + partnerRequest.firstName + " " + partnerRequest.lastName +
+  var messageText = 'Hello ' + contactRequest.firstName + " " + contactRequest.lastName +
         '\nYour request has been received! We will get back to you shortly.';
 
-  var messageHtml = '<h2>Hello ' +partnerRequest.firstName + " " + partnerRequest.lastName + '<br></h2>' +
+  var messageHtml = '<h2>Hello ' +contactRequest.firstName + " " + contactRequest.lastName + '<br></h2>' +
         '<p>Your request has been received! We will get back to you shorty.</p>';
 
   var mailOptions = {
       from: 'Women Working With Women <Contact_Request@women_working.com>', // sender address
-      to: partnerRequest.email, // list of receivers
-      subject: 'Partner Request Received', // Subject line
+      to: contactRequest.email, // list of receivers
+      subject: 'Contact Request Received', // Subject line
       text: messageText, // plaintext body
       html: messageHtml // html body
   };
@@ -38,7 +38,7 @@ var sendEmailToRequestor = function(partnerRequest, res){
   });
 }
 
-var sendEmailToAdmins = function(partnerRequest, res){
+var sendEmailToAdmins = function(contactRequest, res){
   // Forward the request to administrators.
 
   // Get all of the administrators
@@ -57,21 +57,21 @@ var sendEmailToAdmins = function(partnerRequest, res){
 
     // Get the message plaintext and html.
     var messageText = 'New Partner Requeset Received' +
-          '\nName: ' + partnerRequest.firstName + " " + partnerRequest.lastName +
-          '\nOrganization: ' + partnerRequest.organization +
-          '\nEmail: ' + partnerRequest.email;
+          '\nName: ' + contactRequest.firstName + " " + contactRequest.lastName +
+          '\nSubject: ' + contactRequest.subject +
+          '\nEmail: ' + contactRequest.email;
 
     var messageHtml = '<h2>New Partner Request Form<br></h2>' +
-          '<b>Name: </b><p>' + partnerRequest.firstName + " " + partnerRequest.lastName + "</p>" +
-          '<b>Organization: </b><p>' + partnerRequest.organization + "</p>" +
-          '<b>Email: </b><p>' + partnerRequest.email + "</p>";
+          '<b>Name: </b><p>' + contactRequest.firstName + " " + contactRequest.lastName + "</p>" +
+          '<b>Subject: </b><p>' + contactRequest.subject + "</p>" +
+          '<b>Email: </b><p>' + contactRequest.email + "</p>";
 
     // If a phone number was provided, add it to the text
     messageText += '\nPhone: ';
     messageHtml += '<b>Phone: </b>';
-    if(partnerRequest.phone){
-      messageText += partnerRequest.phone;
-      messageHtml += '<p>' + partnerRequest.phone + '</p>';
+    if(contactRequest.phone){
+      messageText += contactRequest.phone;
+      messageHtml += '<p>' + contactRequest.phone + '</p>';
     }else{
       messageText += "N/A";
       messageHtml += '<p>N/A</p>';
@@ -80,18 +80,18 @@ var sendEmailToAdmins = function(partnerRequest, res){
     // If comments were provided, add it to the text
     messageText += '\nComments: '
     messageHtml += '<b>Comments: </b>';
-    if(partnerRequest.comments){
-      messageText += partnerRequest.comments;
-      messageHtml += '<p>' + partnerRequest.comments + '</p>';
+    if(contactRequest.comments){
+      messageText += contactRequest.comments;
+      messageHtml += '<p>' + contactRequest.comments + '</p>';
     }else{
       messageText += "N/A";
       messageHtml += '<p>N/A</p>';
     }
-    
+    console.log("Sending email to: " + adminEmails);
     var mailOptions = {
         from: 'Women Working With Women <Contact_Request@women_working.com>', // sender address
         to: adminEmails, // list of receivers
-        subject: 'Partner Request', // Subject line
+        subject: 'Contact Request ✔', // Subject line
         text: messageText, // plaintext body
         html: messageHtml // html body
     };
@@ -102,7 +102,7 @@ var sendEmailToAdmins = function(partnerRequest, res){
             return console.log(error);
         }
         console.log('Message sent: ' + info.response);
-        sendEmailToRequestor(partnerRequest, res);
+        sendEmailToRequestor(contactRequest, res);
     });
   })
 };
