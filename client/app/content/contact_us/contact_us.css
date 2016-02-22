@@ -1,12 +1,12 @@
 
 .contact-info p{
   text-align: center;
-  font-weight: 400;
+  /*font-weight: 400;*/
 }
 .contact-info b{
   text-align: left;
-  font-weight: 700;
-  font-size: 125%;
+  /*font-weight: 700;*/
+  /*font-size: 125%;*/
   color: rgba(116, 59, 140, 0.999999);
 }
 .form-card{

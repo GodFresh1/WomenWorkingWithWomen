@@ -13,37 +13,50 @@
         <br/>
         <md-card class="form-card">
           <md-card-content class="md-padding">
-              <div>
-                  <form name="contactForm" data-ng-submit="cf.sendMail()">
-                      <md-input-container class="md-icon-float md-block">
-                          <label>Name</label>
-                          <md-icon md-svg-src="bower_components/material-design-icons/social/svg/production/ic_people_24px.svg" class="name"></md-icon>
-                          <input ng-model="cf.contactName" required>
-                      </md-input-container>
-                      <md-input-container class="md-icon-float md-block">
-                          <label>Email (required)</label>
-                          <md-icon md-svg-src="bower_components/material-design-icons/communication/svg/production/ic_email_24px.svg" class="email"></md-icon>
-                          <input type="email" ng-model="cf.contactEmail" required>
-                      </md-input-container>
-                      <md-input-container class="md-icon-float md-block">
-                          <label>Phone Number</label>
-                          <md-icon md-svg-src="bower_components/material-design-icons/communication/svg/production/ic_call_24px.svg" class="phone"></md-icon>
-                          <input ng-model="cf.contactPhoneNumber"  required></input>
-                      </md-input-container>
-                      <md-input-container class="md-icon-float md-block">
-                          <label>Subject</label>
-                          <md-icon md-svg-src="bower_components/material-design-icons/communication/svg/production/ic_mail_outline_24px.svg" class="subject"></md-icon>
-                          <input ng-model="cf.contactMsgSubject" md-maxlength="150" required></input>
-                      </md-input-container>
-                      <md-input-container class="md-icon-float md-block">
-                          <label>Message</label>
-                          <textarea ng-model="cf.contactMsgBody" columns="1" md-maxlength="1000" required></textarea>
-                      </md-input-container>
-                      <md-button type="submit" class="md-primary"
-                                 ng-class="{'md-raised md-hue-1': (contactForm.$dirty && contactForm.$valid) }"
-                                 aria-label="Save Project">Send</md-button>
-                  </form>
-              </div>
+            <div class="row">
+              <form class="form-horizontal" ng-submit="sendContactRequest()">
+                <input type="hidden" name="_csrf"/>
+                <div class="row">
+                  <div class="input-field col l6 m6 s6">
+                    <input type="text" id="firstName" class="validate" ng-model="request.firstName" ng-required="true"/>
+                    <label for="firstName" class="control-label">First name *</label>
+                  </div>
+                  <div class="input-field col l6 m6 s6">
+                    <input type="text" id="lastName" class="validate" ng-model="request.lastName" ng-required="true"/>
+                    <label for="lastName" class="control-label">Last name *</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col l12 m12 s12">
+                    <input type="text" id="email" class="validate" ng-model="request.email" ng-required="true"/>
+                    <label for="email" class="control-label">Email Address *</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col l12 m12 s12">
+                    <input type="tel"id="phone" class="validate" ng-model="request.phone"/>
+                    <label for="phone" class="control-label">Phone number (Optional)</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col l12 m12 s12">
+                    <input type="text" id="organization" class="validate" ng-model="request.subject" ng-required="true" />
+                    <label for="organization" class="control-label">Subject *</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col l12 m12 s12">
+                    <textarea type="text" id="comments" class="materialize-textarea validate" ng-model="request.comments" />
+                    <label for="comments" class="control-label">Comments (Optional)</label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-3 col-sm-4">
+                    <button type="submit-btn" class="btn btn btn-primary submit">Submit</button>
+                  </div>
+                </div>
+              </form>
+            </div>
           </md-card-content>
       </md-card>
     </div>
