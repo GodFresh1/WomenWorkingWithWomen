@@ -1,9 +1,11 @@
 'use strict';
 
 angular.module('womenWorkingWithWomenApp')
-  .controller('ContactUsCtrl', function($scope, $mdToast, $animate){
+  .controller('ContactUsCtrl', ['$scope', '$mdToast', '$animate', 'Api', function($scope, $mdToast, $animate, Api){
     $scope.title = "Contact Us"
     //$scope.subTitle = "If you would like to join our team or have a question feel free to send us a message to our general email. Fill out the form below and one of our staff members will get back to you."
+    $scope.request = {};
+
     $scope.contactMsgBody = ""
     $scope.contactMsgSubject = ""
     $scope.contactPhoneNumber = ""
@@ -22,13 +24,8 @@ angular.module('womenWorkingWithWomenApp')
             .join(' ');
     };
 
-    this.sendMail = function() {
-        $mdToast.show(
-            $mdToast.simple()
-                .content('Thanks for your Message ' + this.contactName)
-                .position($scope.getToastPosition())
-                .hideDelay(3000)
-        );
-    };
-
-  })
+    $scope.sendContactRequest = function(){
+      Api.contactRequest($scope.request);
+      $scope.request = {};
+    }
+  }]);
