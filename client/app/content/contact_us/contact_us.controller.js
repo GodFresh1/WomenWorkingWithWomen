@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('womenWorkingWithWomenApp')
-  .controller('ContactUsCtrl', ['$scope', '$mdToast', '$animate', 'Api', function($scope, $mdToast, $animate, Api){
+  .controller('ContactUsCtrl', ['$scope', '$mdToast', '$animate', 'Api', '$window', function($scope, $mdToast, $animate, Api, $window){
     $scope.title = "Contact Us"
     //$scope.subTitle = "If you would like to join our team or have a question feel free to send us a message to our general email. Fill out the form below and one of our staff members will get back to you."
     $scope.request = {};
@@ -27,5 +27,13 @@ angular.module('womenWorkingWithWomenApp')
     $scope.sendContactRequest = function(){
       Api.contactRequest($scope.request);
       $scope.request = {};
+      $window.scrollTo(0, 0);
+      $mdToast.show(
+        $mdToast.simple()
+          .content('Contact Request Sent!')
+          .position('top right')
+          .hideDelay(3000)
+          .theme("success-toast")
+      );
     }
   }]);

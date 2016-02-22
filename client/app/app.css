@@ -92,3 +92,6 @@ hr{
   background-color: #00746b;
   color: white;
 }
+md-toast.md-success-toast-theme {
+    background-color: rgba(116, 59, 140, 0.999999);
+}
