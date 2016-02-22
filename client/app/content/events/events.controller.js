@@ -3,7 +3,7 @@
 
 angular.module('womenWorkingWithWomenApp')
   .controller('EventsCtrl', ['$scope', '$compile', '$timeout', 'uiCalendarConfig', function($scope, $compile, $timeout, uiCalendarConfig) {
-  $scope.title = "HOW TO GET INVOLVED";
+  $scope.title = "How to Get Involved";
     var date = new Date();
     var d = date.getDate();
     var m = date.getMonth();

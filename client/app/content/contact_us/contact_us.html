@@ -6,78 +6,79 @@
   </div>
 </div>
 
-<div data-ng-controller="ContactUsCtrl as cf" layout="row" layout-md="column" layout-sm="column" layout-xs="column">
-    <div flex-sm="100" flex-gt-sm="90" flex-gt-md="60" flex-gt-lg="50">
-        <br/>
-        <md-card class="form-card">
-          <md-card-content class="md-padding">
-            <div class="row">
-              <form class="form-horizontal" ng-submit="sendContactRequest()">
-                <input type="hidden" name="_csrf"/>
-                <div class="row">
-                  <div class="input-field col l6 m6 s6">
-                    <input type="text" id="firstName" class="validate" ng-model="request.firstName" ng-required="true"/>
-                    <label for="firstName" class="control-label">First name *</label>
+<div class="container">
+  <div class="row">
+    <div data-ng-controller="ContactUsCtrl as cf" layout="row" layout-md="column" layout-sm="column" layout-xs="column">
+      <div class = "col s12">
+          <br/>
+          <div class="row">
+            <div class = "col 16 m6 s12">
+              <div>
+                <form class="form-horizontal" ng-submit="sendContactRequest()">
+                  <input type="hidden" name="_csrf"/>
+                  <div class="row">
+                    <div class="input-field col l6 m6 s6">
+                      <input type="text" id="firstName" class="validate" ng-model="request.firstName" ng-required="true"/>
+                      <label for="firstName" class="control-label">First name *</label>
+                    </div>
+                    <div class="input-field col l6 m6 s6">
+                      <input type="text" id="lastName" class="validate" ng-model="request.lastName" ng-required="true"/>
+                      <label for="lastName" class="control-label">Last name *</label>
+                    </div>
                   </div>
-                  <div class="input-field col l6 m6 s6">
-                    <input type="text" id="lastName" class="validate" ng-model="request.lastName" ng-required="true"/>
-                    <label for="lastName" class="control-label">Last name *</label>
+                  <div class="row">
+                    <div class="input-field col l12 m12 s12">
+                      <input type="text" id="email" class="validate" ng-model="request.email" ng-required="true"/>
+                      <label for="email" class="control-label">Email Address *</label>
+                    </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="input-field col l12 m12 s12">
-                    <input type="text" id="email" class="validate" ng-model="request.email" ng-required="true"/>
-                    <label for="email" class="control-label">Email Address *</label>
+                  <div class="row">
+                    <div class="input-field col l12 m12 s12">
+                      <input type="tel"id="phone" class="validate" ng-model="request.phone"/>
+                      <label for="phone" class="control-label">Phone number (Optional)</label>
+                    </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="input-field col l12 m12 s12">
-                    <input type="tel"id="phone" class="validate" ng-model="request.phone"/>
-                    <label for="phone" class="control-label">Phone number (Optional)</label>
+                  <div class="row">
+                    <div class="input-field col l12 m12 s12">
+                      <input type="text" id="organization" class="validate" ng-model="request.subject" ng-required="true" />
+                      <label for="organization" class="control-label">Subject *</label>
+                    </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="input-field col l12 m12 s12">
-                    <input type="text" id="organization" class="validate" ng-model="request.subject" ng-required="true" />
-                    <label for="organization" class="control-label">Subject *</label>
+                  <div class="row">
+                    <div class="input-field col l12 m12 s12">
+                      <textarea type="text" id="comments" class="materialize-textarea validate" ng-model="request.comments" />
+                      <label for="comments" class="control-label">Comments (Optional)</label>
+                    </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="input-field col l12 m12 s12">
-                    <textarea type="text" id="comments" class="materialize-textarea validate" ng-model="request.comments" />
-                    <label for="comments" class="control-label">Comments (Optional)</label>
+                  <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-4">
+                      <button type="submit-btn" class="btn btn btn-primary submit">Submit</button>
+                    </div>
                   </div>
-                </div>
-                <div class="form-group">
-                  <div class="col-sm-offset-3 col-sm-4">
-                    <button type="submit-btn" class="btn btn btn-primary submit">Submit</button>
-                  </div>
-                </div>
-              </form>
+                </form>
             </div>
-          </md-card-content>
-      </md-card>
-    </div>
-    <div class="md-whiteframe-z2">
-      <md-card>
-        <div class="contact-info">
-          <div class="flow-text">
-            <p class="flow-text"><b>Belinda Smith</b><br>Founder and President<br><a target="_blank" href="tel:352.%20872.%208555">352. 872. 8555</a><br><a target="_blank" href="mailto:4wsbms@gmail.com">4wsbms@gmail.com</a>
-            </p>
-            <p class="flow-text"><b>Purette D. Mills</b><br>Vice President | Parenting Counseling and Conferencing<br><a target="_blank" href="tel:256.457.4766">256.457.4766</a><br><a target="_blank" href="mailto:my4atms@aol.com">my4atms@aol.com</a>
-            </p>
-            <p class="flow-text"><b>Mimi Culpepper</b><br>Board of Director | Drug Addiction and Mental Health Services<br><a target="_blank" href="tel:989.714.8401">989.714.8401</a><br><a target="_blank" href="mailto:mimileekay@gmail.com">mimileekay@gmail.com</a>.
-            </p>
-            <p class="flow-text"><b>Maxine Bethea</b><br>Secretary &amp; Treasurer | Prison Ministry Coordinator and Bible Instructor<br><a target="_blank" href="tel:352.871.5233">352.871.5233</a><br><a target="_blank" href="mailto:crimetochrist@yahoo.com">crimetochrist@yahoo.com</a>.
-            </p>
-            <p class="flow-text"><b>Kayla Sutherland</b><br>Board of Director | Teen Conferences<br><a target="_blank" href="tel:786.445.7226">786.445.7226</a><br><a target="_blank" href="mailto:kayla.hsutherland@gmail.com">kayla.hsutherland@gmail.com</a>
-            </p>
+        </div>
+        <div class="md-whiteframe-z2">
+          <div class="col s6">
+            <div class="contact-info">
+              <div class="flow-text">
+                <p class="flow-text"><b>Belinda Smith</b><br>Founder and President<br><a target="_blank" href="tel:352.%20872.%208555">352. 872. 8555</a><br><a target="_blank" href="mailto:4wsbms@gmail.com">4wsbms@gmail.com</a>
+                </p>
+                <p class="flow-text"><b>Purette D. Mills</b><br>Vice President | Parenting Counseling and Conferencing<br><a target="_blank" href="tel:256.457.4766">256.457.4766</a><br><a target="_blank" href="mailto:my4atms@aol.com">my4atms@aol.com</a>
+                </p>
+                <p class="flow-text"><b>Mimi Culpepper</b><br>Board of Director | Drug Addiction and Mental Health Services<br><a target="_blank" href="tel:989.714.8401">989.714.8401</a><br><a target="_blank" href="mailto:mimileekay@gmail.com">mimileekay@gmail.com</a>.
+                </p>
+                <p class="flow-text"><b>Maxine Bethea</b><br>Secretary &amp; Treasurer | Prison Ministry Coordinator and Bible Instructor<br><a target="_blank" href="tel:352.871.5233">352.871.5233</a><br><a target="_blank" href="mailto:crimetochrist@yahoo.com">crimetochrist@yahoo.com</a>.
+                </p>
+                <p class="flow-text"><b>Kayla Sutherland</b><br>Board of Director | Teen Conferences<br><a target="_blank" href="tel:786.445.7226">786.445.7226</a><br><a target="_blank" href="mailto:kayla.hsutherland@gmail.com">kayla.hsutherland@gmail.com</a>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
-      </md-card>
+      </div>
     </div>
+  </div>
 </div>
-
-<div>
-
+</div>
 <div ng-include="'app/content/footer/footer.html'"></div>
