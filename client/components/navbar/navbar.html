@@ -13,6 +13,11 @@
     <li ng-class="{'active-page': routeIs('/services/professional')}"><a href="/services/professional">Professional</a></li>
     <li ng-class="{'active-page': routeIs('/services/personal')}"><a href="/services/personal">Personal</a></li>
   </ul>
+  <ul id="events-dropdown" class="dropdown-content">
+    <li ng-class="{'active-page': routeIs('/events/upcomingevents')}"><a href="/events/upcomingevents">Upcoming Events</a></li>
+    <li ng-class="{'active-page': routeIs('/events/attendeeinformation')}"><a href="/events/attendeeinformation">Attendee Information</a></li>
+    <li ng-class="{'active-page': routeIs('/events/vendorinformation')}"><a href="/events/vendorinformation">Vendor Information</a></li>
+  </ul>
 
   <!--mpobile dropdowns  -->
   <ul id="about-dropdown-mobile" class="dropdown-content">
@@ -27,6 +32,12 @@
     <li ng-class="{'active-page': routeIs('/services/personal')}"><a href="/services/personal" ng-click="closeNav()">Personal</a></li>
   </ul>
 
+  <ul id="events-dropdown-mobile" class="dropdown-content">
+    <li ng-class="{'active-page': routeIs('/events/upcomingevents')}"><a href="/events/upcomingevents" ng-click="closeNav()">Upcoming Events</a></li>
+    <li ng-class="{'active-page': routeIs('/events/attendeeinformation')}"><a href="/events/attendeeinformation" ng-click="closeNav()">Attendee Information</a></li>
+    <li ng-class="{'active-page': routeIs('/events/vendorinformation')}"><a href="/events/vendorinformation" ng-click="closeNav()">Vendor Information</a></li>
+  </ul>
+
   <!-- navbar  -->
   <nav>
     <div class="nav-wrapper">
@@ -37,7 +48,7 @@
         <li ng-class="{'active-page': routeContains('/about')}"><a class="dropdown-button" href="/about/story" data-beloworigin="true" data-hover="true" data-constrainwidth="false" data-activates="about-dropdown">About</a></li>
         <li ng-class="{'active-page': routeContains('/services')}"><a class="dropdown-button" href="/services/professional" data-beloworigin="true" data-hover="true" data-constrainwidth="false" data-activates="services-dropdown">Services</a></li>
         <li ng-class="{'active-page': routeIs('/gallery')}"><a href="/gallery">Gallery</a></li>
-        <li ng-class="{'active-page': routeIs('/events')}"><a href="/events">Events</a></li>
+        <li ng-class="{'active-page': routeContains('/events')}"><a class="dropdown-button" href="/events/upcomingevents" data-beloworigin="true" data-hover="true" data-constrainwidth="false" data-activates="events-dropdown">Events</a></li>
         <li ng-class="{'active-page': routeIs('/donations')}"><a href="/donations">Donations</a></li>
         <li ng-class="{'active-page': routeIs('/contact_us')}"><a href="/contact_us">Contact Us</a></li>
         <li ng-class="{'active-page': routeIs('/take_action')}"><a href="/take_action">Take Action</a></li>
@@ -47,7 +58,7 @@
         <li ng-class="{'active-page': routeContains('/about')}"><a class="dropdown-button" data-beloworigin="true"  data-constrainwidth="false" data-activates="about-dropdown-mobile">About</a></li>
         <li ng-class="{'active-page': routeContains('/services')}"><a class="dropdown-button"  data-beloworigin="true" data-constrainwidth="false" data-activates="services-dropdown-mobile">Services</a></li>
         <li ng-class="{'active-page': routeIs('/gallery')}"><a href="/gallery" ng-click="closeNav()">Gallery</a></li>
-        <li ng-class="{'active-page': routeIs('/events')}"><a href="/events" ng-click="closeNav()">Events</a></li>
+        <li ng-class="{'active-page': routeContains('/events')}"><a class="dropdown-button" data-beloworigin="true"  data-constrainwidth="false" data-activates="events-dropdown-mobile">Events</a></li>
         <li ng-class="{'active-page': routeIs('/donations')}"><a href="/donations" ng-click="closeNav()">Donations</a></li>
         <li ng-class="{'active-page': routeIs('/contact_us')}"><a href="/contact_us" ng-click="closeNav()">Contact Us</a></li>
         <li ng-class="{'active-page': routeIs('/take_action')}"><a href="/take_action" ng-click="closeNav()">Take Action</a></li>

@@ -1,22 +1,4 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
+<div ui-view></div>
 
-<div class="row content-header">
-  <div class="col s12 title-container">
-    <h1 class="header-text">{{title}}</h1>
-  </div>
-</div>
-
-
-<div id="content" class="container">
-  <div class="row">
-    <div class="content-main" align="center">
-      <h4>We encourage everyone to join us for our events!</h4>
-      <p>Click on the event to find out more information.</p>
-
-      <img src = "http://i.imgur.com/qdSHGxm.jpg" style = "height: 400px">
-
-    </div>
-    <div class="calendar" ng-model="eventSources" calendar="myCalendar" ui-calendar="uiConfig.calendar"></div>
-  </div>
-</div>
 <div ng-include="'app/content/footer/footer.html'"></div>
