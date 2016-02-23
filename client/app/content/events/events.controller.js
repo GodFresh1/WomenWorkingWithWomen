@@ -1,27 +1,35 @@
 'use strict';
 
+
 angular.module('womenWorkingWithWomenApp')
-  .controller('EventsCtrl', function($scope){
-    $scope.title = "HOW TO GET INVOLVED"
-  })
-  angular.module("materialExample").controller("calendarCtrl", function($scope, $filter) {
-      $scope.selectedDate = null;
-      $scope.firstDayOfWeek = 0;
-      $scope.setDirection = function(direction) {
-        $scope.direction = direction;
-      };
-      $scope.dayClick = function(date) {
-        $scope.msg = "You clicked " + $filter("date")(date, "MMM d, y h:mm:ss a Z");
-      };
-      $scope.prevMonth = function(data) {
-        $scope.msg = "You clicked (prev) month " + data.month + ", " + data.year;
-      };
-      $scope.nextMonth = function(data) {
-        $scope.msg = "You clicked (next) month " + data.month + ", " + data.year;
-      };
-      $scope.setDayContent = function(date) {
-        // You would inject any HTML you wanted for
-        // that particular date here.
-          return "<p></p>";
-      };
-  });
+  .controller('EventsCtrl', ['$scope', '$compile', '$timeout', 'uiCalendarConfig', function($scope, $compile, $timeout, uiCalendarConfig) {
+  $scope.title = "How to Get Involved";
+    var date = new Date();
+    var d = date.getDate();
+    var m = date.getMonth();
+    var y = date.getFullYear();
+
+    $scope.eventSources = {
+       color: '#EFE5F0',
+       textColor: 'purple',
+       events: [
+          {title: 'Lunch',start: new Date(y, m, d, 12, 0),end: new Date(y, m, d, 14, 0),allDay: false},
+          {title: 'All day Lunch',start: new Date(y, m, 25, 12, 0),end: new Date(y, m, 25, 14, 0),allDay: true},
+          {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
+        ]
+    };
+    $scope.uiConfig = {
+      calendar:{
+        editable: true,
+        header:{
+          left: 'prev',
+          center: 'title',
+          right: 'next'
+        },
+        eventClick: $scope.alertOnEventClick,
+        eventDrop: $scope.alertOnDrop,
+        eventResize: $scope.alertOnResize,
+        eventRender: $scope.eventRender
+      }
+    };
+}]);

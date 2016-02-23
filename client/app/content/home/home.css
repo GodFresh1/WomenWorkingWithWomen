@@ -1,0 +1,37 @@
+.imgContainer {
+	overflow: hidden;
+	width:729;
+	height:300;
+}
+
+.flyers-container{
+	overflow: auto;
+}
+
+.flyers-container img{
+	height: auto;
+	width: auto;
+	max-width: 80%;
+}
+
+.info-container{
+	overflow: auto;
+}
+
+.info-container img{
+	height: auto;
+	width: auto;
+	max-width: 90%;
+	max-height: 300px;
+}
+
+.greeting-container{
+	overflow: auto;
+}
+
+.greeting-container img{
+	height: auto;
+	width: auto;
+	max-width: 100%;
+	max-height: 300px;
+}

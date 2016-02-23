@@ -1,0 +1,29 @@
+/*
+Styling for the gallery page.
+*/
+
+.content-gallery{
+  margin-top: 40px;
+  margin-bottom: 60px;
+}
+
+.gallery-description{
+  text-align: center;
+  color: rgba(116,59,140,.99999999999);
+  line-height: 1.5;
+}
+.gallery-container h5{
+  color: black;
+}
+.gallery-image-container{
+  height: 200px;
+  position: relative;
+}
+.gallery-image-container img{
+  max-height: 95%;
+  max-width: 95%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

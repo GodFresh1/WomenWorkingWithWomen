@@ -40,6 +40,11 @@ hr{
   height: 40vh;
   text-align: center;
 }
+
+.content-header-lg{
+  min-height: 40vh;
+  text-align: center;
+}
 .title-container{
   background-color: #eee4f2;
   width: 100%;
@@ -91,4 +96,7 @@ hr{
 .submit-btn{
   background-color: #00746b;
   color: white;
+}
+md-toast.md-success-toast-theme {
+    background-color: rgba(116, 59, 140, 0.999999);
 }
