@@ -17,7 +17,50 @@
       </ul>
     </div>
     <div class="col s12 m7 l8 offset-l1 content-main">
-      
+      <form class="form-horizontal" ng-submit="sendContactRequest()">
+        <input type="hidden" name="_csrf"/>
+        <div class="row">
+          <div class="input-field col l6 m6 s6">
+            <input type="text" id="firstName" class="validate" ng-model="request.firstName" ng-required="true"/>
+            <label for="firstName" class="control-label">First name *</label>
+          </div>
+          <div class="input-field col l6 m6 s6">
+            <input type="text" id="lastName" class="validate" ng-model="request.lastName" ng-required="true"/>
+            <label for="lastName" class="control-label">Last name *</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col l12 m12 s12">
+            <input type="text" id="email" class="validate" ng-model="request.email" ng-required="true"/>
+            <label for="email" class="control-label">Email Address *</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col l12 m12 s12">
+            <input type="tel"id="phone" class="validate" ng-model="request.phone" ng-required="true"/>
+            <label for="phone" class="control-label">Phone number *</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col l6 m6 s6">
+            <input type="number" id="age" class="validate" ng-model="request.age" ng-required="true"/>
+            <label for="age" class="control-label">Age *</label>
+          </div>
+          <div class="input-field col l6 m6 s6">
+            <input type="text" id="gender" class="validate" ng-model="request.gender"/>
+            <label for="gender" class="control-label">Gender (Optional)</label>
+            <select name="singleSelect" ng-model="data.singleSelect">
+              <option value="option-1">Option 1</option>
+              <option value="option-2">Option 2</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-3 col-sm-4">
+            <button type="submit-btn" class="btn btn btn-primary submit">Submit</button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </div>
