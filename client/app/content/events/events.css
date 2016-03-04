@@ -1,0 +1,30 @@
+.md-button.dropdown {
+  overflow: visible; /*reset*/
+}
+
+/.dropdown .dropdown-menu {
+  max-width: 0;
+  position: absolute;
+  left: 40px;
+  top: 100%;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  overflow: hidden;
+  background-color: #fff;
+  list-style: none;
+  transition: min-width 0.2s ease-in-out, left 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+.dropdown .dropdown-menu .md-button {
+  min-width: 100%;
+  border-radius: 0;
+  margin: 0;
+  padding: 6px 16px;
+}
+
+.dropdown.active .dropdown-menu {
+  max-width: 300px; /* set a maxwidth bigger than the widest element */
+  left: 0;
+  opacity: 1;
+}
