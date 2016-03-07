@@ -32,4 +32,6 @@ angular.module('womenWorkingWithWomenApp')
         eventRender: $scope.eventRender
       }
     };
+
+    $scope.genders = ('Male Female Other').split(' ');
 }]);
