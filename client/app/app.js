@@ -6,10 +6,10 @@ angular.module('womenWorkingWithWomenApp', [
   'ngSanitize',
   'ngAnimate',
   'ngMessages',
+  'ui.calendar',
   'btford.socket-io',
   'ui.router',
-  'ngMaterial',
-  'ui.calendar'
+  'ngMaterial'
 ])
   .config(function($mdIconProvider) {
     $mdIconProvider
