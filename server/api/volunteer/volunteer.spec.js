@@ -34,14 +34,6 @@ describe('Volunteer Model', function() {
       done();
     });
   });
-
-  it('should begin with no volunteers', function(done) {
-    Volunteer.find({}, function(err, volunteers) {
-      volunteers.should.have.length(0);
-      done();
-    });
-  });
-
   it('should respond with JSON array when reqesting /api/volunteers', function(done) {
       request(app)
         .get('/api/volunteers')
