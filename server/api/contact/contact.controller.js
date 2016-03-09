@@ -9,7 +9,7 @@ var transporter = nodemailer.createTransport(config.smtp.uri);
 
 // Get list of things
 exports.submitRequest = function(req, res) {
-  sendEmailToAdmins(req.body, res);
+  return sendEmailToAdmins(req.body, res);
 };
 
 var sendEmailToRequestor = function(contactRequest, res){
@@ -30,11 +30,9 @@ var sendEmailToRequestor = function(contactRequest, res){
 
   // send mail with defined transport object
   transporter.sendMail(mailOptions, function(error, info){
-      if(error){
-          return console.log(error);
-      }
+      if(error) return handleError(res, error);
       console.log('Message sent: ' + info.response);
-      res.status(200).send('OK');
+      return res.status(200).send('OK');
   });
 }
 
@@ -43,7 +41,7 @@ var sendEmailToAdmins = function(contactRequest, res){
 
   // Get all of the administrators
   User.find({role: "admin"}, function(err, admins){
-    if (err) return res.status(500).send(err);
+    if (err) return handleError(res, err);
 
     // Concatonate all of the admin emails into a string.
     var adminEmails = "";
@@ -98,11 +96,14 @@ var sendEmailToAdmins = function(contactRequest, res){
 
     // send mail with defined transport object
     transporter.sendMail(mailOptions, function(error, info){
-        if(error){
-            return console.log(error);
-        }
+        if(error) return handleError(res, error);
         console.log('Message sent: ' + info.response);
-        sendEmailToRequestor(contactRequest, res);
+        return sendEmailToRequestor(contactRequest, res);
     });
   })
 };
+
+function handleError(res, err){
+  console.log(err);
+  return res.status(500).send(err);
+}
