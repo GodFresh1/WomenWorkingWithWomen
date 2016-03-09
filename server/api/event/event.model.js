@@ -11,7 +11,7 @@ var EventSchema = new Schema({
                                                                    // Event.populate('volunteers') to actually work with objects instead of IDs. TODO: Test this.
   description: {type:String, required:true},
   location: {type:String, required:true},
-  imageUrl: {type:String, required:true}
+  imgUrl: {type:String, required:true}
 });
 
 module.exports = mongoose.model('Event', EventSchema);

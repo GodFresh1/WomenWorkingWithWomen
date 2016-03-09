@@ -55,7 +55,7 @@ exports.destroy = function(req, res) {
   Event.findById(req.params.id, function (err, event) {
     if(err) { return handleError(res, err); }
     if(!event) { return res.status(404).send('Not Found'); }
-    event.remove(function(err) {
+    Event.remove(function(err) {
       if(err) { return handleError(res, err); }
       return res.status(204).send('No Content');
     });

@@ -25,15 +25,27 @@ angular.module('womenWorkingWithWomenApp')
     };
 
     $scope.sendContactRequest = function(){
-      Api.contactRequest($scope.request);
-      $scope.request = {};
-      $window.scrollTo(0, 0);
-      $mdToast.show(
-        $mdToast.simple()
-          .content('Contact Request Sent!')
-          .position('top right')
-          .hideDelay(3000)
-          .theme("success-toast")
-      );
+      Api.contactRequest($scope.request).then(function(res){
+        $scope.request = {};
+        $window.scrollTo(0, 0);
+        $mdToast.show(
+          $mdToast.simple()
+            .content('Contact Request Sent!')
+            .position('top right')
+            .hideDelay(3000)
+            .theme("success-toast")
+        );
+      }, function(err){
+        $scope.request = {};
+        $window.scrollTo(0, 0);
+        $mdToast.show(
+          $mdToast.simple()
+            .content('Ooops an Error Occurred!')
+            .position('top right')
+            .hideDelay(3000)
+            .theme("error-toast")
+        );
+      });
+
     }
   }]);
