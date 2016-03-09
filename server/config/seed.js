@@ -7,6 +7,8 @@
 
 var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
+var Event = require('../api/event/event.model');
+var Volunteer = require('../api/volunteer/volunteer.model');
 
 Thing.find({}).remove(function() {
   Thing.create({
@@ -53,3 +55,50 @@ User.find({}).remove(function() {
     }
   );
 });
+
+// Seed Events
+Event.find({}).remove(function(){
+  Event.create({
+    title: 'Event 1',
+    start: new Date(2016, 11, 17, 2, 30, 0),
+    end: new Date(2016, 11, 17, 4, 30, 0), // Note: this is a 2 hour event.
+    description: "An event for testing.",
+    location: "1234 Made Up St, Doesnt Exist, AL, 12345",
+    imgUrl: "http://notarealurl.com"
+  },{
+    title: 'Event 2',
+    start: new Date(2016, 3, 3, 1, 0, 0),
+    end: new Date(2016, 3, 3, 4, 0, 0),
+    description: "Another event for testing.",
+    location: "A BS Address",
+    imgUrl: "http://fakeimage.com"
+  },{
+    title: 'Event 3',
+    start: new Date(2016, 4, 5, 3, 0, 0),
+    end: new Date(2016, 5, 5, 6, 0, 0),
+    description: "A third event for testing.",
+    location: "Another BS Address",
+    imgUrl: "http://fakeimageyea.com"
+  }, function(){
+    console.log('finished populating events.');
+  });
+});
+
+// Seed volunteers
+Volunteer.find({}).remove(function(){
+  Volunteer.create({
+    _id: 'volunteer1@email.com',
+    name: 'Volunteer 1',
+    phone: 1234456123
+  }, {
+    _id: 'volunteer2@email.com',
+    name: 'Volunteer 2',
+    phone: 1234456123
+  }, {
+    _id: 'volunteer3@email.com',
+    name: 'Volunteer 3',
+    phone: 1234456123
+  }, function(){
+    console.log('finshed populating volunteers.');
+  });
+})

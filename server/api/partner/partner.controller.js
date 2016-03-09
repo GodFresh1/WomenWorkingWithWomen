@@ -9,7 +9,7 @@ var transporter = nodemailer.createTransport(config.smtp.uri);
 
 // Get list of things
 exports.submitRequest = function(req, res) {
-  sendEmailToAdmins(req.body, res);
+  return sendEmailToAdmins(req.body, res);
 };
 
 var sendEmailToRequestor = function(partnerRequest, res){
@@ -30,11 +30,9 @@ var sendEmailToRequestor = function(partnerRequest, res){
 
   // send mail with defined transport object
   transporter.sendMail(mailOptions, function(error, info){
-      if(error){
-          return console.log(error);
-      }
+      if(error) return handleError(res, error);
       console.log('Message sent: ' + info.response);
-      res.status(200).send('OK');
+      return res.status(200).send('OK');
   });
 }
 
@@ -43,7 +41,7 @@ var sendEmailToAdmins = function(partnerRequest, res){
 
   // Get all of the administrators
   User.find({role: "admin"}, function(err, admins){
-    if (err) return res.status(500).send(err);
+    if (err) return handleError(res, err);
 
     // Concatonate all of the admin emails into a string.
     var adminEmails = "";
@@ -87,7 +85,7 @@ var sendEmailToAdmins = function(partnerRequest, res){
       messageText += "N/A";
       messageHtml += '<p>N/A</p>';
     }
-    
+
     var mailOptions = {
         from: 'Women Working With Women <Contact_Request@women_working.com>', // sender address
         to: adminEmails, // list of receivers
@@ -98,11 +96,14 @@ var sendEmailToAdmins = function(partnerRequest, res){
 
     // send mail with defined transport object
     transporter.sendMail(mailOptions, function(error, info){
-        if(error){
-            return console.log(error);
-        }
+        if(error) return handleError(res, error);
         console.log('Message sent: ' + info.response);
-        sendEmailToRequestor(partnerRequest, res);
+        return sendEmailToRequestor(partnerRequest, res);
     });
   })
 };
+
+function handleError(res, err){
+  console.log(err);
+  return res.status(500).send(err);
+}

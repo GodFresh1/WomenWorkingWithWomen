@@ -5,6 +5,10 @@
 module.exports = {
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost/womenworkingwithwomen-test'
-  }
+    uri: 'mongodb://dev:dev@ds055515.mongolab.com:55515/women_working_with_women'
+  },
+  seedDB: true,
+  smtp: {
+      uri: 'smtps://womenworkingcontactrequest%40gmail.com:womenworkingwithwomen@smtp.gmail.com'
+    }
 };

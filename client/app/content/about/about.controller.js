@@ -9,15 +9,26 @@ angular.module('womenWorkingWithWomenApp')
 
     $scope.becomeAPartner = function(){
       console.log($scope.newPartner);
-      Api.partnerRequest($scope.newPartner);
-      $scope.newPartner = {};
-      $window.scrollTo(0, 0);
-      $mdToast.show(
-        $mdToast.simple()
-          .content('Partner Request Sent!')
-          .position('top right')
-          .hideDelay(3000)
-          .theme("success-toast")
-      );
+      Api.partnerRequest($scope.newPartner).then(function(res){
+        $scope.newPartner = {};
+        $window.scrollTo(0, 0);
+        $mdToast.show(
+          $mdToast.simple()
+            .content('Partner Request Sent!')
+            .position('top right')
+            .hideDelay(3000)
+            .theme("success-toast")
+        );
+      }, function(err){
+        $scope.newPartner = {};
+        $window.scrollTo(0, 0);
+        $mdToast.show(
+          $mdToast.simple()
+            .content('Ooops An Error Occurred!')
+            .position('top right')
+            .hideDelay(3000)
+            .theme("error-toast")
+        );
+      });
     }
   }]);
