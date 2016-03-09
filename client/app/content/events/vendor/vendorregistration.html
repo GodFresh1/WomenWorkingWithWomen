@@ -78,17 +78,17 @@
               <label for="website" class="control-label">Website</label>
             </div>
             <div class="input-field col l6 m6 s6">
-              <input type="tel" id="faxNumber" class="validate" ng-model="register.faxNumber" ng-required="true"/>
+              <input type="tel" id="faxNumber" class="validate" ng-model="register.faxNumber"/>
               <label for="lastName" class="control-label">Fax Number</label>
             </div>
           </div>
           <md-input-container class="md-block">
           <label>A Brief Description Of The Product(s)/Service(s) To Display/Sell During The Conference *</label>
-          <textarea ng-model="register.sellDescription" rows="5" md-select-on-focus></textarea>
+          <textarea ng-model="register.sellDescription" rows="5" ng-required="true" md-select-on-focus></textarea>
         </md-input-container>
         <md-input-container class="md-block">
         <label>A Description Of The Item To Donate As Raffle Prize *</label>
-        <textarea ng-model="register.raffleDescription" rows="5" md-select-on-focus></textarea>
+        <textarea ng-model="register.raffleDescription" rows="5" ng-required="true" md-select-on-focus></textarea>
       </md-input-container>
           <div class="form-group">
             <div class="col-sm-offset-3 col-sm-4">
