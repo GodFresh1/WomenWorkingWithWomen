@@ -18,5 +18,4 @@ describe('galleryPage', function(){
   it('should have defined a gallery', function() {
     expect(scope.gallery).toBeDefined();
   });
-
 });
