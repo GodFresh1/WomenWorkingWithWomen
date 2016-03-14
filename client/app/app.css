@@ -39,14 +39,23 @@ hr{
 .content-header{
   height: 40vh;
   text-align: center;
+  background:  url(http://i.imgur.com/xYw8SYu.png) center top repeat;
+  background-size:  cover;
 }
 
 .content-header-lg{
   min-height: 40vh;
+  width: 100%;
   text-align: center;
+  background:  url(http://i.imgur.com/5zHl2TI.png) center top repeat;
+  background-size:  cover;
+  
 }
 .title-container{
-  background-color: #eee4f2;
+  /*background-color: rgba(116,59,140,.99999999999) ;
+  template for adding a bg image  center top
+  background:  url(http://i.imgur.com/LHGMr1h.jpg) center top no-repeat, url(http://i.imgur.com/xYw8SYu.png) center top repeat;
+  background-size: auto, cover; auto hides, 100%100% distorts*/
   width: 100%;
   height: 100%;
   text-align: center;
@@ -55,12 +64,15 @@ hr{
   position: relative;
   top: 50%;
   transform: translateY(-100%);
-  color: rgba(116,59,140,.99999999999);
+  color:  #f9e6ff;
 }
 .container{
   width: 80%;
 }
-
+.header-text {
+  top: 50%;
+  color: #eee4f2;
+}
 /*Forms*/
 
 /* label focus color */
