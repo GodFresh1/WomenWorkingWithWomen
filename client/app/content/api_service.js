@@ -2,7 +2,7 @@
 
 angular.module('womenWorkingWithWomenApp')
   .factory('Api', ['$http', function($http){
-    var API_BASE_URL = 'http://localhost:3000/api/';
+    var API_BASE_URL = 'http://localhost:9000/api/';
     return {
       // Contact Requests
       partnerRequest: function(partner){
