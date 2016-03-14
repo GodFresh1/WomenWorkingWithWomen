@@ -31,7 +31,6 @@ angular.module('womenWorkingWithWomenApp')
       },
 
       // Volunteer Stuff
-      // Event Stuff
       getAllVolunteers: function(){
         return $http.get(API_BASE_URL + 'volunteers/');
       },
@@ -46,6 +45,40 @@ angular.module('womenWorkingWithWomenApp')
       },
       deleteVolunteer: function(_id){
         return $http.delete(API_BASE_URL + 'volunteers/' + _id);
+      },
+
+      // Attendee Stuff
+      getAllAttendees: function(){
+        return $http.get(API_BASE_URL + 'attendees/');
+      },
+      getOneAttendee: function(_id){
+        return $http.get(API_BASE_URL + 'attendees/' + _id);
+      },
+      createAttendee: function(attendee){
+        return $http.post(API_BASE_URL + 'attendees/', attendee);
+      },
+      updateAttendee: function(_id, attendee){
+        return $http.put(API_BASE_URL + 'attendees/' + _id, attendee);
+      },
+      deleteAttendee: function(_id){
+        return $http.delete(API_BASE_URL + 'attendees/' + _id);
+      },
+
+      // Vendor Stuff
+      getAllVendors: function(){
+        return $http.get(API_BASE_URL + 'vendors/');
+      },
+      getOneVendor: function(_id){
+        return $http.get(API_BASE_URL + 'vendors/' + _id);
+      },
+      createVendor: function(vendor){
+        return $http.post(API_BASE_URL + 'vendors/', vendor);
+      },
+      updateVendor: function(_id, vendor){
+        return $http.put(API_BASE_URL + 'vendors/' + _id, vendor);
+      },
+      deleteVendor: function(_id){
+        return $http.delete(API_BASE_URL + 'vendors/' + _id);
       }
     }
 }]);

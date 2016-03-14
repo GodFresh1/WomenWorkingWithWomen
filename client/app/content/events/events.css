@@ -1,0 +1,16 @@
+md-select {
+  display: block;
+  margin: 10px 0 8px 0;
+  padding-bottom: 2px;
+  position: relative;
+  color: rgba(116,59,140,.99999999999);
+}
+md-option {
+  font-size: 16px;
+   margin: 20px 0;
+   padding: 3px 15px 3px 15px;
+   color: black;
+   text-transform: none;
+   font-weight: 400;
+   min-width:100px;
+}

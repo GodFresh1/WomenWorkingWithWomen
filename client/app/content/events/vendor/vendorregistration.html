@@ -1,0 +1,101 @@
+<div class="row content-header">
+  <div class="col s12 title-container">
+    <h1 class="header-text">Event Registration</h1>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="row">
+    <h4 align="center">Vendor Registration</h4>
+    <div class="col m3 l2 link-container hide-on-small-only">
+      <h5>Events</h5>
+      <ul class="links-list">
+        <li><a ui-sref="events.upcomingevents">UPCOMING EVENTS</a></li>
+        <li><a ui-sref="events.attendeeregistration">ATTENDEE REGISTRATION</a></li>
+        <li class="active-page"><a ui-sref="events.vendorregistration">VENDOR REGISTRATION</a></li>
+        <li><a ui-sref="events.attendeeinformation">ATTENDEE INFORMATION</a></li>
+        <li><a ui-sref="events.vendorinformation">VENDOR INFORMATION</a></li>
+      </ul>
+    </div>
+    <div class="col s12 m7 l8 offset-l1 content-main">
+
+        <form class="form-horizontal" ng-submit="registerAttendee()">
+          <input type="hidden" name="_csrf"/>
+          <div class="row">
+            <div class="input col l12 m12 s12" ng-required="true">
+              <label>Choose an Event *</label>
+              <md-select ng-model="register.events">
+                <md-option ng-repeat="event in events" value="{{event.title}}">
+                  {{event.title}}
+                </md-option>
+              </md-select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col l12 m12 s12">
+              <input type="text" id="jobTitle" class="validate" ng-model="register.jobTitle" ng-required="true"/>
+              <label for="jobTitle" class="control-label">Job Title *</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col l6 m6 s6">
+              <input type="text" id="firstName" class="validate" ng-model="register.firstName" ng-required="true"/>
+              <label for="firstName" class="control-label">First name *</label>
+            </div>
+            <div class="input-field col l6 m6 s6">
+              <input type="text" id="lastName" class="validate" ng-model="register.lastName" ng-required="true"/>
+              <label for="lastName" class="control-label">Last name *</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col l12 m12 s12">
+              <input type="text" id="email" class="validate" ng-model="register.email" ng-required="true"/>
+              <label for="email" class="control-label">Email Address *</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col l12 m12 s12">
+              <input type="tel"id="phone" class="validate" ng-model="register.phone" ng-required="true"/>
+              <label for="phone" class="control-label">Phone number *</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col l12 m12 s12">
+              <input type="text" id="organizationName" class="validate" ng-model="register.organizationName" ng-required="true"/>
+              <label for="organizationName" class="control-label">Organization Name *</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col l12 m12 s12">
+              <input type="text" id="organizationAddress" class="validate" ng-model="register.organizationAddress" ng-required="true"/>
+              <label for="organizationAddress" class="control-label">Organization Address *</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col l6 m6 s6">
+              <input type="text" id="website" class="validate" ng-model="register.website"/>
+              <label for="website" class="control-label">Website</label>
+            </div>
+            <div class="input-field col l6 m6 s6">
+              <input type="tel" id="faxNumber" class="validate" ng-model="register.faxNumber"/>
+              <label for="lastName" class="control-label">Fax Number</label>
+            </div>
+          </div>
+          <md-input-container class="md-block">
+          <label>A Brief Description Of The Product(s)/Service(s) To Display/Sell During The Conference *</label>
+          <textarea ng-model="register.sellDescription" rows="5" ng-required="true" md-select-on-focus></textarea>
+        </md-input-container>
+        <md-input-container class="md-block">
+        <label>A Description Of The Item To Donate As Raffle Prize *</label>
+        <textarea ng-model="register.raffleDescription" rows="5" ng-required="true" md-select-on-focus></textarea>
+      </md-input-container>
+          <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-4">
+              <button type="submit-btn" class="btn btn btn-primary submit">Submit</button>
+            </div>
+          </div>
+        </form>
+    </div>
+  </div>
+</div>

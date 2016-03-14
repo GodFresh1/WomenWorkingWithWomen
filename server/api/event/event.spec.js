@@ -40,14 +40,6 @@ describe('Event Model', function() {
       done();
     });
   });
-
-  it('should begin with no events', function(done) {
-    Event.find({}, function(err, events) {
-      events.should.have.length(0);
-      done();
-    });
-  });
-
   it('should respond with JSON array when reqesting /api/events', function(done) {
       request(app)
         .get('/api/events')

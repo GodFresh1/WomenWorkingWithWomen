@@ -7,6 +7,11 @@
 
 var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
+var Event = require('../api/event/event.model');
+var Volunteer = require('../api/volunteer/volunteer.model');
+var Attendee = require('../api/attendee/attendee.model');
+var Vendor = require('../api/vendor/vendor.model');
+
 
 Thing.find({}).remove(function() {
   Thing.create({
@@ -52,4 +57,91 @@ User.find({}).remove(function() {
       console.log('finished populating users');
     }
   );
+});
+
+// Seed Events
+Event.find({}).remove(function(){
+  Event.create({
+    title: 'Event 1',
+    start: new Date(2016, 11, 17, 2, 30, 0),
+    end: new Date(2016, 11, 17, 4, 30, 0), // Note: this is a 2 hour event.
+    description: "An event for testing.",
+    location: "1234 Made Up St, Doesnt Exist, AL, 12345",
+    imgUrl: "http://notarealurl.com"
+  },{
+    title: 'Event 2',
+    start: new Date(2016, 3, 3, 1, 0, 0),
+    end: new Date(2016, 3, 3, 4, 0, 0),
+    description: "Another event for testing.",
+    location: "A BS Address",
+    imgUrl: "http://fakeimage.com"
+  },{
+    title: 'Event 3',
+    start: new Date(2016, 4, 5, 3, 0, 0),
+    end: new Date(2016, 5, 5, 6, 0, 0),
+    description: "A third event for testing.",
+    location: "Another BS Address",
+    imgUrl: "http://fakeimageyea.com"
+  }, function(){
+    console.log('finished populating events.');
+  });
+});
+
+// Seed attendees
+Attendee.find({}).remove(function(){
+  Attendee.create({
+    _id: 'attendee@email.com',
+    firstName: 'Eric',
+    lastName: 'Foreman',
+    phone: 1234456123
+  }, {
+    _id: 'attendee2@email.com',
+    firstName: 'Bob',
+    lastName: "Johnson",
+    phone: 1234456123
+  }, {
+    _id: 'attendee3@email.com',
+    firstName: 'FirstName',
+    lastName: 'lastName',
+    phone: 1234456123
+  }, function(){
+    console.log('finshed populating attendees.');
+  });
+})
+
+// Seed volunteers
+Volunteer.find({}).remove(function(){
+  Volunteer.create({
+    _id: 'volunteer1@email.com',
+    firstName: 'first',
+    lastName: 'firstLast',
+    phone: 1234456123
+  }, {
+    _id: 'volunteer2@email.com',
+    firstName: 'first2',
+    lastName: 'first2Last',
+    phone: 1234456123
+  }, {
+    _id: 'volunteer3@email.com',
+    firstName: 'first3',
+    lastName: 'first3Last',
+    phone: 1234456123
+  }, function(){
+    console.log('finshed populating volunteers.');
+  });
+});
+
+// Seen vendors
+Vendor.find({}).remove(function(){
+  Vendor.create({
+    jobTitle: "Salesman",
+    firstName: "Richard",
+    lastName: "Hurts",
+    email: "Email@email.email",
+    phone: 12345678,
+    organizationName: "NAME NAME",
+    organizationAddress: "1234 this is an address",
+    descriptionOfServices: "Were gonna sell stray cats.",
+    descriptionOfPrizes: "You can take home a cat"
+  });
 });
