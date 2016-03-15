@@ -3,26 +3,26 @@
 var should = require('should');
 var app = require('../../app');
 var request = require('supertest');
-var Volunteer = require('./volunteer.model');
+var Attendee = require('./attendee.model');
 
-var volunteer = new Volunteer({
+var attendee = new Attendee({
   _id: "testEmail@email.com",
   firstName: "John",
   lastName: "Smith",
   phone: 12345678
 });
 
-describe('Volunteer Model', function() {
+describe('Attendee Model', function() {
   before(function(done) {
-    // Clear volunteers before testing
-    Volunteer.remove().exec().then(function() {
+    // Clear attendees before testing
+    Attendee.remove().exec().then(function() {
       done();
     });
   });
 
   beforeEach(function(done){
-    // Set the volunteer to this before each test is ran.
-    volunteer = new Volunteer({
+    // Set the attendee to this before each test is ran.
+    attendee = new Attendee({
       _id: "testEmail@email.com",
       firstName: "John",
       lastName: "Smith",
@@ -32,13 +32,13 @@ describe('Volunteer Model', function() {
   });
 
   afterEach(function(done) {
-    Volunteer.remove().exec().then(function() {
+    Attendee.remove().exec().then(function() {
       done();
     });
   });
-  it('should respond with JSON array when reqesting /api/volunteers', function(done) {
+  it('should respond with JSON array when reqesting /api/attendees', function(done) {
       request(app)
-        .get('/api/volunteers')
+        .get('/api/attendees')
         .expect(200)
         .expect('Content-Type', /json/)
         .end(function(err, res) {
@@ -48,10 +48,10 @@ describe('Volunteer Model', function() {
         });
     });
 
-  it('should fail when saving a duplicate volunteer', function(done) {
-    volunteer.save(function() {
-      var volunteerDup = new Volunteer(volunteer);
-      volunteerDup.save(function(err) {
+  it('should fail when saving a duplicate attendee', function(done) {
+    attendee.save(function() {
+      var attendeeDup = new Attendee(attendee);
+      attendeeDup.save(function(err) {
         should.exist(err);
         done();
       });
@@ -59,31 +59,31 @@ describe('Volunteer Model', function() {
   });
 
   it('should fail when saving without an id', function(done) {
-    volunteer._id = '';
-    volunteer.save(function(err) {
+    attendee._id = '';
+    attendee.save(function(err) {
       should.exist(err);
       done();
     });
   });
 
   it('should fail when saving without a first name', function(done) {
-    volunteer.firstName = '';
-    volunteer.save(function(err) {
+    attendee.firstName = '';
+    attendee.save(function(err) {
       should.exist(err);
       done();
     });
   });
 
   it('should fail when saving without a last name', function(done) {
-    volunteer.lastName = '';
-    volunteer.save(function(err) {
+    attendee.lastName = '';
+    attendee.save(function(err) {
       should.exist(err);
       done();
     });
   });
 
   it('should pass when saving properly', function(done) {
-    volunteer.save(function(err) {
+    attendee.save(function(err) {
       should.not.exist(err);
       done();
     });

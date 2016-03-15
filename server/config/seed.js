@@ -9,6 +9,9 @@ var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
 var Event = require('../api/event/event.model');
 var Volunteer = require('../api/volunteer/volunteer.model');
+var Attendee = require('../api/attendee/attendee.model');
+var Vendor = require('../api/vendor/vendor.model');
+
 
 Thing.find({}).remove(function() {
   Thing.create({
@@ -84,21 +87,61 @@ Event.find({}).remove(function(){
   });
 });
 
+// Seed attendees
+Attendee.find({}).remove(function(){
+  Attendee.create({
+    _id: 'attendee@email.com',
+    firstName: 'Eric',
+    lastName: 'Foreman',
+    phone: 1234456123
+  }, {
+    _id: 'attendee2@email.com',
+    firstName: 'Bob',
+    lastName: "Johnson",
+    phone: 1234456123
+  }, {
+    _id: 'attendee3@email.com',
+    firstName: 'FirstName',
+    lastName: 'lastName',
+    phone: 1234456123
+  }, function(){
+    console.log('finshed populating attendees.');
+  });
+})
+
 // Seed volunteers
 Volunteer.find({}).remove(function(){
   Volunteer.create({
     _id: 'volunteer1@email.com',
-    name: 'Volunteer 1',
+    firstName: 'first',
+    lastName: 'firstLast',
     phone: 1234456123
   }, {
     _id: 'volunteer2@email.com',
-    name: 'Volunteer 2',
+    firstName: 'first2',
+    lastName: 'first2Last',
     phone: 1234456123
   }, {
     _id: 'volunteer3@email.com',
-    name: 'Volunteer 3',
+    firstName: 'first3',
+    lastName: 'first3Last',
     phone: 1234456123
   }, function(){
     console.log('finshed populating volunteers.');
   });
-})
+});
+
+// Seen vendors
+Vendor.find({}).remove(function(){
+  Vendor.create({
+    jobTitle: "Salesman",
+    firstName: "Richard",
+    lastName: "Hurts",
+    email: "Email@email.email",
+    phone: 12345678,
+    organizationName: "NAME NAME",
+    organizationAddress: "1234 this is an address",
+    descriptionOfServices: "Were gonna sell stray cats.",
+    descriptionOfPrizes: "You can take home a cat"
+  });
+});
