@@ -14,5 +14,8 @@ describe('aboutPage', function(){
   it('should have defined AboutCtrl', function() {
     expect(ctrl).toBeDefined();
   });
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3db4f3ad8a6243b7f2af1112b44c7817d74d6c35
 });
