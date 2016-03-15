@@ -91,6 +91,23 @@ angular.module('womenWorkingWithWomenApp')
       },
       deleteVendor: function(_id){
         return $http.delete(API_BASE_URL + 'vendors/' + _id);
-      }
+      },
+
+      // Donation Stuff
+      getAllDonations: function(){
+        return $http.get(API_BASE_URL + 'donations/');
+      },
+      getOneDonation: function(_id){
+        return $http.get(API_BASE_URL + 'donations/' + _id);
+      },
+      createDonation: function(vendor){
+        return $http.post(API_BASE_URL + 'donations/', donation);
+      },
+      updateDonation: function(_id, vendor){
+        return $http.put(API_BASE_URL + 'donations/' + _id, donation);
+      },
+      deleteDonation: function(_id){
+        return $http.delete(API_BASE_URL + 'donations/' + _id);
+      },
     }
 }]);
