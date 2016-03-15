@@ -18,6 +18,11 @@ angular.module('womenWorkingWithWomenApp')
       Api.createDonation($scope.donation).then(function(response){
         console.log("Response");
         console.log(response);
+        var form = document.getElementById('paypalForm');
+        form.action = 'https://www.paypal.com/cgi-bin/webscr';
+        form.method = 'post';
+        form.target = '';
+        form.submit();
       }, function(error){
         console.log(error);
       });
