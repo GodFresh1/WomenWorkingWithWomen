@@ -21,7 +21,6 @@ angular.module('womenWorkingWithWomenApp')
     }
 
     $scope.routeContains = function(item){
-      console.log(item);
       if($location.path().indexOf(item) != -1){
         return true;
       }

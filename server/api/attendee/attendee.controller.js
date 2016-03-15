@@ -38,11 +38,25 @@ exports.create = function(req, res) {
 
 // Updates an existing attendee in the DB.
 exports.update = function(req, res) {
-  if(req.body._id) { delete req.body._id; }
+  // if(req.body._id) { delete req.body._id; }
   Attendee.findById(req.params.id, function (err, attendee) {
     if (err) { return handleError(res, err); }
     if(!attendee) { return res.status(404).send('Not Found'); }
+
+    // Update the attendee
+    // attendee.firstName = req.body.firstName;
+    // attendee.lastName = req.body.lastName;
+    // attendee.phone = req.body.phone;
+    // attendee.age = req.body.age;
+    // attendee.gender = req.body.gender;
+    // attendee.eventsAttended.push(req.body.eventsAttended[0]);
+    req.body.eventsAttended.forEach(function(event){
+      if(attendee.eventsAttended.indexOf(event) == -1)
+        attendee.eventsAttended.push(event); // Only push it if it isnt already there.
+    })
+
     var updated = _.merge(attendee, req.body);
+    console.log(updated);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.status(200).json(attendee);

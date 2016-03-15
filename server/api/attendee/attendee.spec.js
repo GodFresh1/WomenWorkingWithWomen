@@ -9,7 +9,8 @@ var attendee = new Attendee({
   _id: "testEmail@email.com",
   firstName: "John",
   lastName: "Smith",
-  phone: 12345678
+  phone: 12345678,
+  age: 19
 });
 
 describe('Attendee Model', function() {
@@ -26,7 +27,8 @@ describe('Attendee Model', function() {
       _id: "testEmail@email.com",
       firstName: "John",
       lastName: "Smith",
-      phone: 12345678
+      phone: 12345678,
+      age: 19
     });
     done();
   });

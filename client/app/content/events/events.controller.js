@@ -3,7 +3,7 @@
 
 angular.module('womenWorkingWithWomenApp')
   .controller('EventsCtrl', ['$scope', '$compile', '$timeout', 'uiCalendarConfig', 'Api', function($scope, $compile, $timeout, uiCalendarConfig, Api) {
-  $scope.title = "How to Get Involved";
+    $scope.attendee = {};
     var date = new Date();
     var d = date.getDate();
     var m = date.getMonth();
@@ -12,10 +12,54 @@ angular.module('womenWorkingWithWomenApp')
 
     Api.getAllEvents().then(function(response){
        $scope.events=response.data;
-       console.log(allEvents);
     }, function(error){
+      console.log("Found an error");
       // handle error here
     });
+
+    $scope.registerAttendee = function(){
+      // Get the event they are registering forEach
+      Api.getOneEvent($scope.attendee.eventsAttended).then(function(response){
+
+        var event = response.data;
+        // See if this attendee already exists.
+        Api.getOneAttendee($scope.attendee._id).then(function(response){
+
+          $scope.attendee.eventsAttended = [event._id];
+          Api.updateAttendee($scope.attendee._id, $scope.attendee).then(function(response){
+
+          }, function(error){
+            console.log(error);
+          })
+        }, function(error){
+          if(error.status == 404){
+
+            // The attendee is new so create a new attendee.
+          }
+        })
+      }, function(error){
+        console.log(error);
+      })
+
+
+
+      console.log($scope.attendee);
+      $scope.attendee.eventsAttended = [$scope.attendee.eventsAttended];
+      // Try to find an attendee with this id already.
+      Api.getOneAttendee($scope.attendee._id).then(function(response){
+        // If this person is already in the database, update their info!
+        Api.updateAttendee(response.data._id, $scope.attendee).then(function(response){
+          console.log("Reponse");
+          console.log(response);
+        }, function(error){
+          console.log(error);
+        });
+      }, function(error){
+        if(error.status == 404){
+          console.log("This attendee does not exist.");
+        }
+      });
+    };
 
     $scope.eventSources = {
         color: '#EFE5F0',
@@ -97,4 +141,10 @@ angular.module('womenWorkingWithWomenApp')
     };
 
     $scope.genders = ('Male Female Other').split(' ');
+
+    // Hacky fix to make the dropdown required.
+    $('#eventIdInput').keydown(function(e) {
+       e.preventDefault();
+       return false;
+    });
 }]);
