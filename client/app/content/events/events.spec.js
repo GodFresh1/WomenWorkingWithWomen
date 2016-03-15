@@ -14,4 +14,9 @@ describe('eventsPage', function(){
   it('should have defined EventsCtrl', function() {
     expect(ctrl).toBeDefined();
   });
+
+  it('should have defined eventSources and uiConfig', function() {
+    expect(scope.eventSources).toBeDefined();
+    expect(scope.uiConfig).toBeDefined();
+  });
 });
