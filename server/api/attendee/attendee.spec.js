@@ -6,10 +6,11 @@ var request = require('supertest');
 var Attendee = require('./attendee.model');
 
 var attendee = new Attendee({
-  _id: "testEmail@email.com",
+  email: "testEmail@email.com",
   firstName: "John",
   lastName: "Smith",
-  phone: 12345678
+  phone: 12345678,
+  age: 19
 });
 
 describe('Attendee Model', function() {
@@ -23,10 +24,11 @@ describe('Attendee Model', function() {
   beforeEach(function(done){
     // Set the attendee to this before each test is ran.
     attendee = new Attendee({
-      _id: "testEmail@email.com",
+      email: "testEmail@email.com",
       firstName: "John",
       lastName: "Smith",
-      phone: 12345678
+      phone: 12345678,
+      age: 19
     });
     done();
   });
@@ -58,8 +60,8 @@ describe('Attendee Model', function() {
     });
   });
 
-  it('should fail when saving without an id', function(done) {
-    attendee._id = '';
+  it('should fail when saving without an email', function(done) {
+    attendee.email = '';
     attendee.save(function(err) {
       should.exist(err);
       done();

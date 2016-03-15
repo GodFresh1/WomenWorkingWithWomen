@@ -62,6 +62,16 @@ exports.destroy = function(req, res) {
   });
 };
 
+exports.addAttendee = function(req, res){
+  Event.update({'_id': req.params.id}, {$addToSet: {attendees: req.body._id}}, function(err, result){
+    if(err) { return handleError(res, err); }
+    if(result.nModified==0){
+      return res.status(409).send("You have already registered for this event.");
+    }
+    return res.status(200).json(result);
+  });
+};
+
 function handleError(res, err) {
   return res.status(500).send(err);
 }

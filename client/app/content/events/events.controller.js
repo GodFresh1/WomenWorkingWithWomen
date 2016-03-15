@@ -2,8 +2,8 @@
 
 
 angular.module('womenWorkingWithWomenApp')
-  .controller('EventsCtrl', ['$scope', '$compile', '$timeout', 'uiCalendarConfig', 'Api', function($scope, $compile, $timeout, uiCalendarConfig, Api) {
-  $scope.title = "How to Get Involved";
+  .controller('EventsCtrl', ['$scope', '$compile', '$timeout', 'uiCalendarConfig', 'Api','$mdToast', '$window', function($scope, $compile, $timeout, uiCalendarConfig, Api, $mdToast, $window) {
+    $scope.attendee = {};
     var date = new Date();
     var d = date.getDate();
     var m = date.getMonth();
@@ -12,8 +12,8 @@ angular.module('womenWorkingWithWomenApp')
 
     Api.getAllEvents().then(function(response){
        $scope.events=response.data;
-       console.log(allEvents);
     }, function(error){
+      console.log("Found an error");
       // handle error here
     });
 
@@ -97,4 +97,10 @@ angular.module('womenWorkingWithWomenApp')
     };
 
     $scope.genders = ('Male Female Other').split(' ');
+
+    // Hacky fix to make the dropdown required.
+    $('#eventIdInput').keydown(function(e) {
+       e.preventDefault();
+       return false;
+    });
 }]);

@@ -28,8 +28,19 @@ exports.getOne = function(req, res) {
   });
 };
 
+exports.getOneWithProperties = function(req, res){
+  console.log("Requeset Made");
+  console.log(req.params);
+  Attendee.findOne({firstName: req.params.firstName, lastName: req.params.lastName}, function(err, attendee){
+    if(err) { return handleError(res, err); }
+    if(!attendee) { return res.status(404).send('Not Found'); }
+    return res.json(attendee);
+  });
+};
+
 // Creates a new attendee in the DB.
 exports.create = function(req, res) {
+  console.log(req.body);
   Attendee.create(req.body, function(err, attendee) {
     if(err) { return handleError(res, err); }
     return res.status(201).json(attendee);
