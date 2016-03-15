@@ -75,14 +75,15 @@
   <div class="row">
     <div class="card-panel grey lighten-5 center-align">
       <!-- record donations to database as well for record -->
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" ng-submit="addDonation()">
         <input type="hidden" name="cmd" value="_xclick">
         <input type="hidden" name="business" value="accounts@freelanceswitch.com">
         <input type="hidden" name="item_name" value="Donation">
         <input type="hidden" name="item_number" value="1">
-        <input placeholder="0.00" type="text" name="amount" ng-model="amount" value="10.00">
-        <input placeholder="First Name" id="first_name" ng-model="firstName" type="text" class="validate">
-        <input placeholder="Last Name" id="last_name" ng-model="lastName" type="text"  class="validate">
+        <input placeholder="0.00" type="text" name="amount" ng-model="donation.amount" value="10.00">
+        <input placeholder="First Name" id="first_name" ng-model="donation.firstName" type="text" class="validate">
+        <input placeholder="Last Name" id="last_name" ng-model="donation.lastName" type="text"  class="validate">
+        <input placeholder="Email" id="email" ng-model="donation._id" type="text" class="validate">
         <input type="hidden" name="no_shipping" value="0">
         <input type="hidden" name="no_note" value="1">
         <input type="hidden" name="currency_code" value="USD">
