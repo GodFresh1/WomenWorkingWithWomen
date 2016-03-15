@@ -100,10 +100,10 @@ angular.module('womenWorkingWithWomenApp')
       getOneDonation: function(_id){
         return $http.get(API_BASE_URL + 'donations/' + _id);
       },
-      createDonation: function(vendor){
+      createDonation: function(donation){
         return $http.post(API_BASE_URL + 'donations/', donation);
       },
-      updateDonation: function(_id, vendor){
+      updateDonation: function(_id, donation){
         return $http.put(API_BASE_URL + 'donations/' + _id, donation);
       },
       deleteDonation: function(_id){

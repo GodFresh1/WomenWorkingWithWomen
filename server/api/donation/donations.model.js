@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var DonationSchema = new Schema({
-  // _id: {type:String, required:true}, // The id will be the attendee's email address.
+  _id: {type:String, required:true}, // The id will be the attendee's email address.
   firstName: {type:String, required:true},
   lastName: {type:String, required:true},
   amount: {type:Number, required:true},
