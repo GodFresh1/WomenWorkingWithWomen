@@ -11,7 +11,7 @@ angular.module('womenWorkingWithWomenApp')
     var allEvents = [];
 
     Api.getAllEvents().then(function(response){
-      $scope.eventSources = reponse.Data;
+      $scope.eventSources = response.Data;
     }, function(error){
       // handle error here
     });

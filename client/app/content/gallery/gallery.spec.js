@@ -14,4 +14,9 @@ describe('galleryPage', function(){
   it('should have defined GalleryCtrl', function() {
     expect(ctrl).toBeDefined();
   });
+
+  it('should have defined a gallery', function() {
+    expect(scope.gallery).toBeDefined();
+  });
+
 });

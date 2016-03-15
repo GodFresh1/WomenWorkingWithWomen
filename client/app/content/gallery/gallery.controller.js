@@ -6,4 +6,3 @@ angular.module('womenWorkingWithWomenApp')
     console.log($scope.gallery[0].imgUrl);    
     $scope.title = "Gallery"
   }])
-  
