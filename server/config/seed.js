@@ -90,19 +90,19 @@ Event.find({}).remove(function(){
 // Seed attendees
 Attendee.find({}).remove(function(){
   Attendee.create({
-    _id: 'attendee@email.com',
+    email: 'attendee@email.com',
     firstName: 'Eric',
     lastName: 'Foreman',
     phone: 1234456123,
     age: 20
   }, {
-    _id: 'attendee2@email.com',
+    email: 'attendee2@email.com',
     firstName: 'Bob',
     lastName: "Johnson",
     phone: 1234456123,
     age: 21
   }, {
-    _id: 'attendee3@email.com',
+    email: 'attendee3@email.com',
     firstName: 'FirstName',
     lastName: 'lastName',
     phone: 1234456123,

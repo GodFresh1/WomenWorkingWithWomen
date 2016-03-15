@@ -5,17 +5,14 @@ var mongoose = require('mongoose'),
     EventSchema = require('../event/event.model');
 
 var AttendeeSchema = new Schema({
-  _id: {type:String, required:true}, // The id will be the attendee's email address.
+  email: {type:String, required:true}, // The id will be the attendee's email address.
   firstName: {type:String, required:true},
   lastName: {type:String, required:true},
   phone: {type:Number, required:true},
   age: {type:Number, required:true},
-  gender: String,
-  eventsAttended: [String]
+  gender: String
 });
 
-AttendeeSchema.virtual('email').get(function(){
-  return this._id;
-})
+AttendeeSchema.index({ firstName: 1, lastName: 1}, { unique: true }); // requires firstName, lastName combination to be unique.
 
 module.exports = mongoose.model('Attendee', AttendeeSchema);

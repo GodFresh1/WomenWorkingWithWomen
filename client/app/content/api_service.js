@@ -54,6 +54,10 @@ angular.module('womenWorkingWithWomenApp')
       getOneAttendee: function(_id){
         return $http.get(API_BASE_URL + 'attendees/' + _id);
       },
+      getOneAttendeeByName: function(properties){
+        var params = "" + properties.firstName + "/" + properties.lastName;
+        return $http.get(API_BASE_URL + 'attendees/properties/' + params);
+      },
       createAttendee: function(attendee){
         return $http.post(API_BASE_URL + 'attendees/', attendee);
       },

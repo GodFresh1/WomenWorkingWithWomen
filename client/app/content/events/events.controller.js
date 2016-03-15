@@ -17,48 +17,84 @@ angular.module('womenWorkingWithWomenApp')
       // handle error here
     });
 
+    var addAttendeeToEvent = function(attendee, event){
+      
+    }
+
     $scope.registerAttendee = function(){
-      // Get the event they are registering forEach
-      Api.getOneEvent($scope.attendee.eventsAttended).then(function(response){
 
-        var event = response.data;
-        // See if this attendee already exists.
-        Api.getOneAttendee($scope.attendee._id).then(function(response){
+      // See if this attendee already exists in the db.
+      Api.getOneAttendeeByName($scope.attendee).then(function(response){
+        var attendee = response.data;
+        // Update the attendee in case they chanched emails/ phone etc.
+        Api.updateAttendee(attendee._id, $scope.attendee).then(function(response){
+          // TODO: Add this attenddee to the event attendee list.
 
-          $scope.attendee.eventsAttended = [event._id];
-          Api.updateAttendee($scope.attendee._id, $scope.attendee).then(function(response){
-
-          }, function(error){
-            console.log(error);
-          })
-        }, function(error){
-          if(error.status == 404){
-
-            // The attendee is new so create a new attendee.
-          }
-        })
-      }, function(error){
-        console.log(error);
-      })
-
-
-
-      console.log($scope.attendee);
-      $scope.attendee.eventsAttended = [$scope.attendee.eventsAttended];
-      // Try to find an attendee with this id already.
-      Api.getOneAttendee($scope.attendee._id).then(function(response){
-        // If this person is already in the database, update their info!
-        Api.updateAttendee(response.data._id, $scope.attendee).then(function(response){
-          console.log("Reponse");
-          console.log(response);
         }, function(error){
           console.log(error);
-        });
+          // TODO: Handle Error;
+        })
+
       }, function(error){
-        if(error.status == 404){
-          console.log("This attendee does not exist.");
+
+        if(error.status==404){
+          // This person is not in the database so create a new attendee.
+          Api.createAttendee($scope.attendee).then(function(response){
+            // TODO: Add this attendee to the events attendee list.
+
+          }, function(error){
+            // TODO: Handle Error.
+          })
         }
-      });
+      })
+
+      // Api.createAttendee($scope.attendee).then(function(response){
+      //   console.log("res");
+      //   console.log(response);
+      // }, function(error){
+      //   console.log("err");
+      //   console.log(error);
+      // });
+
+
+
+      // Api.getOneEvent($scope.attendee.eventsAttended).then(function(response){
+      //
+      //   var event = response.data;
+      //   // See if this attendee already exists.
+      //   Api.getOneAttendee($scope.attendee._id).then(function(response){
+      //
+      //     $scope.attendee.eventsAttended = [event._id];
+      //     Api.updateAttendee($scope.attendee._id, $scope.attendee).then(function(response){
+      //
+      //     }, function(error){
+      //       console.log(error);
+      //     })
+      //   }, function(error){
+      //     if(error.status == 404){
+      //
+      //       // The attendee is new so create a new attendee.
+      //     }
+      //   })
+      // }, function(error){
+      //   console.log(error);
+      // })
+      // console.log($scope.attendee);
+      // $scope.attendee.eventsAttended = [$scope.attendee.eventsAttended];
+      // // Try to find an attendee with this id already.
+      // Api.getOneAttendee($scope.attendee._id).then(function(response){
+      //   // If this person is already in the database, update their info!
+      //   Api.updateAttendee(response.data._id, $scope.attendee).then(function(response){
+      //     console.log("Reponse");
+      //     console.log(response);
+      //   }, function(error){
+      //     console.log(error);
+      //   });
+      // }, function(error){
+      //   if(error.status == 404){
+      //     console.log("This attendee does not exist.");
+      //   }
+      // });
     };
 
     $scope.eventSources = {
