@@ -14,4 +14,8 @@ describe('servicesPage', function(){
   it('should have defined ServicesCtrl', function() {
     expect(ctrl).toBeDefined();
   });
+
+  it('should have a title of Services', function() {
+    expect(scope.title).toEqual('Services');
+  })
 });

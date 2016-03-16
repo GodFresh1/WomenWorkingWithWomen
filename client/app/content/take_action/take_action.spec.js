@@ -14,4 +14,8 @@ describe('takeActionPage', function(){
   it('should have defined TakeActionCtrl', function() {
     expect(ctrl).toBeDefined();
   });
+
+  it('should have a title of Take Action', function() {
+    expect(scope.title).toEqual('Take Action');
+  })
 });
