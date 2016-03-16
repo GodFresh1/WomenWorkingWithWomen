@@ -29,9 +29,7 @@ exports.getOne = function(req, res) {
 };
 
 exports.getOneWithProperties = function(req, res){
-  console.log("Requeset Made");
-  console.log(req.params);
-  Attendee.findOne({firstName: req.params.firstName, lastName: req.params.lastName}, function(err, attendee){
+  Attendee.findOne({firstName: req.params.firstName, lastName: req.params.lastName, email: req.params.email}, function(err, attendee){
     if(err) { return handleError(res, err); }
     if(!attendee) { return res.status(404).send('Not Found'); }
     return res.json(attendee);

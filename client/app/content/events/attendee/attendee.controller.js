@@ -39,7 +39,7 @@ angular.module('womenWorkingWithWomenApp')
       console.log(error);
       $scope.attendee = {};
       $window.scrollTo(0, 0);
-      var errorMessage = error.data!=null ? error.data : "Could not communicate with the server.";
+      var errorMessage = error.data!=null ? (error.data.message || error.data) : "Could not communicate with the server.";
       $mdToast.show(
         $mdToast.simple()
           .content('Error: ' + errorMessage)
@@ -51,7 +51,7 @@ angular.module('womenWorkingWithWomenApp')
 
     $scope.registerAttendee = function(){
       // See if this attendee already exists in the db.
-      Api.getOneAttendeeByName($scope.attendee).then(function(response){
+      Api.getOneAttendeeByProperties($scope.attendee).then(function(response){
         var attendee = response.data;
         // Update the attendee
         Api.updateAttendee(attendee._id, $scope.attendee).then(function(response){
@@ -86,4 +86,8 @@ angular.module('womenWorkingWithWomenApp')
       }
        return true;
     });
+
+    $scope.stopClick = function($event){
+      $event.target.blur();
+    }
 }]);
