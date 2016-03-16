@@ -25,51 +25,51 @@
     </div>
   </div>
 
-  <div layout="row">
-	<div flex>
-		<h4 align="center">DIAMOND</H4>
-		<p align="center"><img src="http://static1.squarespace.com/static/55668bf5e4b01b9595a550b0/t/55675542e4b08539e5000937/1432835398486/%241000+and+up?format=300w"></p>
-		<p align="center">$1000 AND UP</p>
-		<ul>
-			<li>‌• Company logo on all promotional material</li>
-			<li>‌• Company logo featured on website</li>
-			<li>‌• Opportunity to display company material at fundraisers</li>
-			<li>‌• Invited to display promotional material at fundraisers</li>
-		</ul>
-	</div>
-	<div flex>
-		<h4 align="center">RUBY</H4>
-		<p align="center"><img src="http://static1.squarespace.com/static/55668bf5e4b01b9595a550b0/t/55675d15e4b0622d21b1f697/1432837398161/?format=300w"></p>
-		<p align="center">$500 - $999</p>
-		<ul>
-			<li>‌• Company logo on all promotional information</li>
-			<li>‌• Company logo featured on website</li>
-			<li>‌• Recognition at fundraisers</li>
-			<li>‌• Invited to display promotional material at fundraisers</li>
-		</ul>
-	</div>
+  <div class="row">
+  	<div class="col l6 m6 s12">
+  		<h4 align="center">DIAMOND</H4>
+  		<p align="center"><img align="center" src="http://static1.squarespace.com/static/55668bf5e4b01b9595a550b0/t/55675542e4b08539e5000937/1432835398486/%241000+and+up?format=300w"></p>
+  		<h5 align="center">$1000 and up</h5>
+  		<ul align="center">
+  			<li>• ‌Company logo on all promotional material</li>
+  			<li>‌• Company logo featured on website</li>
+  			<li>‌• Opportunity to display company material at fundraisers</li>
+  			<li>‌• Invited to display promotional material at fundraisers</li>
+  		</ul>
+  	</div>
+  	<div class="col l6 m6 s12">
+  		<h4 align="center">RUBY</H4>
+  		<p align="center"><img align="center" src="http://static1.squarespace.com/static/55668bf5e4b01b9595a550b0/t/55675d15e4b0622d21b1f697/1432837398161/?format=300w"></p>
+  		<h5 align="center">$500 - $999</h5>
+  		<ul align="center">
+  			<li>‌• Company logo on all promotional information</li>
+  			<li>‌• Company logo featured on website</li>
+  			<li>‌• Recognition at fundraisers</li>
+  			<li>•‌ Invited to display promotional material at fundraisers</li>
+  		</ul>
+  	</div>
 	</div>
 
-	<div layout="row">
-	<div flex>
-		<h4 align="center">EMERALD</H4>
-		<p align="center"><img src="http://static1.squarespace.com/static/55668bf5e4b01b9595a550b0/t/55675d8ee4b08539e500431a/1432837518840/Geschliffener_blauer_Saphir.jpg?format=300w"></p>
-		<p align="center">$100 - $499</p>
-		<ul>
-			<li>‌• Company logo featured on website</li>
-			<li>‌• Recognition at fundraisers</li>
-			<li>‌• Invited to display promotional material at fundraisers</li>
-		</ul>
-	</div>
-	<div flex>
-		<h4 align="center">SAPPHIRE</H4>
-		<p align="center"><img src="http://static1.squarespace.com/static/55668bf5e4b01b9595a550b0/t/55675d74e4b05a70c053923a/1432837492899/ventotene.jpg?format=300w"></p>
-		<p align="center">$100 AND UNDER</p>
-		<ul>
-			<li>‌• Company logo featured on website</li>
-			<li>‌• Recognition at fundraisers</li>
-		</ul>
-	</div>
+	<div class="row">
+  	<div class="col l6 m6 s12">
+  		<h4 align="center">EMERALD</h4>
+  		<p align="center"><img align="center" src="http://static1.squarespace.com/static/55668bf5e4b01b9595a550b0/t/55675d8ee4b08539e500431a/1432837518840/Geschliffener_blauer_Saphir.jpg?format=300w"></p>
+  		<h5 align="center">$100 - $499</h5>
+  		<ul align="center">
+  			<li>‌• Company logo featured on website</li>
+  			<li>‌• Recognition at fundraisers</li>
+  			<li>‌• Invited to display promotional material at fundraisers</li>
+  		</ul>
+  	</div>
+  	<div class="col l6 m6 s12">
+  		<h4 align="center">SAPPHIRE</H4>
+  		<p align="center"><img align="center" src="http://static1.squarespace.com/static/55668bf5e4b01b9595a550b0/t/55675d74e4b05a70c053923a/1432837492899/ventotene.jpg?format=300w"></p>
+  		<h5 align="center">$100 and under</h5>
+  		<ul align="center">
+  			<li>•‌ Company logo featured on website</li>
+  			<li>‌• Recognition at fundraisers</li>
+  		</ul>
+  	</div>
 	</div>
   <br>
   <div class="row">
@@ -100,7 +100,7 @@
         <input placeholder="0.00" type="text" name="amount" ng-model="donation.amount" value="10.00">
         <input placeholder="First Name" id="first_name" ng-model="donation.firstName" type="text" class="validate">
         <input placeholder="Last Name" id="last_name" ng-model="donation.lastName" type="text"  class="validate">
-        <input placeholder="Email" id="email" ng-model="donation._id" type="text" class="validate">
+        <input placeholder="Email" id="email" ng-model="donation._id" type="email" class="validate">
         <input type="hidden" name="no_shipping" value="0">
         <input type="hidden" name="no_note" value="1">
         <input type="hidden" name="currency_code" value="USD">
