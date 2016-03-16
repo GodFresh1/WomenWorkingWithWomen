@@ -108,6 +108,6 @@ angular.module('womenWorkingWithWomenApp')
       },
       deleteDonation: function(_id){
         return $http.delete(API_BASE_URL + 'donations/' + _id);
-      },
+      }
     }
 }]);
