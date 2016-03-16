@@ -76,7 +76,7 @@ angular.module('womenWorkingWithWomenApp')
       .state('events.attendeeregistration', {
         url: '/attendeeregistration',
         templateUrl: 'app/content/events/attendee/attendeeregistration.html',
-        controller: 'EventsCtrl'
+        controller: 'AttendeeCtrl'
       })
       .state('take_action', {
         url: '/take_action',

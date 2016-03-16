@@ -2,7 +2,7 @@
 
 
 angular.module('womenWorkingWithWomenApp')
-  .controller('EventsCtrl', ['$scope', '$compile', '$timeout', 'uiCalendarConfig', 'Api', function($scope, $compile, $timeout, uiCalendarConfig, Api) {
+  .controller('EventsCtrl', ['$scope', '$compile', '$timeout', 'uiCalendarConfig', 'Api','$mdToast', '$window', function($scope, $compile, $timeout, uiCalendarConfig, Api, $mdToast, $window) {
     $scope.attendee = {};
     var date = new Date();
     var d = date.getDate();
@@ -17,92 +17,67 @@ angular.module('womenWorkingWithWomenApp')
       // handle error here
     });
 
-    var addAttendeeToEvent = function(eventID, attendee){
-      Api.addAttendeeToEvent(eventID, attendee).then(function(response){
-
-      }, function(error){
-
-      });
-    };
-
-    $scope.registerAttendee = function(){
-
-      // See if this attendee already exists in the db.
-      Api.getOneAttendeeByName($scope.attendee).then(function(response){
-        var attendee = response.data;
-        // Update the attendee in case they chanched emails/ phone etc.
-        Api.updateAttendee(attendee._id, $scope.attendee).then(function(response){
-          console.log('updated');
-          // TODO: Add this attenddee to the event attendee list.
-          addAttendeeToEvent($scope.attendee.eventAttending, $scope.attendee);
-        }, function(error){
-          console.log(error);
-          // TODO: Handle Error;
-        });
-
-      }, function(error){
-
-        if(error.status==404){
-          // This person is not in the database so create a new attendee.
-          console.log("404 Error found");
-          Api.createAttendee($scope.attendee).then(function(response){
-            // TODO: Add this attendee to the events attendee list.
-            console.log(response);
-          }, function(error){
-            console.log(error);
-            // TODO: Handle Error.
-          });
-        };
-      });
-
-      // Api.createAttendee($scope.attendee).then(function(response){
-      //   console.log("res");
-      //   console.log(response);
-      // }, function(error){
-      //   console.log("err");
-      //   console.log(error);
-      // });
 
 
-
-      // Api.getOneEvent($scope.attendee.eventsAttended).then(function(response){
-      //
-      //   var event = response.data;
-      //   // See if this attendee already exists.
-      //   Api.getOneAttendee($scope.attendee._id).then(function(response){
-      //
-      //     $scope.attendee.eventsAttended = [event._id];
-      //     Api.updateAttendee($scope.attendee._id, $scope.attendee).then(function(response){
-      //
-      //     }, function(error){
-      //       console.log(error);
-      //     })
-      //   }, function(error){
-      //     if(error.status == 404){
-      //
-      //       // The attendee is new so create a new attendee.
-      //     }
-      //   })
-      // }, function(error){
-      //   console.log(error);
-      // })
-      // console.log($scope.attendee);
-      // $scope.attendee.eventsAttended = [$scope.attendee.eventsAttended];
-      // // Try to find an attendee with this id already.
-      // Api.getOneAttendee($scope.attendee._id).then(function(response){
-      //   // If this person is already in the database, update their info!
-      //   Api.updateAttendee(response.data._id, $scope.attendee).then(function(response){
-      //     console.log("Reponse");
-      //     console.log(response);
-      //   }, function(error){
-      //     console.log(error);
-      //   });
-      // }, function(error){
-      //   if(error.status == 404){
-      //     console.log("This attendee does not exist.");
-      //   }
-      // });
-    };
+    // var addAttendeeToEvent = function(eventID, attendee){
+    //   Api.addAttendeeToEvent(eventID, attendee).then(function(response){
+    //     handleSuccess();
+    //   }, function(error){
+    //     handleError(error);
+    //   });
+    // };
+    //
+    // var handleSuccess = function(){
+    //   $scope.attendee = {};
+    //   $window.scrollTo(0, 0);
+    //   $mdToast.show(
+    //     $mdToast.simple()
+    //       .content('Registration Successful!')
+    //       .position('top right')
+    //       .hideDelay(3000)
+    //       .theme("success-toast")
+    //   );
+    // }
+    //
+    // var handleError = function(error){
+    //   $scope.attendee = {};
+    //   $window.scrollTo(0, 0);
+    //   var errorMessage = error.data!=null ? error.data : "Could not communicate with the server.";
+    //   $mdToast.show(
+    //     $mdToast.simple()
+    //       .content('Error: ' + errorMessage)
+    //       .position('top right')
+    //       .hideDelay(3000)
+    //       .theme("error-toast")
+    //   );
+    // }
+    //
+    // $scope.registerAttendee = function(){
+    //   // See if this attendee already exists in the db.
+    //   Api.getOneAttendeeByName($scope.attendee).then(function(response){
+    //     var attendee = response.data;
+    //     // Update the attendee
+    //     Api.updateAttendee(attendee._id, $scope.attendee).then(function(response){
+    //       // Add this attenddee to the event attendee list.
+    //       addAttendeeToEvent($scope.attendee.eventAttending, attendee);
+    //     }, function(error){
+    //       handleError(error);
+    //     });
+    //
+    //   }, function(error){
+    //     if(error.status==404){
+    //       // This person is not in the database so create a new attendee.
+    //       Api.createAttendee($scope.attendee).then(function(response){
+    //         // Add this attendee to the events attendee list.
+    //         addAttendeeToEvent($scope.attendee.eventAttending, response.data);
+    //       }, function(error){
+    //         handleError(error);
+    //       });
+    //     }else{
+    //       handleError(error);
+    //     }
+    //   });
+    // };
 
     $scope.eventSources = {
         color: '#EFE5F0',

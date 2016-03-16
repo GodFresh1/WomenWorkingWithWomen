@@ -26,7 +26,7 @@ angular.module('womenWorkingWithWomenApp')
       updateEvent: function(_id, event){
         return $http.put(API_BASE_URL + 'events/' + _id, event);
       },
-      addAttendee: function(_id, attendee){
+      addAttendeeToEvent: function(_id, attendee){
         return $http.put(API_BASE_URL + 'events/' + _id + '/addAttendee', attendee);
       },
       deleteEvent: function(_id){

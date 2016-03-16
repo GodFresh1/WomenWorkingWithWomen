@@ -53,7 +53,6 @@ exports.update = function(req, res) {
   Attendee.findById(req.params.id, function (err, attendee) {
     if (err) { return handleError(res, err); }
     if(!attendee) { return res.status(404).send('Not Found'); }
-
     var updated = _.merge(attendee, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
