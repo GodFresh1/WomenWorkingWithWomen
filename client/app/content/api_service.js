@@ -2,7 +2,7 @@
 
 angular.module('womenWorkingWithWomenApp')
   .factory('Api', ['$http', function($http){
-    var API_BASE_URL = 'http://localhost:9000/api/';
+    var API_BASE_URL = 'http://localhost:3000/api/';
     return {
       // Contact Requests
       partnerRequest: function(partner){
@@ -28,6 +28,9 @@ angular.module('womenWorkingWithWomenApp')
       },
       addAttendeeToEvent: function(_id, attendee){
         return $http.put(API_BASE_URL + 'events/' + _id + '/addAttendee', attendee);
+      },
+      addVendorToEvent: function(_id, vendor){
+        return $http.put(API_BASE_URL + 'events/' + _id + '/addVendor', vendor);
       },
       deleteEvent: function(_id){
         return $http.delete(API_BASE_URL + 'events/' + _id);

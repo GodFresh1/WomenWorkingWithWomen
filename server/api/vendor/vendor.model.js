@@ -19,4 +19,7 @@ var VendorSchema = new Schema({
   approved: {type: Boolean, default:false}
 });
 
+VendorSchema.index({ email: 1}, { unique: true }); // requires email to be unique.
+
+
 module.exports = mongoose.model('Vendor', VendorSchema);
