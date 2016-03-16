@@ -20,17 +20,17 @@
     </div>
     <div class="col s12 m7 l8 offset-l1 content-main">
 
-        <form class="form-horizontal" ng-submit="registerAttendee()">
+        <form class="form-horizontal" ng-submit="registerVendor()">
           <input type="hidden" name="_csrf"/>
           <div class="row">
             <div class="input col l12 m12 s12">
               <label>Choose an Event *</label>
-              <md-select ng-model="attendee.eventAttending" ng-required="true">
+              <md-select ng-model="vendor.eventAttending" ng-required="true">
                 <md-option ng-repeat="event in events" value="{{event._id}}">
                   {{event.title}}
                 </md-option>
               </md-select>
-              <input id="eventIdInput" style="opacity: 0; height: 0px;"  type="text" ng-model="attendee.eventAttending" ng-required="true">
+              <input id="eventIdInput" style="opacity: 0; height: 0px;"  type="text" ng-model="vendor.eventAttending" ng-required="true">
             </div>
           </div>
           <div class="row">
