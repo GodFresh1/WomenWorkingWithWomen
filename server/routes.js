@@ -19,7 +19,10 @@ module.exports = function(app) {
   app.use('/api/attendees', require('./api/attendee'));
   app.use('/api/vendors', require('./api/vendor'));
   app.use('/api/donations', require('./api/donation'));
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8cfcd0d31b16e731bd06a5d81fd6b8f026deca9b
 
   // app.use('/api/contact', require('./api/contact'));
 
