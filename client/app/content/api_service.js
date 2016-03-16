@@ -60,8 +60,8 @@ angular.module('womenWorkingWithWomenApp')
       getOneAttendee: function(_id){
         return $http.get(API_BASE_URL + 'attendees/' + _id);
       },
-      getOneAttendeeByName: function(properties){
-        var params = "" + properties.firstName + "/" + properties.lastName;
+      getOneAttendeeByProperties: function(properties){
+        var params = properties.firstName + "/" + properties.lastName + "/" + properties.email;
         return $http.get(API_BASE_URL + 'attendees/properties/' + params);
       },
       createAttendee: function(attendee){
@@ -94,6 +94,23 @@ angular.module('womenWorkingWithWomenApp')
       },
       deleteVendor: function(_id){
         return $http.delete(API_BASE_URL + 'vendors/' + _id);
+      },
+
+      // Donation Stuff
+      getAllDonations: function(){
+        return $http.get(API_BASE_URL + 'donations/');
+      },
+      getOneDonation: function(_id){
+        return $http.get(API_BASE_URL + 'donations/' + _id);
+      },
+      createDonation: function(donation){
+        return $http.post(API_BASE_URL + 'donations/', donation);
+      },
+      updateDonation: function(_id, donation){
+        return $http.put(API_BASE_URL + 'donations/' + _id, donation);
+      },
+      deleteDonation: function(_id){
+        return $http.delete(API_BASE_URL + 'donations/' + _id);
       }
     }
 }]);

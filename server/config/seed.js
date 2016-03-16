@@ -13,6 +13,21 @@ var Attendee = require('../api/attendee/attendee.model');
 var Vendor = require('../api/vendor/vendor.model');
 
 
+Attendee.collection.dropAllIndexes(function (err, results) {
+  if(err){console.log(err);}
+  else{console.log("Drop Successfull");}
+});
+Vendor.collection.dropAllIndexes(function (err, results) {
+  if(err){console.log(err);}
+  else{console.log("Drop Successfull");}
+});
+Event.collection.dropAllIndexes(function (err, results) {
+  if(err){console.log(err);}
+  else{console.log("Drop Successfull");}
+});
+
+
+
 Thing.find({}).remove(function() {
   Thing.create({
     name : 'Development Tools',

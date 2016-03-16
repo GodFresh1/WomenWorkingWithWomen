@@ -25,12 +25,12 @@
         <div class="row">
           <div class="input col l12 m12 s12">
             <label>Choose an Event *</label>
-            <md-select ng-model="attendee.eventAttending" ng-required="true">
+            <md-select ng-model="attendee.eventAttending">
               <md-option ng-repeat="event in events" value="{{event._id}}">
                 {{event.title}}
               </md-option>
             </md-select>
-            <input id="eventIdInput" style="opacity: 0; height: 0px;"  type="text" ng-model="attendee.eventAttending" ng-required="true">
+            <input id="eventIdInput" style="opacity: 0; height: 0px;"  type="text" ng-model="attendee.eventAttending" ng-click="stopClick($event)" ng-required="true">
           </div>
         </div>
         <div class="row">
