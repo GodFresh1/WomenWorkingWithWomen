@@ -4,11 +4,11 @@
 angular.module('womenWorkingWithWomenApp')
   .controller('EventsCtrl', ['$scope', '$compile', '$timeout', 'uiCalendarConfig', 'Api','$mdToast', '$window', function($scope, $compile, $timeout, uiCalendarConfig, Api, $mdToast, $window) {
     $scope.attendee = {};
+    $scope.title = "Upcoming Events";
     var date = new Date();
     var d = date.getDate();
     var m = date.getMonth();
     var y = date.getFullYear();
-    var allEvents = [];
 
     Api.getAllEvents().then(function(response){
        $scope.events=response.data;

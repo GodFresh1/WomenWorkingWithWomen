@@ -61,17 +61,17 @@ angular.module('womenWorkingWithWomenApp')
       .state('events.attendeeinformation', {
         url: '/attendeeinformation',
         templateUrl: 'app/content/events/attendee/attendeeinformation.html',
-        controller: 'EventsCtrl'
+        controller: 'AttendeeCtrl'
       })
       .state('events.vendorinformation', {
         url: '/vendorinformation',
         templateUrl: 'app/content/events/vendor/vendorinformation.html',
-        controller: 'EventsCtrl'
+        controller: 'VendorCtrl'
       })
       .state('events.vendorregistration', {
         url: '/vendorregistration',
         templateUrl: 'app/content/events/vendor/vendorregistration.html',
-        controller: 'EventsCtrl'
+        controller: 'VendorCtrl'
       })
       .state('events.attendeeregistration', {
         url: '/attendeeregistration',
