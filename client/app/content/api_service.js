@@ -2,7 +2,7 @@
 
 angular.module('womenWorkingWithWomenApp')
   .factory('Api', ['$http', function($http){
-    var API_BASE_URL = 'http://localhost:3000/api/';
+    var API_BASE_URL = 'http://localhost:9000/api/';
     return {
       // Contact Requests
       partnerRequest: function(partner){
@@ -85,6 +85,11 @@ angular.module('womenWorkingWithWomenApp')
       },
       getOneVendor: function(_id){
         return $http.get(API_BASE_URL + 'vendors/' + _id);
+      },
+      getOneVendorByProperties: function(properties){
+        var params = properties.email;
+        return $http.get(API_BASE_URL + 'vendors/properties/' + params);
+        console.log("Works");
       },
       createVendor: function(vendor){
         return $http.post(API_BASE_URL + 'vendors/', vendor);
