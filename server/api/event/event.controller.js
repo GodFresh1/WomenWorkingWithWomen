@@ -62,6 +62,13 @@ exports.destroy = function(req, res) {
   });
 };
 
+exports.addAttendee = function(req, res){
+  Event.update({'_id': req.params.id}, {$push: {'attendees': req.body}, function(err, result){
+    if(err) { return handleError(res, err); }
+    return res.status(200).json(result);
+  }});
+};
+
 function handleError(res, err) {
   return res.status(500).send(err);
 }

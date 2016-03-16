@@ -10,7 +10,8 @@ var AttendeeSchema = new Schema({
   lastName: {type:String, required:true},
   phone: {type:Number, required:true},
   age: {type:Number, required:true},
-  gender: String
+  gender: String,
+  checkedIn: {type:Boolean, default:false}
 });
 
 AttendeeSchema.index({ firstName: 1, lastName: 1}, { unique: true }); // requires firstName, lastName combination to be unique.

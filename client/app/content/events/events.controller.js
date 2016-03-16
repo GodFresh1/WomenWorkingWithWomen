@@ -17,9 +17,13 @@ angular.module('womenWorkingWithWomenApp')
       // handle error here
     });
 
-    var addAttendeeToEvent = function(attendee, event){
-      
-    }
+    var addAttendeeToEvent = function(eventID, attendee){
+      Api.addAttendeeToEvent(eventID, attendee).then(function(response){
+
+      }, function(error){
+
+      });
+    };
 
     $scope.registerAttendee = function(){
 
@@ -28,25 +32,28 @@ angular.module('womenWorkingWithWomenApp')
         var attendee = response.data;
         // Update the attendee in case they chanched emails/ phone etc.
         Api.updateAttendee(attendee._id, $scope.attendee).then(function(response){
+          console.log('updated');
           // TODO: Add this attenddee to the event attendee list.
-
+          addAttendeeToEvent($scope.attendee.eventAttending, $scope.attendee);
         }, function(error){
           console.log(error);
           // TODO: Handle Error;
-        })
+        });
 
       }, function(error){
 
         if(error.status==404){
           // This person is not in the database so create a new attendee.
+          console.log("404 Error found");
           Api.createAttendee($scope.attendee).then(function(response){
             // TODO: Add this attendee to the events attendee list.
-
+            console.log(response);
           }, function(error){
+            console.log(error);
             // TODO: Handle Error.
-          })
-        }
-      })
+          });
+        };
+      });
 
       // Api.createAttendee($scope.attendee).then(function(response){
       //   console.log("res");

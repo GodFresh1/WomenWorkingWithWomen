@@ -26,6 +26,9 @@ angular.module('womenWorkingWithWomenApp')
       updateEvent: function(_id, event){
         return $http.put(API_BASE_URL + 'events/' + _id, event);
       },
+      addAttendee: function(_id, attendee){
+        return $http.put(API_BASE_URL + 'events/' + _id + '/addAttendee', attendee);
+      },
       deleteEvent: function(_id){
         return $http.delete(API_BASE_URL + 'events/' + _id);
       },
@@ -60,6 +63,11 @@ angular.module('womenWorkingWithWomenApp')
       },
       createAttendee: function(attendee){
         return $http.post(API_BASE_URL + 'attendees/', attendee);
+        // return $http({
+        //   url: API_BASE_URL + 'attendees/',
+        //   method: "POST",
+        //   data: attendee
+        // });
       },
       updateAttendee: function(_id, attendee){
         return $http.put(API_BASE_URL + 'attendees/' + _id, attendee);
