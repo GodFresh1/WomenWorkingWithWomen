@@ -9,7 +9,7 @@
 'use strict';
 
 var _ = require('lodash');
-var Donation = require('./donation.model');
+var Donation = require('./donations.model');
 
 // Get list of donations
 exports.getAll = function(req, res) {
