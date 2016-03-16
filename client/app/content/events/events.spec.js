@@ -14,11 +14,16 @@ describe('eventsPage', function(){
   it('should have defined EventsCtrl', function() {
     expect(ctrl).toBeDefined();
   });
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> a309de6498a70c74a943bf86f538a839c073b865
 
   it('should have defined eventSources and uiConfig', function() {
     expect(scope.eventSources).toBeDefined();
     expect(scope.uiConfig).toBeDefined();
   });
+<<<<<<< HEAD
 
   it('should have triggered alerts', function() {
 
@@ -43,4 +48,8 @@ describe('eventsPage', function(){
   it('should render calendar and events', function() {
 
   });
+=======
+=======
+>>>>>>> 3db4f3ad8a6243b7f2af1112b44c7817d74d6c35
+>>>>>>> a309de6498a70c74a943bf86f538a839c073b865
 });

@@ -11,8 +11,12 @@ angular.module('womenWorkingWithWomenApp')
     var allEvents = [];
 
     Api.getAllEvents().then(function(response){
+<<<<<<< HEAD
        $scope.events=response.data;
        console.log(allEvents);
+=======
+      $scope.eventSources = response.Data;
+>>>>>>> a309de6498a70c74a943bf86f538a839c073b865
     }, function(error){
       // handle error here
     });

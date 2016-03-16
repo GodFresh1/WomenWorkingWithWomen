@@ -24,5 +24,4 @@ describe('aboutPage', function(){
   it('should add a partner', function() {
 
   });
-
 });
