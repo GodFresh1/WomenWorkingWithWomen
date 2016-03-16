@@ -19,4 +19,6 @@ describe('galleryPage', function(){
     expect(scope.gallery).toBeDefined();
   });
 
+  
+
 });
