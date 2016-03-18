@@ -97,5 +97,10 @@ angular.module('womenWorkingWithWomenApp')
         url: '/personal',
         templateUrl: 'app/content/services/personal.html',
         controller: 'ServicesCtrl'
+      })
+      .state('adminDash', {
+        url: '/adminDash',
+        templateUrl: 'app/content/adminDashboard/adminDash.html',
+        controller: 'AdminDashCtrl'
       });
   });

@@ -80,14 +80,16 @@ Event.find({}).remove(function(){
     title: 'Event 1',
     start: new Date(2016, 11, 17, 2, 30, 0),
     end: new Date(2016, 11, 17, 4, 30, 0), // Note: this is a 2 hour event.
-    description: "An event for testing.",
+    description: "This event is an event where events will be taking place. This is just an example description to see"
+                + " how this will look on the website. Hopefully it looks nice.",
     location: "1234 Made Up St, Doesnt Exist, AL, 12345",
     imgUrl: "http://notarealurl.com"
   },{
     title: 'Event 2',
     start: new Date(2016, 3, 3, 1, 0, 0),
     end: new Date(2016, 3, 3, 4, 0, 0),
-    description: "Another event for testing.",
+    description: "This is another event. The description for this one is a little different. There will also be eventstaking place."
+                + " Hopefully it looks nice.",
     location: "A BS Address",
     imgUrl: "http://fakeimage.com"
   },{

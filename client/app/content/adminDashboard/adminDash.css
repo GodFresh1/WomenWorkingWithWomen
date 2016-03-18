@@ -1,0 +1,33 @@
+.md-toolbar-tools{
+	background-color: #00746b;
+}
+
+.simple-hr{
+	margin-top: 2px;
+	margin-bottom: 0px;
+}
+
+.event-item{
+	margin-top: 6px;
+	margin-bottom:6px;
+}
+
+#event-content{
+	margin: 0px;
+	display:flex;
+}
+
+#event-controls{
+	position: relative;
+	padding-bottom: 50px;
+}
+
+.time{
+	float: right;
+}
+
+#event-details-btn{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
