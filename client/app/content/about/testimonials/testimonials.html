@@ -1,0 +1,31 @@
+<div class="row content-header">
+  <div class="col s12 title-container">
+    <h1 class="header-text">Testimonials</h1>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col m3 l2 link-container hide-on-small-only">
+      <h5>About</h5>
+      <ul class="links-list">
+        <li><a ui-sref="about.story">OUR STORY</a></li>
+        <li><a ui-sref="about.board">THE BOARD</a></li>
+        <li><a ui-sref="about.partners">PARTNERS</a></li>
+        <li class="active-page"><a ui-sref="about.testimonials">TESTIMONIALS</a></li>
+      </ul>
+    </div>
+    <div class="col s12 m9 l8 offset-l1 content-main">
+      <div ng-repeat="testimonial in testimonials">
+        <div class="testimonial-item">
+          <h2 class="light-font">“</h2>
+            <div ng-repeat="quote in testimonial.content">
+              <p>{{quote}}</p>
+            </div>
+            <p class="light-font">—{{testimonial.author}}</p>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

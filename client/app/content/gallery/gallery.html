@@ -1,0 +1,23 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="row content-header">
+  <div class="col s12 title-container">
+    <h1 class="header-text">Gallery</h1>
+  </div>
+</div>
+<div class="col s12 m9 l8 offset-l1 content-gallery">
+  <h5 class="gallery-description">Some pictures of our past events and conferences!
+      </h5>
+      <hr>
+<div class="container">
+  <div class="row">
+    <div class="gallery-container">
+        <div class="gallery-image-container col l3 m4 s6" ng-repeat="image in gallery">
+          <img src="{{image.imgUrl}}"/>
+        </div>
+      </div>
+      <div class="row">
+        <hr  class="col s12 l12 m12">
+      </div>
+</div>
+<div ng-include="'app/content/footer/footer.html'"></div>
