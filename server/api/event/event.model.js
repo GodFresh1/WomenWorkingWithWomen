@@ -3,6 +3,15 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
+var schemaOptions = {
+  toObject: {
+    virtuals: true
+  }
+  ,toJSON: {
+    virtuals: true
+  }
+};
+
 var EventSchema = new Schema({
   title: {type:String, required:true},
   start: {type:Date, required:true},
@@ -14,6 +23,33 @@ var EventSchema = new Schema({
   description: {type:String, required:true},
   location: {type:String, required:true},
   imgUrl: {type:String, required:true}
+}, schemaOptions);
+
+
+var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+EventSchema.virtual('startDate').get(function () {
+  var month = monthNames[this.start.getUTCMonth()]; //months from 1-12
+  var day = this.start.getUTCDate();
+  var year = this.start.getUTCFullYear();
+
+  return month + " " + day + ", " + year;
+});
+
+EventSchema.virtual('startTime').get(function () {
+  return this.start.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+});
+
+EventSchema.virtual('endDate').get(function () {
+  var month = monthNames[this.end.getUTCMonth()]; //months from 1-12
+  var day = this.end.getUTCDate();
+  var year = this.end.getUTCFullYear();
+
+  return month + " " + day + ", " + year;
+});
+
+EventSchema.virtual('endTime').get(function () {
+  return this.end.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
 });
 
 module.exports = mongoose.model('Event', EventSchema);
