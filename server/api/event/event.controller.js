@@ -12,14 +12,25 @@ var _ = require('lodash');
 var Event = require('./event.model');
 
 // Get list of events
-exports.getAll = function(req, res) {
-  Event.find(function (err, events) {
+// exports.getAll = function(req, res) {
+//   Event.find(function (err, events) {
+//     if(err) { return handleError(res, err); }
+//     return res.status(200).json(events);
+//   });
+// };
+
+exports.getAll = function(req, res){
+  Event.find()
+  .populate('attendees')
+  .populate('vendors')
+  .populate('volunteers')
+  .exec(function(err, events) {
     if(err) { return handleError(res, err); }
     return res.status(200).json(events);
   });
-};
+}
 
-// Get a single event
+// Get a single event NOTE: This method does not populate the arrays.
 exports.getOne = function(req, res) {
   Event.findById(req.params.id, function (err, event) {
     if(err) { return handleError(res, err); }
