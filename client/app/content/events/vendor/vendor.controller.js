@@ -23,7 +23,7 @@ angular.module('womenWorkingWithWomenApp')
     };
 
     var handleSuccess = function(){
-      $scope.attendee = {};
+      $scope.vendor = {};
       $window.scrollTo(0, 0);
       $mdToast.show(
         $mdToast.simple()
@@ -36,7 +36,7 @@ angular.module('womenWorkingWithWomenApp')
 
     var handleError = function(error){
       console.log(error);
-      $scope.attendee = {};
+      $scope.vendor = {};
       $window.scrollTo(0, 0);
       var errorMessage = error.data!=null ? error.data : "Could not communicate with the server.";
       $mdToast.show(
@@ -50,7 +50,8 @@ angular.module('womenWorkingWithWomenApp')
 
     $scope.registerVendor = function(){
       // See if this vendor already exists in the db.
-      Api.getOneVendorByEmail($scope.vendor).then(function(response){
+      Api.getOneVendorByProperties($scope.vendor).then(function(response){
+        console.log($scope.vendor);
         var vendor = response.data;
         // Update the vendor
         Api.updateVendor(vendor._id, $scope.vendor).then(function(response){
@@ -85,4 +86,8 @@ angular.module('womenWorkingWithWomenApp')
       }
        return true;
     });
+
+    $scope.stopClick = function($event){
+      $event.target.blur();
+    }
 }]);
