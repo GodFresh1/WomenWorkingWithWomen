@@ -3,7 +3,7 @@
 var should = require('should');
 var app = require('../../app');
 var request = require('supertest');
-var Donation = require('./donation.model');
+var Donation = require('./donations.model');
 
 var donation = new Donation({
   _id: "swag@swag.com",
