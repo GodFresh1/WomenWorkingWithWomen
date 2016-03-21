@@ -11,11 +11,7 @@ angular.module('womenWorkingWithWomenApp')
     var y = date.getFullYear();
 
     Api.getAllEvents().then(function(response){
-<<<<<<< 0843ee6b78269087e92356624f69e565559cb909
        $scope.events=response.data;
-=======
-      $scope.eventSources = response.Data;
->>>>>>> More changes to front end testing
     }, function(error){
       console.log("Found an error");
       // handle error here

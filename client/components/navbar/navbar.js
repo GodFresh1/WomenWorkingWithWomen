@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('womenWorkingWithWomenApp')
-  .controller('NavBarCtrl', ['$scope', '$timeout', '$location', function($scope, $timeout, $location){
+  .controller('NavBarCtrl', ['$scope', '$timeout', '$location','Auth', function($scope, $timeout, $location, Auth){
     $timeout(function(){
       $(".dropdown-button").dropdown();
       $('.button-collapse').sideNav({
@@ -11,6 +11,10 @@ angular.module('womenWorkingWithWomenApp')
       );
       $('.collapsible').collapsible();
     });
+
+    $scope.isLoggedIn = Auth.isLoggedIn;
+    $scope.isAdmin = Auth.isAdmin;
+    $scope.getCurrentUser = Auth.getCurrentUser;
 
     // See what route is active
     $scope.routeIs = function(item){

@@ -98,8 +98,8 @@ angular.module('womenWorkingWithWomenApp')
         templateUrl: 'app/content/services/personal.html',
         controller: 'ServicesCtrl'
       })
-      .state('adminDash', {
-        url: '/adminDash',
+      .state('admin_dash', {
+        url: '/admin_dash',
         templateUrl: 'app/content/adminDashboard/adminDash.html',
         controller: 'AdminDashCtrl'
       });
