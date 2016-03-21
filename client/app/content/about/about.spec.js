@@ -20,9 +20,4 @@ describe('aboutPage', function(){
     expect(scope.testimonials).toBeDefined();
     expect(scope.partners).toBeDefined();
   });
-
-  it('should add a partner', function() {
-
-  });
-
 });
