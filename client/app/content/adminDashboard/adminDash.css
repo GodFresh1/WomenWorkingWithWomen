@@ -2,6 +2,13 @@
 	background-color: #00746b;
 }
 
+.small-toolbar{
+	/*background-color: #00746b;*/
+	min-height: 45px;
+	height: 45px;
+	color: rgba(255,255,255,0.87);
+}
+
 .simple-hr{
 	margin-top: 2px;
 	margin-bottom: 0px;
@@ -10,6 +17,8 @@
 .event-item{
 	margin-top: 6px;
 	margin-bottom:6px;
+	/*background-color: #eee4f2;*/
+	padding-top: 10px;
 }
 
 #event-content{
@@ -19,7 +28,7 @@
 
 #event-controls{
 	position: relative;
-	padding-bottom: 50px;
+	padding-bottom: 54px;
 }
 
 .time{
@@ -28,6 +37,16 @@
 
 #event-details-btn{
 	position: absolute;
-	bottom: 0;
+	bottom: 4px;
 	right: 0;
+}
+
+#detailed-info{
+	margin-left: 30px;
+	margin-right: 15px;
+}
+
+.check-in{
+	float:right;
+	margin-right: 2px;
 }

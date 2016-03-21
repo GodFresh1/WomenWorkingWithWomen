@@ -26,8 +26,33 @@
                </div>
                <div id="event-controls"class="col l2 m4 s4 clearfix" >
                  <div class="time">{{event.startTime}} - {{event.endTime}}</div>
-                 <md-button id="event-details-btn" ng-click="showDetails(event)" class="md-raised">Details</md-button>
+                 <a id="event-details-btn" class="btn-floating" ng-click="showDetails(event)"><i class="material-icons">{{showDetails[event._id] ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</i></a>
                </div>
+             </div>
+             <div id="detailed-info" class="row" ng-show="showDetails[event._id]">
+               <md-toolbar class="md-theme-light small-toolbar">
+                <h2 class="md-toolbar-tools small-toolbar">
+                  <span ng-show="event.attendees.length > 0">Attendees</span>
+                  <span ng-show="event.attendees.length < 1">There are no attendees for this event.</span>
+                </h2>
+              </md-toolbar>
+               <table ng-show="event.attendees.length > 0" class="striped">
+                <thead>
+                  <tr>
+                    <th data-field="name">Name</th>
+                    <th class="check-in" data-field="checked in">Check in</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="attendee in event.attendees">
+                    <td width="90%">{{attendee.firstName}} {{attendee.lastName}}</td>
+                    <td class="check-in">
+                      <input type="checkbox" id="{{attendee._id}}" ng-disabled="attendee.checkedIn"  ng-checked="attendee.checkedIn" ng-click="checkBox(attendee)"/>
+                      <label for="{{attendee._id}}"></label>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
              </div>
              <hr class="simple-hr">
            </div>
@@ -37,6 +62,5 @@
 		</div>
 	</div>
 </div>
-
 
 <div ng-include="'app/content/footer/footer.html'"></div>
