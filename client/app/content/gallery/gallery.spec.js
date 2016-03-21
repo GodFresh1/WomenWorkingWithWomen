@@ -19,4 +19,8 @@ describe('galleryPage', function(){
     expect(scope.gallery).toBeDefined();
   });
 
+  it('should have a title of Gallery', function() {
+    expect(scope.title).toEqual('Gallery');
+  })
+
 });
