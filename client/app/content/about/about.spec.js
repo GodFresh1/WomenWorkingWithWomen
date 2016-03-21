@@ -15,4 +15,9 @@ describe('aboutPage', function(){
     expect(ctrl).toBeDefined();
   });
 
+  it('should have defined Board Members, Testimonials, Partners', function() {
+    expect(scope.boardMembers).toBeDefined();
+    expect(scope.testimonials).toBeDefined();
+    expect(scope.partners).toBeDefined();
+  });
 });

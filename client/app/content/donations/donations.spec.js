@@ -14,4 +14,5 @@ describe('donationsPage', function(){
   it('should have defined DonationsCtrl', function() {
     expect(ctrl).toBeDefined();
   });
+
 });
