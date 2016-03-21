@@ -18,16 +18,4 @@ describe('contactUsPage', function(){
   it('should have title Contact Us', function() {
     expect(scope.title).toEqual('Contact Us');
   });
-
-  it('should have defined attributes', function() {
-
-  });
-
-  it('should get toast position', function() {
-
-  });
-
-  it('should send contact request', function() {
-
-  });
 });
