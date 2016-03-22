@@ -40,12 +40,14 @@
                 <thead>
                   <tr>
                     <th data-field="name">Name</th>
+                    <th data-field="email">Email</th>
                     <th class="check-in" data-field="checked in">Check in</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr ng-repeat="attendee in event.attendees">
-                    <td width="90%">{{attendee.firstName}} {{attendee.lastName}}</td>
+                    <td width="30%">{{attendee.firstName}} {{attendee.lastName}}</td>
+                    <td width="60%">{{attendee.email}}  </td>
                     <td class="check-in">
                       <input type="checkbox" id="{{attendee._id}}" ng-disabled="attendee.checkedIn"  ng-checked="attendee.checkedIn" ng-click="checkBox(attendee)"/>
                       <label for="{{attendee._id}}"></label>
