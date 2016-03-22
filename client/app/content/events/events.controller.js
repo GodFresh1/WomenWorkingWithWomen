@@ -12,6 +12,8 @@ angular.module('womenWorkingWithWomenApp')
 
     Api.getAllEvents().then(function(response){
        $scope.events=response.data;
+       uiCalendarConfig.calendars.myCalendar.fullCalendar('removeEvents');
+       uiCalendarConfig.calendars.myCalendar.fullCalendar('addEventSource', $scope.events);
     }, function(error){
       console.log("Found an error");
       // handle error here
