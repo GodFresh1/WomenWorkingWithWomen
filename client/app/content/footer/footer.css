@@ -15,3 +15,11 @@
 .footer-container p b {
 	font-size: 120%;
 }
+
+.login-button{
+  color: #ccc;
+}
+
+#login-icon{
+  color: #ccc;
+}

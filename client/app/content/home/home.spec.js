@@ -14,4 +14,10 @@ describe('homePage', function(){
   it('should have defined HomeCtrl', function() {
     expect(ctrl).toBeDefined();
   });
+
+  it('should have all titles loaded', function() {
+    expect(scope.title).toEqual('Changing Lives.');
+    expect(scope.pretitle).toEqual('Empowering Women.');
+    expect(scope.subtitle).toEqual('Making a Difference.');
+  })
 });

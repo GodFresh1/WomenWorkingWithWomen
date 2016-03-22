@@ -77,24 +77,26 @@ User.find({}).remove(function() {
 // Seed Events
 Event.find({}).remove(function(){
   Event.create({
-    title: 'Event 1',
+    title: 'Event 3',
     start: new Date(2016, 11, 17, 2, 30, 0),
     end: new Date(2016, 11, 17, 4, 30, 0), // Note: this is a 2 hour event.
-    description: "An event for testing.",
+    description: "This event is an event where events will be taking place. This is just an example description to see"
+                + " how this will look on the website. Hopefully it looks nice!",
     location: "1234 Made Up St, Doesnt Exist, AL, 12345",
     imgUrl: "http://notarealurl.com"
   },{
-    title: 'Event 2',
+    title: 'Sample Event 1',
     start: new Date(2016, 3, 3, 1, 0, 0),
     end: new Date(2016, 3, 3, 4, 0, 0),
-    description: "Another event for testing.",
+    description: "This is another event. The description for this one is a little different. There will also be eventstaking place."
+                + " Hopefully it looks nice.",
     location: "A BS Address",
     imgUrl: "http://fakeimage.com"
   },{
-    title: 'Event 3',
+    title: 'Another Sample Event',
     start: new Date(2016, 4, 5, 3, 0, 0),
     end: new Date(2016, 5, 5, 6, 0, 0),
-    description: "A third event for testing.",
+    description: "This is another descirption of another event that doesn't actually exist.",
     location: "Another BS Address",
     imgUrl: "http://fakeimageyea.com"
   }, function(){
@@ -118,14 +120,55 @@ Attendee.find({}).remove(function(){
     age: 21
   }, {
     email: 'attendee3@email.com',
-    firstName: 'FirstName',
-    lastName: 'lastName',
+    firstName: 'Bradley',
+    lastName: 'Treuherz',
     phone: 1234456123,
     age: 19
+  }, {
+    email: 'attendee4@email.com',
+    firstName: 'Rick',
+    lastName: "Morty",
+    phone: 1234456123,
+    age: 21
+  }, {
+    email: 'attendee5@email.com',
+    firstName: 'Rick',
+    lastName: 'James',
+    phone: 1234456123,
+    age: 20
+  }, {
+    email: 'attendee2@email.com',
+    firstName: 'Jimi',
+    lastName: "Hendrix",
+    phone: 1234456123,
+    age: 21
+  }, {
+    email: 'attendee3@email.com',
+    firstName: 'Justin',
+    lastName: 'Beiber',
+    phone: 1234456123,
+    age: 19
+  }, {
+    email: 'attendee4@email.com',
+    firstName: 'George',
+    lastName: "Harrison",
+    phone: 1234456123,
+    age: 21
   }, function(){
     console.log('finshed populating attendees.');
+
+    // Add all the attendees to event 1
+    Attendee.find().exec(function(err, attendees) {
+      attendees.forEach(function(attendee){
+        Event.update({'title': 'Sample Event 1'}, {$addToSet: {attendees: attendee._id}}, function(err, result){
+
+        });
+      });
+    });
   });
-})
+});
+
+
 
 // Seed volunteers
 Volunteer.find({}).remove(function(){

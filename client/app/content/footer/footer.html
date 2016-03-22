@@ -1,4 +1,4 @@
-<div class="footer-container">
+<div class="footer-container" ng-controller="FooterCtrl">
   <div layout="row">
     <div flex>
       <p><b>Contact Us</b></p>
@@ -11,6 +11,17 @@
       <p>Center for Innovation and Economic Development</p>
       <p>530 West University</p>
       <p>Gainesville, FL 32601</p>
+      <br><br>
+      <div class="login-button">
+        <md-button ng-hide="isLoggedIn()" ui-sref="login">
+          <md-icon id="login-icon"md-svg-icon="action:input"></md-icon>
+          Login
+        </md-button>
+        <md-button ng-show="isLoggedIn()" ng-click="logout()">
+          <md-icon id="logout-icon"md-svg-icon="action:input"></md-icon>
+          Logout
+        </md-button>
+      </div>
     </div>
     <div flex>
       <p><b>Map</b></p>
