@@ -24,6 +24,7 @@ angular.module('womenWorkingWithWomenApp')
         events: $scope.events
        //console.log(events);
     };
+
     /* alert on eventClick */
     $scope.alertOnEventClick = function( date, jsEvent, view){
         $scope.alertMessage = (date.title + ' was clicked ');
@@ -84,7 +85,7 @@ angular.module('womenWorkingWithWomenApp')
 
     $scope.uiConfig = {
       calendar:{
-        editable: true,
+        editable: false,
         header:{
           left: 'prev',
           center: 'title',
