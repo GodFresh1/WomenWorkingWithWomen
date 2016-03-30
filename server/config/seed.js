@@ -86,9 +86,33 @@ Event.find({}).remove(function(){
     imgUrl: "http://notarealurl.com"
   },{
     title: 'Sample Event 1',
+    start: new Date(2016, 3, 8, 1, 0, 0),
+    end: new Date(2016, 3, 8, 4, 0, 0),
+    description: "This is another event. The description for this one is a little different. There will also be eventst aking place."
+                + " Hopefully it looks nice.",
+    location: "A BS Address",
+    imgUrl: "http://fakeimage.com"
+  },{
+    title: 'Another event ',
+    start: new Date(2016, 4, 3, 13, 0, 0),
+    end: new Date(2016, 4, 3, 14, 30, 0),
+    description: "This is an example event as well. The description for this one is a little different too. There will also be events taking place."
+                + " Hopefully it looks nice.",
+    location: "A BS Address",
+    imgUrl: "http://fakeimage.com"
+  },{
+    title: 'An event again',
+    start: new Date(2016, 3, 20, 10, 45, 0),
+    end: new Date(2016, 3, 20, 11, 0, 0),
+    description: "This is another event. There will also be events taking place."
+                + " Hopefully it looks nice.",
+    location: "A BS Address",
+    imgUrl: "http://fakeimage.com"
+  },{
+    title: 'An example',
     start: new Date(2016, 3, 3, 1, 0, 0),
     end: new Date(2016, 3, 3, 4, 0, 0),
-    description: "This is another event. The description for this one is a little different. There will also be eventstaking place."
+    description: "This is another event. The description for this one is a little different. There will also be events taking place."
                 + " Hopefully it looks nice.",
     location: "A BS Address",
     imgUrl: "http://fakeimage.com"
