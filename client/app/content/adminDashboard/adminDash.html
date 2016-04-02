@@ -48,8 +48,8 @@
                   <tr ng-repeat="attendee in event.attendees">
                     <td width="30%">{{attendee.firstName}} {{attendee.lastName}}</td>
                     <td width="60%">{{attendee.email}}  </td>
-                    <td class="check-in">
-                      <input type="checkbox" id="{{attendee._id}}" ng-disabled="attendee.checkedIn"  ng-checked="attendee.checkedIn" ng-click="checkBox(attendee)"/>
+                    <td class="check-in" >
+                      <input type="checkbox" id="{{attendee._id}}"  ng-checked="attendee.checkedIn" ng-click="checkBox(attendee, $event)"/>
                       <label for="{{attendee._id}}"></label>
                     </td>
                   </tr>
