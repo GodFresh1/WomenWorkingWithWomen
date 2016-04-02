@@ -12,7 +12,6 @@ angular.module('womenWorkingWithWomenApp')
     $scope.volunteers = [];
     $scope.donations = [];
 
-
     Api.getAllEvents().then(function(response){
       $scope.events = response.data;
     }, function(err){
