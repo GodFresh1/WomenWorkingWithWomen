@@ -2,7 +2,11 @@
 
 
 angular.module('womenWorkingWithWomenApp')
+<<<<<<< b3460cc0274470e2c9ed83d51c4a2d8ff5605320
   .controller('AdminDashCtrl', ['$scope', 'Api', '$mdToast', 'Auth', '$mdDialog', '$mdMedia', function($scope, Api, $mdToast, Auth, $mdDialog, $mdMedia) {
+=======
+  .controller('AdminDashCtrl', ['$scope', 'Api', '$mdToast', 'Auth', '$mdDialog', function($scope, Api, $mdToast, Auth, $mdDialog) {
+>>>>>>> Provided a way to uncheck in attendees.
     $scope.events = [];
     $scope.showDetails = {};
     $scope.csvTemp = [];
@@ -54,6 +58,7 @@ angular.module('womenWorkingWithWomenApp')
       $scope.showDetails[event._id] = (isShown == undefined || !isShown) ? true : false;
     }
 
+<<<<<<< b3460cc0274470e2c9ed83d51c4a2d8ff5605320
     $scope.produceAttendeeCSV = function(event){
       Api.getAllEvents().then(function(response){
         $scope.csvTemp = response.data;
@@ -275,6 +280,8 @@ angular.module('womenWorkingWithWomenApp')
         });
     }
 
+=======
+>>>>>>> Provided a way to uncheck in attendees.
     $scope.checkBox = function(attendee, $event){
       $event.preventDefault();
       if($scope.isAdmin()){
