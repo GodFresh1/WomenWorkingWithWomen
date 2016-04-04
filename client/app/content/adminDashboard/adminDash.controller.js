@@ -177,6 +177,29 @@ angular.module('womenWorkingWithWomenApp')
             .theme("error-toast")
           );
       });
+
+    $scope.createEvent = function($event){
+      var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+       $mdDialog.show({
+         controller: DialogController,
+         templateUrl: '/app/content/adminDashboard/newEventDialog.html',
+         parent: angular.element(document.body),
+         targetEvent: $event,
+         clickOutsideToClose:true,
+         fullscreen: useFullScreen
+       })
+       .then(function(event) {
+         // Add the event to the database.
+         console.log(event);
+       }, function() {
+         concole.log("add event canceled.")
+       });
+       $scope.$watch(function() {
+         return $mdMedia('xs') || $mdMedia('sm');
+       }, function(wantsFullScreen) {
+         $scope.customFullscreen = (wantsFullScreen === true);
+       });
+
     }
 
     $scope.createEvent = function($event){
