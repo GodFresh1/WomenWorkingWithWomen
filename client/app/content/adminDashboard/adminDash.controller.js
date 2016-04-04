@@ -12,7 +12,7 @@ angular.module('womenWorkingWithWomenApp')
     $scope.volunteers = [];
     $scope.donations = [];
     $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
-
+    
     Api.getAllEvents().then(function(response){
       $scope.events = response.data;
     }, function(err){
