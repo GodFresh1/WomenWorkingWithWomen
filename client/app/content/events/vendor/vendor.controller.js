@@ -2,7 +2,7 @@
 
 
 angular.module('womenWorkingWithWomenApp')
-  .controller('VendorCtrl', ['$scope', '$compile', '$timeout', 'uiCalendarConfig', 'Api','$mdToast', '$window', function($scope, $compile, $timeout, uiCalendarConfig, Api, $mdToast, $window) {
+  .controller('VendorCtrl', ['$scope', '$compile', '$timeout', 'uiCalendarConfig', 'Api','$mdDialog', '$window', function($scope, $compile, $timeout, uiCalendarConfig, Api, $mdDialog, $window) {
     $scope.vendor = {};
     $scope.events = [];
 
@@ -23,29 +23,37 @@ angular.module('womenWorkingWithWomenApp')
     };
 
     var handleSuccess = function(){
-      $scope.vendor = {};
       $window.scrollTo(0, 0);
-      $mdToast.show(
-        $mdToast.simple()
-          .content('Registration Successful!')
-          .position('top right')
-          .hideDelay(3000)
-          .theme("success-toast")
-      );
+      alert = $mdDialog.alert({
+        title: 'Registration Successful',
+        htmlContent: '<ul class="collection with-header"><li class="collection-header"><h4>' +
+         $scope.vendor.lastName + ', ' + $scope.vendor.firstName + '</h4></li><li class="collection-item"><div>' +
+         $scope.vendor.email + '</div></li><li class="collection-item"><div>'+
+         $scope.vendor.phone + '</div></li><li class="collection-item"><div>'+
+         $scope.vendor.faxNumber + '</div></li><li class="collection-item"><div>'+
+         $scope.vendor.website + '</div></li><li class="collection-item"><div>'+
+         $scope.vendor.organizationName + '</div></li><li class="collection-item"><div>'+
+         $scope.vendor.organizationAddress + '</div></li><li class="collection-item"><div>'+
+         $scope.vendor.jobTitle + '</div></li><li class="collection-item"><div>'+
+         $scope.vendor.eventAttending + '</div></li><li class="collection-item"><div>'+
+         $scope.vendor.descriptionOfServices + '</div></li></ul>',
+        ok: 'Close'
+      });
+      $mdDialog.show( alert ).finally(function() {
+            alert = undefined;
+            $scope.vendor = {};
+      });
     }
 
     var handleError = function(error){
       console.log(error);
-      $scope.vendor = {};
       $window.scrollTo(0, 0);
       var errorMessage = error.data!=null ? error.data : "Could not communicate with the server.";
-      $mdToast.show(
-        $mdToast.simple()
-          .content('Error: ' + errorMessage)
-          .position('top right')
-          .hideDelay(3000)
-          .theme("error-toast")
-      );
+      alert = $mdDialog.alert().title('Unsuccessful Registration, ').content(errorMessage).ok('Close');
+      $mdDialog.show( alert ).finally(function() {
+            alert = undefined;
+            $scope.vendor = {};
+      });
     }
 
     $scope.registerVendor = function(){
