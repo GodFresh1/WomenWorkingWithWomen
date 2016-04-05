@@ -2,7 +2,7 @@
 
 
 angular.module('womenWorkingWithWomenApp')
-  .controller('AdminDashCtrl', ['$scope', 'Api', '$mdToast', 'Auth', '$mdDialog', '$mdMedia', function($scope, Api, $mdToast, Auth, $mdDialog, $mdMedia) {
+  .controller('AdminDashCtrl', ['$scope', 'Api', '$mdToast', 'Auth', '$mdDialog', function($scope, Api, $mdToast, Auth, $mdDialog) {
     $scope.events = [];
     $scope.showDetails = {};
     $scope.csvTemp = [];
@@ -190,7 +190,7 @@ angular.module('womenWorkingWithWomenApp')
          fullscreen: useFullScreen
        })
        .then(function(event) {
-         
+
          Api.createEvent(event).then(function(response){
             $mdToast.show(
             $mdToast.simple()
@@ -213,7 +213,7 @@ angular.module('womenWorkingWithWomenApp')
             .theme("error-toast")
           );
          });
-         
+
          // Add the event to the database.
          console.log(event);
        }, function() {
@@ -272,10 +272,9 @@ angular.module('womenWorkingWithWomenApp')
             );
           });
 
-         
+
         }, function() {
         });
-
     }
 
     $scope.checkBox = function(attendee, $event){
@@ -334,19 +333,5 @@ angular.module('womenWorkingWithWomenApp')
           });
         }
       }
-    };
-
-    function DialogController($scope, $mdDialog) {
-      $scope.event = {};
-
-      $scope.hide = function() {
-        $mdDialog.hide();
-      };
-      $scope.cancel = function() {
-        $mdDialog.cancel();
-      };
-      $scope.create = function() {
-        $mdDialog.hide($scope.event);
-      };
     };
 }]);
