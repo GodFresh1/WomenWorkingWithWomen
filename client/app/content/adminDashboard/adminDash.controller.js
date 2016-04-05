@@ -53,6 +53,7 @@ angular.module('womenWorkingWithWomenApp')
       $scope.showDetails[event._id] = (isShown == undefined || !isShown) ? true : false;
     }
 
+
     $scope.checkBox = function(attendee, $event){
       $event.preventDefault();
       if($scope.isAdmin()){
