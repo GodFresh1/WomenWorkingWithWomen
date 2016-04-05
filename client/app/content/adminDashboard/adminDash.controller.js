@@ -2,7 +2,7 @@
 
 
 angular.module('womenWorkingWithWomenApp')
-  .controller('AdminDashCtrl', ['$scope', 'Api', '$mdToast', 'Auth', '$mdDialog', '$mdMedia', function($scope, Api, $mdToast, Auth, $mdDialog, $mdMedia) {
+  .controller('AdminDashCtrl', ['$scope', 'Api', '$mdToast', 'Auth', '$mdDialog', function($scope, Api, $mdToast, Auth, $mdDialog) {
     $scope.events = [];
     $scope.showDetails = {};
     $scope.csvTemp = [];
@@ -215,6 +215,7 @@ angular.module('womenWorkingWithWomenApp')
           );
          });
 
+         // Add the event to the database.
          console.log(event);
        }, function() {
          console.log("Add event canceled.")
@@ -377,19 +378,5 @@ angular.module('womenWorkingWithWomenApp')
           });
         }
       }
-    };
-
-    function DialogController($scope, $mdDialog) {
-      $scope.event = {};
-
-      $scope.hide = function() {
-        $mdDialog.hide();
-      };
-      $scope.cancel = function() {
-        $mdDialog.cancel();
-      };
-      $scope.create = function() {
-        $mdDialog.hide($scope.event);
-      };
     };
 }]);
