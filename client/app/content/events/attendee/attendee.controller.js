@@ -52,7 +52,7 @@ angular.module('womenWorkingWithWomenApp')
       });
     }
 
-    $scope.registerAttendee = function(){
+    $scope.confirmAttendee = function(){
       confirm = $mdDialog.confirm({
         title: 'Confirm Details',
         htmlContent: '<ul class="collection with-header"><li class="collection-header"><h4>' +
@@ -61,40 +61,42 @@ angular.module('womenWorkingWithWomenApp')
          $scope.attendee.phone + '</div></li><li class="collection-item"><div> '+
          $scope.attendee.age + '</div></li><li class="collection-item"><div> '+
          $scope.attendee.gender + '</div></li></ul>',
-        ok: 'Yes'
+        ok: 'Yes',
         cancel: 'No'
       });
-      $mdDialog.show( confirm ).finally(function() {
-        confirm = undefined;
-        $scope.attendee = {};
-      }, function(){
-        confirm = undefined;
-        break;
-      });
-      // See if this attendee already exists in the db.
-      Api.getOneAttendeeByProperties($scope.attendee).then(function(response){
-        var attendee = response.data;
-        // Update the attendee
-        Api.updateAttendee(attendee._id, $scope.attendee).then(function(response){
-          // Add this attenddee to the event attendee list.
-          addAttendeeToEvent($scope.attendee.eventAttending, attendee);
-        }, function(error){
-          handleError(error);
-        });
 
-      }, function(error){
-        if(error.status==404){
-          // This person is not in the database so create a new attendee.
-          Api.createAttendee($scope.attendee).then(function(response){
-            // Add this attendee to the events attendee list.
-            addAttendeeToEvent($scope.attendee.eventAttending, response.data);
+      $mdDialog.show( confirm ).then(function() {
+        $scope.registerAttendee();
+      }, function(){
+        return false;
+      });
+    }
+
+    $scope.registerAttendee = function(){
+        // See if this attendee already exists in the db.
+        Api.getOneAttendeeByProperties($scope.attendee).then(function(response){
+          var attendee = response.data;
+          // Update the attendee
+          Api.updateAttendee(attendee._id, $scope.attendee).then(function(response){
+            // Add this attenddee to the event attendee list.
+            addAttendeeToEvent($scope.attendee.eventAttending, attendee);
           }, function(error){
             handleError(error);
           });
-        }else{
-          handleError(error);
-        }
-      });
+
+        }, function(error){
+          if(error.status==404){
+            // This person is not in the database so create a new attendee.
+            Api.createAttendee($scope.attendee).then(function(response){
+              // Add this attendee to the events attendee list.
+              addAttendeeToEvent($scope.attendee.eventAttending, response.data);
+            }, function(error){
+              handleError(error);
+            });
+          }else{
+            handleError(error);
+          }
+        });
     };
 
     // Hacky fix to make the dropdown a required field.
