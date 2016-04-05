@@ -53,6 +53,24 @@ angular.module('womenWorkingWithWomenApp')
     }
 
     $scope.registerAttendee = function(){
+      confirm = $mdDialog.confirm({
+        title: 'Confirm Details',
+        htmlContent: '<ul class="collection with-header"><li class="collection-header"><h4>' +
+         $scope.attendee.lastName + ', ' + $scope.attendee.firstName + '</h4></li><li class="collection-item"><div>' +
+         $scope.attendee.email + '</div></li><li class="collection-item"><div> '+
+         $scope.attendee.phone + '</div></li><li class="collection-item"><div> '+
+         $scope.attendee.age + '</div></li><li class="collection-item"><div> '+
+         $scope.attendee.gender + '</div></li></ul>',
+        ok: 'Yes'
+        cancel: 'No'
+      });
+      $mdDialog.show( confirm ).finally(function() {
+        confirm = undefined;
+        $scope.attendee = {};
+      }, function(){
+        confirm = undefined;
+        break;
+      });
       // See if this attendee already exists in the db.
       Api.getOneAttendeeByProperties($scope.attendee).then(function(response){
         var attendee = response.data;
