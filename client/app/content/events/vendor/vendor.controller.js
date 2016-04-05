@@ -57,6 +57,29 @@ angular.module('womenWorkingWithWomenApp')
     }
 
     $scope.registerVendor = function(){
+      confirm = $mdDialog.confirm({
+        title: 'Confirm Details',
+        htmlContent: '<ul class="collection with-header"><li class="collection-header"><h4>' +
+         $scope.vendor.lastName + ', ' + $scope.vendor.firstName + '</h4></li><li class="collection-item"><div>' +
+         $scope.vendor.email + '</div></li><li class="collection-item"><div>'+
+         $scope.vendor.phone + '</div></li><li class="collection-item"><div>'+
+         $scope.vendor.faxNumber + '</div></li><li class="collection-item"><div>'+
+         $scope.vendor.website + '</div></li><li class="collection-item"><div>'+
+         $scope.vendor.organizationName + '</div></li><li class="collection-item"><div>'+
+         $scope.vendor.organizationAddress + '</div></li><li class="collection-item"><div>'+
+         $scope.vendor.jobTitle + '</div></li><li class="collection-item"><div>'+
+         $scope.vendor.eventAttending + '</div></li><li class="collection-item"><div>'+
+         $scope.vendor.descriptionOfServices + '</div></li></ul>',
+        ok: 'Yes'
+        cancel: 'No'
+      });
+      $mdDialog.show( confirm ).finally(function() {
+        confirm = undefined;
+        $scope.vendor = {};
+      }, function(){
+        confirm = undefined;
+        break;
+      });
       // See if this vendor already exists in the db.
       Api.getOneVendorByProperties($scope.vendor).then(function(response){
         console.log($scope.vendor);
