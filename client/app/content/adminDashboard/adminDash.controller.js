@@ -8,6 +8,8 @@ angular.module('womenWorkingWithWomenApp')
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
+    $scope.volunteers = [];
+    $scope.donations = [];
 
 
     Api.getAllEvents().then(function(response){
@@ -22,6 +24,29 @@ angular.module('womenWorkingWithWomenApp')
       );
     });
 
+    Api.getAllVolunteers().then(function(response){
+      $scope.volunteers = response.data;
+    }, function(err){
+      $mdToast.show(
+        $mdToast.simple()
+          .content('Error: Could not connect to the server. ')
+          .position('top right')
+          .hideDelay(3000)
+          .theme("error-toast")
+      );
+    });
+
+    Api.getAllDonations().then(function(response){
+      $scope.donations = response.data;
+    }, function(err){
+      $mdToast.show(
+        $mdToast.simple()
+          .content('Error: Could not connect to the server. ')
+          .position('top right')
+          .hideDelay(3000)
+          .theme("error-toast")
+      );
+    });
 
     $scope.showDetails = function(event){
       var isShown = $scope.showDetails[event._id];
