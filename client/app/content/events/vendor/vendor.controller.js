@@ -55,8 +55,7 @@ angular.module('womenWorkingWithWomenApp')
             $scope.vendor = {};
       });
     }
-
-    $scope.registerVendor = function(){
+    $scope.confirmVendor = function(){
       confirm = $mdDialog.confirm({
         title: 'Confirm Details',
         htmlContent: '<ul class="collection with-header"><li class="collection-header"><h4>' +
@@ -70,16 +69,16 @@ angular.module('womenWorkingWithWomenApp')
          $scope.vendor.jobTitle + '</div></li><li class="collection-item"><div>'+
          $scope.vendor.eventAttending + '</div></li><li class="collection-item"><div>'+
          $scope.vendor.descriptionOfServices + '</div></li></ul>',
-        ok: 'Yes'
+        ok: 'Yes',
         cancel: 'No'
       });
-      $mdDialog.show( confirm ).finally(function() {
-        confirm = undefined;
-        $scope.vendor = {};
+      $mdDialog.show( confirm ).then(function() {
+        $scope.registerVendor();
       }, function(){
-        confirm = undefined;
-        break;
+        return false;
       });
+    }
+    $scope.registerVendor = function(){
       // See if this vendor already exists in the db.
       Api.getOneVendorByProperties($scope.vendor).then(function(response){
         console.log($scope.vendor);
