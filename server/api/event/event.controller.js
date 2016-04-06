@@ -83,6 +83,18 @@ exports.addAttendee = function(req, res){
   });
 };
 
+exports.addVolunteer = function(req, res) {
+  Event.update({'_id': req.params.id}, {$addToSet: {volunteers: req.body._id}}, function(err, result){
+    if(err) { return handleError(res, err); }
+    if(result.nModified==0) {
+      return res.status(409).send("You have already signed up for this event.");
+    }
+    return res.status(200).json(result);
+  });
+
+};
+
+
 exports.addVendor = function(req, res){
   Event.update({'_id': req.params.id}, {$addToSet: {vendors: req.body._id}}, function(err, result){
     if(err) { return handleError(res, err); }
@@ -95,4 +107,4 @@ exports.addVendor = function(req, res){
 
 function handleError(res, err) {
   return res.status(500).send(err);
-}
+};

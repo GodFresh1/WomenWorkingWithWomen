@@ -28,6 +28,14 @@ exports.getOne = function(req, res) {
   });
 };
 
+exports.getOneWithProperties = function(req, res){
+  Volunteer.findOne({firstName: req.params.firstName, lastName: req.params.lastName, email: req.params.email}, function(err, volunteer){
+    if(err) { return handleError(res, err); }
+    if(!volunteer) { return res.status(404).send('Not Found'); }
+    return res.json(volunteer);
+  });
+};
+
 // Creates a new volunteer in the DB.
 exports.create = function(req, res) {
   Volunteer.create(req.body, function(err, volunteer) {
@@ -35,6 +43,8 @@ exports.create = function(req, res) {
     return res.status(201).json(volunteer);
   });
 };
+
+
 
 // Updates an existing volunteer in the DB.
 exports.update = function(req, res) {

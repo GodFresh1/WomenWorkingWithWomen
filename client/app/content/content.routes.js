@@ -93,6 +93,16 @@ angular.module('womenWorkingWithWomenApp')
         templateUrl: 'app/content/take_action/take_action.html',
         controller: 'TakeActionCtrl'
       })
+      .state('take_action.volunteer', {
+        url: '/volunteer',
+        templateUrl: 'app/content/take_action/volunteer.html',
+        controller: 'VolunteerCtrl'
+      })
+      .state('take_action.tutor', {
+        url: '/tutor',
+        templateUrl: 'app/content/take_action/tutor.html',
+        controller: 'TutorCtrl'
+      })
       .state('services', {
         url: '/services',
         templateUrl: 'app/content/services/services.html',
