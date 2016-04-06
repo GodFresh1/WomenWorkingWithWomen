@@ -27,6 +27,8 @@
                <div id="event-controls"class="col l2 m4 s4 clearfix" >
                  <div class="time">{{event.startTime}} - {{event.endTime}}</div>
                  <a id="event-details-btn" class="btn-floating" ng-click="showDetails(event)"><i class="material-icons">{{showDetails[event._id] ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</i></a>
+                 <a id="excel-btn" class="btn-floating" ng-click="produceCSV(event)"><i class="material-icons">{{'assessment'}}</i></a>
+
                </div>
              </div>
              <div id="detailed-info" class="row" ng-show="showDetails[event._id]">
@@ -88,7 +90,7 @@
          </div>
 
          </md-list-item>
-         
+
        </md-list>
      </md-content>
      <div ng-hide="isAdmin()" class="row">
@@ -121,7 +123,7 @@
              <hr class="simple-hr">
            </div>
          </md-list-item>
-         
+
        </md-list>
      </md-content>
      <div ng-hide="isAdmin()" class="row">
@@ -130,7 +132,7 @@
     </div>
   </div>
 </div>
-  
+
 
 
 <div ng-include="'app/content/footer/footer.html'"></div>
