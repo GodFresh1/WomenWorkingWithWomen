@@ -1,0 +1,78 @@
+
+<div class="row content-header">
+  <div class="col l4 offset-l4 m6 offset-m3 s12 title-container">
+    <h1 class="header-text">Volunteer</h1>
+  </div>
+</div>
+
+<div class = "container">
+	<div class="row">
+		<h4 align = "center">Sign-Up to Volunteer</h4>
+    	<div class="col m3 l2 link-container hide-on-small-only">
+		   	<h5>Take Action</h5>
+	     	<ul class="links-list">
+	        <li class="active-page"><a href="take_action/volunteer">VOLUNTEER</a></li>		        
+	        <li><a href="take_action/tutor">TUTOR</a></li>
+	      	</ul>
+    	</div>
+	   <div class="col s12 m7 l8 offset-l1 content-main">
+			<p> This is some filler text explaining the duties of volunteering and encouraging people to get involved in WWWW. Much filler, such text. Volunteer for a specific event or in general!</p>
+			<h5> Sign-Up For An Event</h5>
+  			<form class="form-horizontal" ng-submit = "registerVolunteer()" >
+	        	<input type="hidden" name="_csrf"/>
+	        	<div class="row">
+	          		<div class="input col l12 m12 s12">
+	            		<label>Choose an Event *</label>
+	            		<md-select ng-model="volunteer.eventAttending">
+	             		 <md-option ng-repeat="event in events" value="{{event._id}}">
+	                		{{event.title}}
+	             		 </md-option>
+	            		</md-select>
+	            		<input id="eventIdInput" style="opacity: 0; height: 0px;"  type="text" ng-model="volunteer.eventAttending" ng-click="stopClick($event)" ng-required="true">
+	          		</div>
+	        	</div>
+	        	<div class="row">
+	          		<div class="input-field col l6 m6 s6">
+	            		<input type="text" id="firstName" class="validate" ng-model="volunteer.firstName" ng-required="true"/>
+	            		<label for="firstName" class="control-label">First name *</label>
+	          		</div>
+	          		<div class="input-field col l6 m6 s6">
+	            		<input type="text" id="lastName" class="validate" ng-model="volunteer.lastName" ng-required="true"/>
+	            		<label for="lastName" class="control-label">Last name *</label>
+	          		</div>
+	       		</div>
+	        	<div class="row">
+	          		<div class="input-field col l12 m12 s12">
+	            		<input type="text" id="email" class="validate" ng-model="volunteer.email" ng-required="true"/>
+	            		<label for="email" class="control-label">Email Address *</label>
+	          		</div>
+	       	 	</div>
+	        	<div class="row">
+	          		<div class="input-field col l12 m12 s12">
+	            	<input type="number"id="phone" class="validate" ng-model="volunteer.phone" ng-required="true"/>
+	            	<label for="phone" class="control-label">Phone number *</label>
+	          		</div>
+	        	</div>
+	        	<div class="row">
+	          		<div class="input-field col l6 m6 s6">
+	            		<input type="number" id="age" class="validate" ng-model="volunteer.age" ng-required="true"/>
+	            		<label for="age" class="control-label">Age *</label>
+	          		</div>
+	          		<div class="input col l6 m6 s6">
+	            		<label>Gender (Optional)</label>
+	            		<md-select ng-model="volunteer.gender">
+	              			<md-option ng-repeat="gender in genders" value="{{gender}}">
+	                		{{gender}}
+	              			</md-option>
+	            		</md-select>
+	          		</div>
+	        	</div>
+	       		<div class="form-group">
+	          		<div class="col-sm-offset-3 col-sm-4">
+	           			<button type="btn" class="btn btn btn-primary submit">Submit</button>
+	          		</div>
+	        	</div>
+      		</form>
+    	</div>
+  	</div>
+</div>

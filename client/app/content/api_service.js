@@ -32,6 +32,9 @@ angular.module('womenWorkingWithWomenApp')
       addVendorToEvent: function(_id, vendor){
         return $http.put(API_BASE_URL + 'events/' + _id + '/addVendor', vendor);
       },
+      addVolunteerToEvent: function(_id, volunteer){
+        return $http.put(API_BASE_URL + 'events/' +_id + '/addVolunteer', volunteer);
+      },
       deleteEvent: function(_id){
         return $http.delete(API_BASE_URL + 'events/' + _id);
       },
@@ -42,6 +45,10 @@ angular.module('womenWorkingWithWomenApp')
       },
       getOneVolunteer: function(_id){
         return $http.get(API_BASE_URL + 'volunteers/' + _id);
+      },
+      getOneVolunteerByProperties: function(properties){
+        var params = properties.firstName + "/" + properties.lastName + "/" + properties.email;
+        return $http.get(API_BASE_URL + 'volunteers/properties/' + params);
       },
       createVolunteer: function(volunteer){
         return $http.post(API_BASE_URL + 'volunteers/', volunteer);
