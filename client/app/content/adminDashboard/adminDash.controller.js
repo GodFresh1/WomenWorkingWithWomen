@@ -189,7 +189,32 @@ angular.module('womenWorkingWithWomenApp')
          fullscreen: useFullScreen
        })
        .then(function(event) {
-         // Add the event to the database.
+
+         Api.createEvent(event).then(function(response){
+            $mdToast.show(
+            $mdToast.simple()
+              .content('Add event succesfull!')
+              .position('top right')
+              .hideDelay(3000)
+              .theme("success-toast")
+         );
+         });
+
+
+
+         //Updates the array of events which will be populated on the admin dashboard
+         Api.getAllEvents().then(function(response){
+            $scope.events = response.data;
+         }, function(err){
+          $mdToast.show(
+          $mdToast.simple()
+            .content('Error: Could not connect to the server. ')
+            .position('top right')
+            .hideDelay(3000)
+            .theme("error-toast")
+          );
+         });
+
          console.log(event);
        }, function() {
          console.log("Add event canceled.")
@@ -260,7 +285,7 @@ angular.module('womenWorkingWithWomenApp')
         .cancel('Cancel');
         $mdDialog.show(confirm).then(function(event) {
           // Delete the event.
-          //console.log($event._id);
+          console.log($event._id);
           Api.deleteEvent($event._id).then(function(response){
             $mdToast.show(
               $mdToast.simple()
@@ -282,8 +307,7 @@ angular.module('womenWorkingWithWomenApp')
               .theme("error-toast")
             );
             });
-
-          }, function(err){
+            }, function(err){
             $mdToast.show(
                 $mdToast.simple()
                 .content('Error: Could not delete the event.')
@@ -292,7 +316,6 @@ angular.module('womenWorkingWithWomenApp')
                 .theme("error-toast")
             );
           });
-
 
         }, function() {
         });
