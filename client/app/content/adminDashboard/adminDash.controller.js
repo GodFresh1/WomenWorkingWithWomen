@@ -55,17 +55,11 @@ angular.module('womenWorkingWithWomenApp')
     }
 
     $scope.produceCSV = function(event){
-      Api.getOneEvent(event._id).then(function(response){
-        $scope.csvEventtTemp = response.data;
-        /*Produce and commence download for CSV*/
-        /*https://github.com/zemirco/json2csv*/
-        var json2csv = require('json2csv');
-        var fields = ['title', 'description', 'location', 'startDate', 'startTime', 'endDate', 'endTime', 'attendees', 'vendors', 'volunteers'];
-
-        json2csv({ data: Object, fields: fields }, function(err, csv) {
-          if (err) console.log(err);
-          console.log(csv);
-        });
+      Api.getAllEvents().then(function(response){
+        $scope.csvEventTemp = response.data;
+        for (var i = 0; i < response.data.length; i++){}
+        console.log(response.data.toString());
+        console.log(response.data);
       }, function(err){
         $mdToast.show(
           $mdToast.simple()
