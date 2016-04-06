@@ -9,13 +9,9 @@ angular.module('womenWorkingWithWomenApp')
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
-<<<<<<< ddfaa61580bcebaa0de16fdd1ca3afb81a178702
     $scope.volunteers = [];
     $scope.donations = [];
-
-=======
     $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
->>>>>>> Started creating a dialog to add new events.
 
     Api.getAllEvents().then(function(response){
       $scope.events = response.data;
@@ -196,7 +192,7 @@ angular.module('womenWorkingWithWomenApp')
          // Add the event to the database.
          console.log(event);
        }, function() {
-         concole.log("add event canceled.")
+         console.log("Add event canceled.")
        });
        $scope.$watch(function() {
          return $mdMedia('xs') || $mdMedia('sm');
