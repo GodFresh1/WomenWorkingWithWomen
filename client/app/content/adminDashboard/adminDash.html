@@ -2,7 +2,7 @@
 
 <div class="row content-header-sm">
   <div class="col s12 title-container-sm">
-    <h1 class="header-text">Admin Dashboard</h1>
+    <h1 class="header-text animated fadeIn">Admin Dashboard</h1>
   </div>
 </div>
 
@@ -27,6 +27,8 @@
                <div id="event-controls"class="col l2 m4 s4 clearfix" >
                  <div class="time">{{event.startTime}} - {{event.endTime}}</div>
                  <a id="event-details-btn" class="btn-floating" ng-click="showDetails(event)"><i class="material-icons">{{showDetails[event._id] ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</i></a>
+                 <a id="excel-btn" class="btn-floating" ng-click="produceCSV(event)"><i class="material-icons">{{'assessment'}}</i></a>
+
                </div>
              </div>
              <div id="detailed-info" class="row" ng-show="showDetails[event._id]">
@@ -48,24 +50,89 @@
                   <tr ng-repeat="attendee in event.attendees">
                     <td width="30%">{{attendee.firstName}} {{attendee.lastName}}</td>
                     <td width="60%">{{attendee.email}}  </td>
-                    <td class="check-in">
-                      <input type="checkbox" id="{{attendee._id}}" ng-disabled="attendee.checkedIn"  ng-checked="attendee.checkedIn" ng-click="checkBox(attendee)"/>
+                    <td class="check-in" >
+                      <input type="checkbox" id="{{attendee._id}}"  ng-checked="attendee.checkedIn" ng-click="checkBox(attendee, $event)"/>
                       <label for="{{attendee._id}}"></label>
                     </td>
                   </tr>
                 </tbody>
               </table>
              </div>
+             <br>
+             <div id="detailed-info" class="row" ng-show="showDetails[event._id]">
+               <md-toolbar class="md-theme-light small-toolbar">
+                <h2 class="md-toolbar-tools small-toolbar">
+                  <span ng-show="event.volunteers.length > 0">Volunteers</span>
+                  <span ng-show="event.volunteers.length < 1">There are no volunteers for this event.</span>
+                </h2>
+              </md-toolbar>
+               <table ng-show="event.volunteers.length > 0" class="striped">
+                <thead>
+                  <tr>
+                    <th data-field="name">Name</th>
+                    <th data-field="email">Email</th>
+                    <th class="check-in" data-field="checked in">Check in</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="volunteer in event.volunteers">
+                    <td width="30%">{{volunteer.firstName}} {{volunteer.lastName}}</td>
+                    <td width="60%">{{volunteer.email}}  </td>
+                    <td class="check-in">
+                      <input type="checkbox" id="{{volunteer._id}}" ng-disabled="volunteer.checkedIn"  ng-checked="volunteer.checkedIn" ng-click="checkBox(volunteer)"/>
+                      <label for="{{volunteer._id}}"></label>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+           </div>
+           <hr class="simple-hr">
+         </div>
+
+         </md-list-item>
+
+       </md-list>
+     </md-content>
+     <div ng-hide="isAdmin()" class="row">
+      <h2>You are not an admin. Please log in as an admin to view this page.</h2>
+     </div>
+		</div>
+	</div>
+
+  <br>
+  <br>
+
+  <div ng-show="isAdmin()" class = "row">
+    <div class="col s12 m12 l12">
+      <md-toolbar class="md-theme-light">
+       <h2 class="md-toolbar-tools">
+         <span>Donations</span>
+       </h2>
+     </md-toolbar>
+     <md-content>
+       <md-list>
+         <md-list-item class="md-3-line" ng-repeat="donation in donations | orderBy:'start'">
+           <div class="md-list-item-text event-item" >
+             <div id="event-content" class="row">
+               <div class="col l12 m12 s12">
+                 <h3>{{donation.firstName}} {{donation.lastName}}</h3>
+                 <p>{{donation.amount}}</p>
+                 <p>{{donation.level}}</p>
+               </div>
+             </div>
              <hr class="simple-hr">
            </div>
          </md-list-item>
+
        </md-list>
      </md-content>
-		</div>
-	</div>
-  <div ng-hide="isAdmin()" class="row">
-    <h2>You are not an admin. Please log in as an admin to view this page.</h2>
+     <div ng-hide="isAdmin()" class="row">
+      <h2>You are not an admin. Please log in as an admin to view this page.</h2>
+     </div>
+    </div>
   </div>
 </div>
+
+
 
 <div ng-include="'app/content/footer/footer.html'"></div>

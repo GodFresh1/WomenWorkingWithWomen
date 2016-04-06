@@ -21,6 +21,12 @@
 	padding-top: 10px;
 }
 
+#excel-btn{
+		position: absolute;
+		bottom: 4px;
+		right: 10;
+}
+
 #event-content{
 	margin: 0px;
 	display:flex;
