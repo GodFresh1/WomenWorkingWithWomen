@@ -1,6 +1,5 @@
 'use strict';
 
-
 angular.module('womenWorkingWithWomenApp')
   .controller('EventsCtrl', ['$scope', '$compile', '$timeout', 'uiCalendarConfig', 'Api','$mdToast', '$window', function($scope, $compile, $timeout, uiCalendarConfig, Api, $mdToast, $window) {
     $scope.attendee = {};

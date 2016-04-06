@@ -22,9 +22,9 @@
 }
 
 #excel-btn{
-		position: absolute;
-		bottom: 4px;
-		right: 10;
+		position: relative;
+		left: 10px;
+		font-size: 10px;
 }
 
 #event-content{
