@@ -177,6 +177,7 @@ angular.module('womenWorkingWithWomenApp')
             .theme("error-toast")
           );
       });
+    }
 
     $scope.createEvent = function($event){
       var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
