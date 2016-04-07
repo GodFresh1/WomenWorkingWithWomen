@@ -2,7 +2,7 @@
 
 
 angular.module('womenWorkingWithWomenApp')
-  .controller('AdminDashCtrl', ['$scope', 'Api', '$mdToast', 'Auth', '$mdDialog', function($scope, Api, $mdToast, Auth, $mdDialog) {
+  .controller('AdminDashCtrl', ['$scope', 'Api', '$mdToast', 'Auth', '$mdDialog', '$mdMedia', function($scope, Api, $mdToast, Auth, $mdDialog, $mdMedia) {
     $scope.events = [];
     $scope.showDetails = {};
     $scope.csvTemp = [];
@@ -177,6 +177,7 @@ angular.module('womenWorkingWithWomenApp')
             .theme("error-toast")
           );
       });
+
     }
 
     $scope.createEvent = function($event){
@@ -218,6 +219,7 @@ angular.module('womenWorkingWithWomenApp')
          console.log(event);
        }, function() {
          concole.log("Add event canceled.")
+
        });
        $scope.$watch(function() {
          return $mdMedia('xs') || $mdMedia('sm');
@@ -333,5 +335,19 @@ angular.module('womenWorkingWithWomenApp')
           });
         }
       }
+    };
+
+    function DialogController($scope, $mdDialog) {
+      $scope.event = {};
+
+      $scope.hide = function() {
+        $mdDialog.hide();
+      };
+      $scope.cancel = function() {
+        $mdDialog.cancel();
+      };
+      $scope.create = function() {
+        $mdDialog.hide($scope.event);
+      };
     };
 }]);
