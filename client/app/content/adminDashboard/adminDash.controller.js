@@ -5,7 +5,7 @@ angular.module('womenWorkingWithWomenApp')
   .controller('AdminDashCtrl', ['$scope', 'Api', '$mdToast', 'Auth', '$mdDialog', function($scope, Api, $mdToast, Auth, $mdDialog) {
     $scope.events = [];
     $scope.showDetails = {};
-    $scope.csvEventTemp = [];
+    $scope.csvTemp = [];
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
@@ -54,12 +54,120 @@ angular.module('womenWorkingWithWomenApp')
       $scope.showDetails[event._id] = (isShown == undefined || !isShown) ? true : false;
     }
 
-    $scope.produceCSV = function(event){
+    $scope.produceAttendeeCSV = function(event){
+      Api.getAllEvents().then(function(response){
+        $scope.csvTemp = response.data;
+        var CSV = '';
+        CSV += 'Attendees' + '\r\n\n';
+        for (var i = 0; i < response.data.length; i++){
+          CSV += 'Event: '+ response.data[i].title.toString() + '\r\n';
+          if(response.data[i].attendees.length == 0){
+            CSV += 'No attendees'+ '\r\n';
+          }
+          else{
+            CSV += 'First Name' + ',' + 'Last Name' + ',' + 'Age' + ',' + 'Email' + ',' + 'Phone' + ',' + 'Check-in?' + '\r\n';
+            for (var j = 0; j < response.data[i].attendees.length; j++){
+            CSV += '"' + response.data[i].attendees[j].firstName.toString() + '"' + ',';
+            CSV += '"' + response.data[i].attendees[j].lastName.toString() + '"' + ',';
+            CSV += '"' + response.data[i].attendees[j].age.toString() + '"' + ',';
+            CSV += '"' + response.data[i].attendees[j].email.toString() + '"' + ',';
+            CSV += '"' + response.data[i].attendees[j].phone.toString() + '"' + ',';
+            CSV += '"' + response.data[i].attendees[j].checkedIn.toString() + '"' + '\r\n';
+            }
+          }
+        }
+        var uri = 'data:text/csv;charset=utf-8,' + escape(CSV);
+        var link = document.createElement("a");
+        link.href = uri;
+        link.style = "visibility:hidden";
+        link.download =  "Attendees.csv";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }, function(err){
+        $mdToast.show(
+          $mdToast.simple()
+            .content('Error: Could not connect to the server. ')
+            .position('top right')
+            .hideDelay(3000)
+            .theme("error-toast")
+          );
+      });
+    }
+
+    $scope.produceVendorCSV = function(event){
       Api.getAllEvents().then(function(response){
         $scope.csvEventTemp = response.data;
-        for (var i = 0; i < response.data.length; i++){}
-        console.log(response.data.toString());
-        console.log(response.data);
+        var CSV = '';
+        CSV += 'Vendors' + '\r\n\n';
+        for (var i = 0; i < response.data.length; i++){
+          CSV += 'Event: '+ response.data[i].title.toString() + '\r\n';
+          if(response.data[i].vendors.length == 0){
+            CSV += 'No vendors'+ '\r\n';
+          }
+          else{
+            CSV += 'First Name' + ',' + 'Last Name' + ',' + 'jobTitle' + ',' + 'Email' + ',' + 'Phone' + ',' + 'organizationName' + 'organizationAddress' + 'descriptionOfServices' + 'descriptionOfPrizes' + '\r\n';
+            for (var j = 0; j < response.data[i].vendors.length; j++){
+            CSV += '"' + response.data[i].vendors[j].firstName.toString() + '"' + ',';
+            CSV += '"' + response.data[i].vendors[j].lastName.toString() + '"' + ',';
+            CSV += '"' + response.data[i].vendors[j].jobTitle.toString() + '"' + ',';
+            CSV += '"' + response.data[i].vendors[j].email.toString() + '"' + ',';
+            CSV += '"' + response.data[i].vendors[j].phone.toString() + '"' + ',';
+            CSV += '"' + response.data[i].vendors[j].organizationName.toString() + '"' + ',';
+            CSV += '"' + response.data[i].vendors[j].organizationAddress.toString() + '"' + ',';
+            CSV += '"' + response.data[i].vendors[j].descriptionOfServices.toString() + '"' + ',';
+            CSV += '"' + response.data[i].vendors[j].descriptionOfPrizes.toString() + '"' + '\r\n';
+            }
+          }
+        }
+        var uri = 'data:text/csv;charset=utf-8,' + escape(CSV);
+        var link = document.createElement("a");
+        link.href = uri;
+        link.style = "visibility:hidden";
+        link.download =  "Vendors.csv";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }, function(err){
+        $mdToast.show(
+          $mdToast.simple()
+            .content('Error: Could not connect to the server. ')
+            .position('top right')
+            .hideDelay(3000)
+            .theme("error-toast")
+          );
+      });
+    }
+
+    $scope.produceVolunteerCSV = function(event){
+      Api.getAllEvents().then(function(response){
+        $scope.csvTemp = response.data;
+        var CSV = '';
+        CSV += 'Volunteers' + '\r\n\n';
+        for (var i = 0; i < response.data.length; i++){
+          CSV += 'Event: '+ response.data[i].title.toString() + '\r\n';
+          if(response.data[i].volunteers.length == 0){
+            CSV += 'No volunteers'+ '\r\n';
+          }
+          else{
+            CSV += 'First Name' + ',' + 'Last Name' + ',' + 'Age' + ',' + 'Email' + ',' + 'Phone' + '\r\n';
+            for (var j = 0; j < response.data[i].volunteers.length; j++){
+            CSV += '"' + response.data[i].volunteers[j].firstName.toString() + '"' + ',';
+            CSV += '"' + response.data[i].volunteers[j].lastName.toString() + '"' + ',';
+            CSV += '"' + response.data[i].volunteers[j].age.toString() + '"' + ',';
+            CSV += '"' + response.data[i].volunteers[j].email.toString() + '"' + ',';
+            CSV += '"' + response.data[i].volunteers[j].phone.toString() + '"' +  '\r\n';
+            }
+          }
+        }
+        var uri = 'data:text/csv;charset=utf-8,' + escape(CSV);
+        var link = document.createElement("a");
+        link.href = uri;
+        link.style = "visibility:hidden";
+        link.download =  "Volunteers.csv";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
       }, function(err){
         $mdToast.show(
           $mdToast.simple()
