@@ -200,8 +200,6 @@ angular.module('womenWorkingWithWomenApp')
          );
          });
 
-
-
          //Updates the array of events which will be populated on the admin dashboard
          Api.getAllEvents().then(function(response){
             $scope.events = response.data;
@@ -227,6 +225,8 @@ angular.module('womenWorkingWithWomenApp')
     }
 
     $scope.deleteEvent = function($event){
+      console.log($event._id);
+
        // Make the admin confirm the deletion.
         var confirm = $mdDialog.confirm()
         .title('Are you sure you want to delete this event?')
@@ -236,7 +236,7 @@ angular.module('womenWorkingWithWomenApp')
         .cancel('Cancel');
         $mdDialog.show(confirm).then(function(event) {
           // Delete the event.
-          console.log($event._id);
+          //console.log($event._id);
           Api.deleteEvent($event._id).then(function(response){
             $mdToast.show(
               $mdToast.simple()
@@ -259,7 +259,7 @@ angular.module('womenWorkingWithWomenApp')
             );
             });
 
-            }, function(err){
+          }, function(err){
             $mdToast.show(
                 $mdToast.simple()
                 .content('Error: Could not delete the event.')
