@@ -21,10 +21,20 @@
 	padding-top: 10px;
 }
 
-#excel-btn{
-		position: relative;
-		left: 10px;
-		font-size: 10px;
+#excel-btn1{
+	position: absolute;
+	bottom: 10px;
+	right: 82px;
+}
+#excel-btn2{
+	position: absolute;
+	bottom: 10px;
+	right: 42px;
+}
+#excel-btn3{
+	position: absolute;
+	bottom: 10px;
+	right: 2px;
 }
 
 #event-content{
