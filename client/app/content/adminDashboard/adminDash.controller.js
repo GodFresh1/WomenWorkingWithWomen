@@ -214,9 +214,10 @@ angular.module('womenWorkingWithWomenApp')
           );
          });
          
+         // Add the event to the database.
          console.log(event);
        }, function() {
-         console.log("Add event canceled.")
+         concole.log("Add event canceled.")
        });
        $scope.$watch(function() {
          return $mdMedia('xs') || $mdMedia('sm');
@@ -274,6 +275,7 @@ angular.module('womenWorkingWithWomenApp')
          
         }, function() {
         });
+
     }
 
     $scope.checkBox = function(attendee, $event){
