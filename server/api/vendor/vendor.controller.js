@@ -55,7 +55,7 @@ exports.destroy = function(req, res) {
   Vendor.findById(req.params.id, function (err, vendor) {
     if(err) { return handleError(res, err); }
     if(!vendor) { return res.status(404).send('Not Found'); }
-    Vendor.remove(function(err) {
+    vendor.remove(function(err) {
       if(err) { return handleError(res, err); }
       return res.status(204).send('No Content');
     });
