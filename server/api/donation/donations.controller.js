@@ -55,7 +55,7 @@ exports.destroy = function(req, res) {
   Donation.findById(req.params.id, function (err, donation) {
     if(err) { return handleError(res, err); }
     if(!donation) { return res.status(404).send('Not Found'); }
-    Donation.remove(function(err) {
+    donation.remove(function(err) {
       if(err) { return handleError(res, err); }
       return res.status(204).send('No Content');
     });

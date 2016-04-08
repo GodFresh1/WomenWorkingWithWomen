@@ -64,7 +64,7 @@ exports.destroy = function(req, res) {
   Attendee.findById(req.params.id, function (err, attendee) {
     if(err) { return handleError(res, err); }
     if(!attendee) { return res.status(404).send('Not Found'); }
-    Attendee.remove(function(err) {
+    attendee.remove(function(err) {
       if(err) { return handleError(res, err); }
       return res.status(204).send('No Content');
     });
