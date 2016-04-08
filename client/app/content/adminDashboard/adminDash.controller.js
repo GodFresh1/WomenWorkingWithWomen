@@ -12,6 +12,7 @@ angular.module('womenWorkingWithWomenApp')
     $scope.volunteers = [];
     $scope.donations = [];
     $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+    var testid;
 
     Api.getAllEvents().then(function(response){
       $scope.events = response.data;
@@ -276,8 +277,59 @@ angular.module('womenWorkingWithWomenApp')
        });
     }
 
+     $scope.editDetails = function($event){
+       console.log($event._id);
+
+       var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+        $mdDialog.show({
+          controller: DialogController,
+          templateUrl: '/app/content/adminDashboard/editEventDialog.html',
+          parent: angular.element(document.body),
+          targetEvent: $event,
+          clickOutsideToClose:true,
+          fullscreen: useFullScreen
+        })
+        .then(function(event) {
+
+          Api.updateEvent($event._id, event).then(function(response){
+             $mdToast.show(
+             $mdToast.simple()
+               .content('Edit event succesfull!')
+               .position('top right')
+               .hideDelay(3000)
+               .theme("success-toast")
+          );
+          });
+
+          //Updates the array of events which will be populated on the admin dashboard
+          Api.getAllEvents().then(function(response){
+             $scope.events = response.data;
+          }, function(err){
+           $mdToast.show(
+           $mdToast.simple()
+             .content('Error: Could not connect to the server. ')
+             .position('top right')
+             .hideDelay(3000)
+             .theme("error-toast")
+           );
+          });
+
+          // Add the event to the database.
+          console.log(event);
+        }, function() {
+          concole.log("Edit event canceled.")
+
+        });
+        $scope.$watch(function() {
+          return $mdMedia('xs') || $mdMedia('sm');
+        }, function(wantsFullScreen) {
+          $scope.customFullscreen = (wantsFullScreen === true);
+        });
+     }
+
     $scope.deleteEvent = function($event){
       console.log($event._id);
+      testid = $event._id;
 
        // Make the admin confirm the deletion.
         var confirm = $mdDialog.confirm()
@@ -392,6 +444,9 @@ angular.module('womenWorkingWithWomenApp')
         $mdDialog.cancel();
       };
       $scope.create = function() {
+        $mdDialog.hide($scope.event);
+      };
+      $scope.edit = function() {
         $mdDialog.hide($scope.event);
       };
     };
