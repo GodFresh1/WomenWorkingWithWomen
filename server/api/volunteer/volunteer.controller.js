@@ -65,7 +65,7 @@ exports.destroy = function(req, res) {
   Volunteer.findById(req.params.id, function (err, volunteer) {
     if(err) { return handleError(res, err); }
     if(!volunteer) { return res.status(404).send('Not Found'); }
-    Volunteer.remove(function(err) {
+    volunteer.remove(function(err) {
       if(err) { return handleError(res, err); }
       return res.status(204).send('No Content');
     });
