@@ -34,7 +34,7 @@
                  <h3>{{event.title}}</h3>
                  <h4>{{event.startDate}}</h4>
                  <p>{{event.description}}</p>
-                 <button class="btn btn-default" ng-click="editDetails(event)">Edit Event</button>
+                 <button class="btn btn-default" ng-click="editDetails(event)" style = "margin-top: 20px">Edit Event</button>
                </div>
                <div id="event-controls"class="col l2 m4 s4 clearfix" >
                  <div class="time">{{event.startTime}} - {{event.endTime}}</div>
@@ -42,7 +42,7 @@
                </div>
              </div>
              <div id="detailed-info" class="row" ng-show="showDetails[event._id]">
-               <md-toolbar class="md-theme-light small-toolbar">
+               <md-toolbar class="md-theme-light small-toolbar" style = "margin-top: 60px">
                 <h2 class="md-toolbar-tools small-toolbar">
                   <span ng-show="event.attendees.length > 0">Attendees</span>
                   <span ng-show="event.attendees.length < 1">There are no attendees for this event.</span>
@@ -96,7 +96,7 @@
                 </tbody>
               </table>
               <div class="new-event-container">
-                <button class="btn btn-default" ng-click="deleteEvent(event)">Delete Event</button>
+                <button class="btn btn-default" ng-click="deleteEvent(event)" style = "margin-top: 40px">Delete Event</button>
               </div>
            </div>
            <hr class="simple-hr">
@@ -144,8 +144,42 @@
      </div>
     </div>
   </div>
-</div>
 
+
+  <div ng-show = "isAdmin()" class = "row">
+    <div class = "col s12 m12 l12">
+      <md-toolbar class="md-theme-light">
+        <h2 class = "md-toolbar-tools">
+          <span>Tutors</span>
+        </h2>
+      </md-toolbar>
+      <md-content>
+        <table ng-show="tutors.length > 0" class="striped">
+            <thead>
+              <tr>
+                <th data-field="name">Name</th>
+                <th data-field="email">Email</th>
+                <th class="check-in" data-field="checked in">Check in</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="tutor in tutors">
+                  <td width="30%">{{tutor.firstName}} {{tutor.lastName}}</td>
+                  <td width="60%">{{tutor.email}}  </td>
+                  <td class="check-in">
+                    <input type="checkbox" id="{{tutor._id}}" ng-disabled="tutor.checkedIn"  ng-checked="tutor.checkedIn" ng-click="checkBox(tutor)"/>
+                    <label for="{{tutor._id}}"></label>
+                  </td>
+              </tr>
+            </tbody>
+        </table>
+      </md-content>
+      <div ng-hide="isAdmin()" class="row">
+        <h2>You are not an admin. Please log in as an admin to view this page.</h2>
+       </div>
+    </div>
+  </div>
+</div>
 
 
 <div ng-include="'app/content/footer/footer.html'"></div>

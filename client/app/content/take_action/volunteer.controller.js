@@ -51,7 +51,7 @@ angular.module('womenWorkingWithWomenApp')
 
 	    $scope.registerVolunteer= function(){
       	// see if this volunteer has already registered
-      		/*Api.getOneVolunteerByProperties($scope.volunteer).then(function(response){
+      		Api.getOneVolunteerByProperties($scope.volunteer).then(function(response){
 		        var volunteer = response.data;
 		        // Update the volunteer
 		        Api.updateVolunteer(volunteer._id, $scope.volunteer).then(function(response){
@@ -62,7 +62,7 @@ angular.module('womenWorkingWithWomenApp')
 		        });
 
       		}, function(error){
-		        if(error.status==404){*/
+		        if(error.status==404){
 		          // This person is not in the database so create a new volunteer.
 		          Api.createVolunteer($scope.volunteer).then(function(response){
 		            // Add this volunteer to the event
@@ -70,10 +70,10 @@ angular.module('womenWorkingWithWomenApp')
 		          }, function(error){
 		            handleError(error);
 		          });
-		        /*}else{
+		        }else{
 		          handleError(error);
 		        }
-      		});*/
+      		});
       		
    		};
 
