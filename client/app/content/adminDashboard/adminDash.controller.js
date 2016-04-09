@@ -203,8 +203,6 @@ angular.module('womenWorkingWithWomenApp')
          );
          });
 
-
-
          //Updates the array of events which will be populated on the admin dashboard
          Api.getAllEvents().then(function(response){
             $scope.events = response.data;
@@ -299,25 +297,28 @@ angular.module('womenWorkingWithWomenApp')
                .hideDelay(3000)
                .theme("success-toast")
           );
+
+
+             //Updates the array of events which will be populated on the admin dashboard
+             Api.getAllEvents().then(function(response){
+             $scope.events = response.data;
+            }, function(err){
+              $mdToast.show(
+              $mdToast.simple()
+                .content('Error: Could not connect to the server. ')
+                .position('top right')
+                .hideDelay(3000)
+                .theme("error-toast")
+              );
+            });
           });
 
-          //Updates the array of events which will be populated on the admin dashboard
-          Api.getAllEvents().then(function(response){
-             $scope.events = response.data;
-          }, function(err){
-           $mdToast.show(
-           $mdToast.simple()
-             .content('Error: Could not connect to the server. ')
-             .position('top right')
-             .hideDelay(3000)
-             .theme("error-toast")
-           );
-          });
+          
 
           // Add the event to the database.
           console.log(event);
         }, function() {
-          concole.log("Edit event canceled.")
+          console.log("Edit event canceled.")
 
         });
         $scope.$watch(function() {
