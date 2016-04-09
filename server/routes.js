@@ -19,6 +19,7 @@ module.exports = function(app) {
   app.use('/api/attendees', require('./api/attendee'));
   app.use('/api/vendors', require('./api/vendor'));
   app.use('/api/donations', require('./api/donation'));
+  app.use('/api/tutors', require('./api/tutor'));
 
   // app.use('/api/contact', require('./api/contact'));
 

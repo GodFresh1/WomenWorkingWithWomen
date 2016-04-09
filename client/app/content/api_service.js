@@ -60,6 +60,27 @@ angular.module('womenWorkingWithWomenApp')
         return $http.delete(API_BASE_URL + 'volunteers/' + _id);
       },
 
+      // Volunteer Stuff
+      getAllTutors: function(){
+        return $http.get(API_BASE_URL + 'tutors/');
+      },
+      getOneTutor: function(_id){
+        return $http.get(API_BASE_URL + 'tutors/' + _id);
+      },
+      getOneTutorByProperties: function(properties){
+        var params = properties.firstName + "/" + properties.lastName + "/" + properties.email;
+        return $http.get(API_BASE_URL + 'tutors/properties/' + params);
+      },
+      createTutor: function(tutor){
+        return $http.post(API_BASE_URL + 'tutors/', tutor);
+      },
+      updateTutor: function(_id, tutor){
+        return $http.put(API_BASE_URL + 'tutors/' + _id, tutor);
+      },
+      deleteTutors: function(_id){
+        return $http.delete(API_BASE_URL + 'tutors/' + _id);
+      },
+
       // Attendee Stuff
       getAllAttendees: function(){
         return $http.get(API_BASE_URL + 'attendees/');

@@ -11,19 +11,20 @@ var Event = require('../api/event/event.model');
 var Volunteer = require('../api/volunteer/volunteer.model');
 var Attendee = require('../api/attendee/attendee.model');
 var Vendor = require('../api/vendor/vendor.model');
+var Tutor = require('../api/tutor/tutor.model');
 
 
 Attendee.collection.dropAllIndexes(function (err, results) {
   if(err){console.log(err);}
-  else{console.log("Drop Successfull");}
+  else{console.log("Drop Successful");}
 });
 Vendor.collection.dropAllIndexes(function (err, results) {
   if(err){console.log(err);}
-  else{console.log("Drop Successfull");}
+  else{console.log("Drop Successful");}
 });
 Event.collection.dropAllIndexes(function (err, results) {
   if(err){console.log(err);}
-  else{console.log("Drop Successfull");}
+  else{console.log("Drop Successful");}
 });
 
 

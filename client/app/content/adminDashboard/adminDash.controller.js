@@ -11,6 +11,7 @@ angular.module('womenWorkingWithWomenApp')
     $scope.getCurrentUser = Auth.getCurrentUser;
     $scope.volunteers = [];
     $scope.donations = [];
+    $scope.tutors = [];
     $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
     var testid;
 
@@ -40,6 +41,18 @@ angular.module('womenWorkingWithWomenApp')
 
     Api.getAllDonations().then(function(response){
       $scope.donations = response.data;
+    }, function(err){
+      $mdToast.show(
+        $mdToast.simple()
+          .content('Error: Could not connect to the server. ')
+          .position('top right')
+          .hideDelay(3000)
+          .theme("error-toast")
+      );
+    });
+
+    Api.getAllTutors().then(function(response){
+      $scope.tutors = response.data;
     }, function(err){
       $mdToast.show(
         $mdToast.simple()
@@ -386,7 +399,7 @@ angular.module('womenWorkingWithWomenApp')
             $($event.target).prop('checked', true); // Show the box as checked.
             $mdToast.show(
               $mdToast.simple()
-                .content('Check-in succesfull!')
+                .content('Check-in succesful!')
                 .position('top right')
                 .hideDelay(3000)
                 .theme("success-toast")
@@ -415,7 +428,7 @@ angular.module('womenWorkingWithWomenApp')
               $($event.target).prop('checked', false); // Show the box as checked.
               $mdToast.show(
                 $mdToast.simple()
-                  .content('Uncheck-in succesfull!')
+                  .content('Uncheck-in succesful!')
                   .position('top right')
                   .hideDelay(3000)
                   .theme("success-toast")
@@ -434,6 +447,8 @@ angular.module('womenWorkingWithWomenApp')
         }
       }
     };
+
+   
 
     function DialogController($scope, $mdDialog) {
       $scope.event = {};
