@@ -17,11 +17,8 @@
     </div>
     <div class="col s12 m7 l8 offset-l1 content-main">
    <p> This is some filler-text explaining tutoring stuff and encouraging members of the community so sign up and tutor. It's really exciting. You should do it. Do it. Just do it.</p>
-   <form class="form-horizontal" ng-submit="registerTutor()">
+   <form class="form-horizontal" ng-submit="confirmTutor()">
         <input type="hidden" name="_csrf"/>
-        <div class = "row">
-          <input type="date" class="datepicker">
-        </div>
         <div class="row">
           <div class="input-field col l6 m6 s6">
             <input type="text" id="firstName" class="validate" ng-model="tutor.firstName" ng-required="true"/>
@@ -56,6 +53,17 @@
                 {{gender}}
               </md-option>
             </md-select>
+          </div>
+        </div>
+        <div class = "row">
+          <div class="input-field col s12">
+            <md-select multiple ng-model = "tutor.subject">
+              <label>What Subject Are You Interested In?*</label>
+              <md-option ng-repeat = "subject in subjects" value = "{{subject}}">
+                {{subject}}
+              </md-option>
+            </md-select>
+            
           </div>
         </div>
         <div class="form-group">

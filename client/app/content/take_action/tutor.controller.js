@@ -1,21 +1,28 @@
 'use strict';
 
 angular.module('womenWorkingWithWomenApp')
-	.controller('TutorCtrl', ['$scope', '$compile', '$timeout', 'Api', '$mdToast', '$window', function($scope, $compile, $timeout, Api, $mdToast, $window){
+	.controller('TutorCtrl', ['$scope', '$compile', '$timeout', 'Api', '$mdDialog', '$window', function($scope, $compile, $timeout, Api, $mdDialog, $window){
 		$scope.tutor = {};
 		$scope.genders = ('Male Female Other').split(' ');
+		$scope.subjects = ('Math Reading Language Arts Science Spanish Homework Sports Dance Arts/Crafts Recreation Cleaning Snacks Cub/Scout Leader').split(' ');
 
 		
 	    var handleSuccess = function(){
-	      $scope.tutor = {};
-	      $window.scrollTo(0, 0);
-	      $mdToast.show(
-	        $mdToast.simple()
-	          .content('Registered to Tutor!')
-	          .position('top right')
-	          .hideDelay(3000)
-	          .theme("success-toast")
-	      );
+      		$window.scrollTo(0, 0);
+      		alert = $mdDialog.alert({
+	        	title: 'Sucessfully Signed-Up',
+	        	htmlContent: '<ul class="collection with-header"><li class="collection-header"><h4>' +
+	         	$scope.tutor.lastName + ', ' + $scope.tutor.firstName + '</h4></li><li class="collection-item"><div>' +
+		        $scope.tutor.email + '</div></li><li class="collection-item"><div> '+
+		        $scope.tutor.phone + '</div></li><li class="collection-item"><div> '+
+		        $scope.tutor.age + '</div></li><li class="collection-item"><div> '+
+		        $scope.tutor.gender + '</div></li></ul>',
+		        ok: 'Close'
+	      	});
+	      	$mdDialog.show( alert ).finally(function() {
+	            alert = undefined;
+	            $scope.tutor = {};
+	      	});
 	    };
 
 	    var handleError = function(error){
@@ -32,6 +39,26 @@ angular.module('womenWorkingWithWomenApp')
 	      );
 	    };
 
+	    $scope.confirmTutor = function(){
+      		confirm = $mdDialog.confirm({
+        	title: 'Confirm Details',
+        	htmlContent: '<ul class="collection with-header"><li class="collection-header"><h4>' +
+         	$scope.tutor.lastName + ', ' + $scope.tutor.firstName + '</h4></li><li class="collection-item"><div>' +
+         	$scope.tutor.email + '</div></li><li class="collection-item"><div> '+
+         	$scope.tutor.phone + '</div></li><li class="collection-item"><div> '+
+         	$scope.tutor.age + '</div></li><li class="collection-item"><div> '+
+         	$scope.tutor.gender + '</div></li></ul>',
+        	ok: 'Yes',
+        	cancel: 'No'
+      		});
+
+      		$mdDialog.show( confirm ).then(function() {
+        		$scope.registerTutor();
+     	 	}, function(){
+        		return false;
+     		});
+    	};
+
 
 	    $scope.registerTutor= function(){
       	// see if this tutor has already registered
@@ -47,7 +74,7 @@ angular.module('womenWorkingWithWomenApp')
       		}, function(error){
 		        if(error.status==404){
 		          // This person is not in the database so create a new tutor.
-		          tutor.timesTutored = 0; 
+		          //tutor.timesTutored = 0; 
 		          Api.createTutor($scope.tutor).then(function(response){
 		            handleSuccess();
 		          }, function(error){
