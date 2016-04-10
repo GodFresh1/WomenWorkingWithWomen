@@ -12,7 +12,7 @@ var TutorSchema = new Schema({
   age: {type:Number, required:true},
   gender: String,
   checkedIn: {type:Boolean, default:false},
-  timesTutored: Number 
+  subjects: [String]
 });
 
 TutorSchema.index({ firstName: 1, lastName: 1, email: 1}, { unique: true }); // requires firstName, lastName combination to be unique.

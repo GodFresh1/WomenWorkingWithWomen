@@ -5,19 +5,19 @@
 </div>
 
 <div class = "container">
-	<div class="row">
-	<h4 align = "center"> Sign-up to Tutor! </h4>
-    	<div class="col m3 l2 link-container hide-on-small-only">
-    	<h5>Take Action</h5>
-      	
-	      	<ul class="links-list">
-	        <li ><a href="take_action/volunteer">VOLUNTEER</a></li>
-	        <li class="active-page"><a href="take_action/tutor">TUTOR</a></li>
-      		</ul>
+  <div class="row">
+  <h4 align = "center"> Sign-up to Tutor! </h4>
+      <div class="col m3 l2 link-container hide-on-small-only">
+      <h5>Take Action</h5>
+        
+          <ul class="links-list">
+          <li ><a href="take_action/volunteer">VOLUNTEER</a></li>
+          <li class="active-page"><a href="take_action/tutor">TUTOR</a></li>
+          </ul>
     </div>
     <div class="col s12 m7 l8 offset-l1 content-main">
-   <p> This is some filler-text explaining tutoring stuff and encouraging members of the community so sign up and tutor. It's really exciting. You should do it. Do it. Just do it.</p>
-   <form class="form-horizontal" ng-submit="registerTutor()">
+   <p> At Maxine's Place, we provide children of community with a safe, nurturing environment to do homework and hangout after school. If you are interested in volunteering with Maxine's Place, please sign up to tutor or help around the center!</p>
+   <form class="form-horizontal" ng-submit="confirmTutor()">
         <input type="hidden" name="_csrf"/>
         <div class="row">
           <div class="input-field col l6 m6 s6">
@@ -55,6 +55,17 @@
             </md-select>
           </div>
         </div>
+        <div class = "row">
+          <div class="input col s12">
+            <label>What Are You Interested In?* (please select all that apply)</label>
+            <md-select multiple ng-model = "tutor.subject">
+              <md-option ng-repeat = "subject in subjects" value = "{{subject}}">
+                {{subject}}
+              </md-option>
+            </md-select>
+            
+          </div>
+        </div>
         <div class="form-group">
           <div class="col-sm-offset-3 col-sm-4">
             <button type="submit-btn" class="btn btn btn-primary submit">Submit</button>
@@ -63,6 +74,6 @@
       </form>
     </div>
   </div>
-   	
+    
 
 </div>

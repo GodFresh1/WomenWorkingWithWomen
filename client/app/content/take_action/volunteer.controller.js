@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('womenWorkingWithWomenApp')
-	.controller('VolunteerCtrl', ['$scope', '$compile', '$timeout', 'uiCalendarConfig', 'Api', '$mdToast', '$window', function($scope, $compile, $timeout, uiCalendarConfig, Api, $mdToast, $window){
+	.controller('VolunteerCtrl', ['$scope', '$compile', '$timeout', 'uiCalendarConfig', 'Api', '$mdDialog','$mdToast', '$window', function($scope, $compile, $timeout, uiCalendarConfig, Api, $mdDialog, $mdToast, $window){
 		$scope.volunteer = {};
 		$scope.events = [];
 		$scope.genders = ('Male Female Other').split(' ');
@@ -14,9 +14,11 @@ angular.module('womenWorkingWithWomenApp')
     	});
 
 
+
     	var addVolunteerToEvent = function(eventID, volunteer){
       	Api.addVolunteerToEvent(eventID, volunteer).then(function(response){
 	        handleSuccess();
+	        //Api.addEventToVolunteer(volunteer, eventID); 
 	      }, function(error){
 	        handleError(error);
 	      });
@@ -24,15 +26,21 @@ angular.module('womenWorkingWithWomenApp')
 	    };
 
 	    var handleSuccess = function(){
-	      $scope.volunteer = {};
-	      $window.scrollTo(0, 0);
-	      $mdToast.show(
-	        $mdToast.simple()
-	          .content('Registration Successful!')
-	          .position('top right')
-	          .hideDelay(3000)
-	          .theme("success-toast")
-	      );
+      		$window.scrollTo(0, 0);
+      		alert = $mdDialog.alert({
+	        	title: 'Sucessfully Signed-Up',
+	        	htmlContent: '<ul class="collection with-header"><li class="collection-header"><h4>' +
+	         	$scope.volunteer.lastName + ', ' + $scope.volunteer.firstName + '</h4></li><li class="collection-item"><div>' +
+		        $scope.volunteer.email + '</div></li><li class="collection-item"><div> '+
+		        $scope.volunteer.phone + '</div></li><li class="collection-item"><div> '+
+		        $scope.volunteer.age + '</div></li><li class="collection-item"><div> '+
+		        $scope.volunteer.gender + '</div></li></ul>',
+		        ok: 'Close'
+	      	});
+	      	$mdDialog.show( alert ).finally(function() {
+	            alert = undefined;
+	            $scope.volunteer = {};
+	      	});
 	    };
 
 	    var handleError = function(error){
@@ -48,6 +56,26 @@ angular.module('womenWorkingWithWomenApp')
 	          .theme("error-toast")
 	      );
 	    };
+
+	    $scope.confirmVolunteer = function(){
+      		confirm = $mdDialog.confirm({
+        	title: 'Confirm Details',
+        	htmlContent: '<ul class="collection with-header"><li class="collection-header"><h4>' +
+         	$scope.volunteer.lastName + ', ' + $scope.volunteer.firstName + '</h4></li><li class="collection-item"><div>' +
+         	$scope.volunteer.email + '</div></li><li class="collection-item"><div> '+
+         	$scope.volunteer.phone + '</div></li><li class="collection-item"><div> '+
+         	$scope.volunteer.age + '</div></li><li class="collection-item"><div> '+
+         	$scope.volunteer.gender + '</div></li></ul>',
+        	ok: 'Yes',
+        	cancel: 'No'
+      		});
+
+      		$mdDialog.show( confirm ).then(function() {
+        		$scope.registerVolunteer();
+     	 	}, function(){
+        		return false;
+     		});
+    	}
 
 	    $scope.registerVolunteer= function(){
       	// see if this volunteer has already registered
