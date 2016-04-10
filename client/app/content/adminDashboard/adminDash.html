@@ -89,7 +89,7 @@
                     <td width="30%">{{volunteer.firstName}} {{volunteer.lastName}}</td>
                     <td width="60%">{{volunteer.email}}  </td>
                     <td class="check-in">
-                      <input type="checkbox" id="{{volunteer._id}}" ng-disabled="volunteer.checkedIn"  ng-checked="volunteer.checkedIn" ng-click="checkBox(volunteer)"/>
+                      <input type="checkbox" id="{{volunteer._id}}"  ng-checked="volunteer.checkedIn" ng-click="checkBox(volunteer, $event)"/>
                       <label for="{{volunteer._id}}"></label>
                     </td>
                   </tr>

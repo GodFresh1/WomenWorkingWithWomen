@@ -448,6 +448,63 @@ angular.module('womenWorkingWithWomenApp')
       }
     };
 
+    $scope.checkBox = function(volunteer, $event){
+      $event.preventDefault();
+      if($scope.isAdmin()){
+        if(volunteer.checkedIn == false){
+          volunteer.checkedIn = true;
+          Api.updateVolunteer(volunteer._id, volunteer).then(function(response){
+            $($event.target).prop('checked', true); // Show the box as checked.
+            $mdToast.show(
+              $mdToast.simple()
+                .content('Check-in succesful!')
+                .position('top right')
+                .hideDelay(3000)
+                .theme("success-toast")
+            );
+          }, function(err){
+            $mdToast.show(
+              $mdToast.simple()
+                .content('Error: Could not check-in volunteer.')
+                .position('top right')
+                .hideDelay(3000)
+                .theme("error-toast")
+            );
+          });
+        }else{
+          // Make the admin confirm the unchecking in.
+          var confirm = $mdDialog.confirm()
+          .title('Are you sure you want to uncheck this volunteer?')
+          .textContent('This volunteer will no longer be marked as having been here.')
+          .ariaLabel('Lucky day')
+          .ok('Confirm')
+          .cancel('Cancel');
+          $mdDialog.show(confirm).then(function() {
+            
+            volunteer.checkedIn = false;
+            Api.updateVolunteer(volunteer._id, volunteer).then(function(response){
+              $($event.target).prop('checked', false); // Show the box as checked.
+              $mdToast.show(
+                $mdToast.simple()
+                  .content('Uncheck-in succesful!')
+                  .position('top right')
+                  .hideDelay(3000)
+                  .theme("success-toast")
+              );
+            }, function(err){
+              $mdToast.show(
+                $mdToast.simple()
+                  .content('Error: Could not uncheck-in volunteer.')
+                  .position('top right')
+                  .hideDelay(3000)
+                  .theme("error-toast")
+              );
+            });
+          }, function() {
+          });
+        }
+      }
+    };
    
 
     function DialogController($scope, $mdDialog) {

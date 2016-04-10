@@ -59,6 +59,9 @@ angular.module('womenWorkingWithWomenApp')
       deleteVolunteer: function(_id){
         return $http.delete(API_BASE_URL + 'volunteers/' + _id);
       },
+      addEventToVolunteer: function(_id, event){
+        return $http.put(API_BASE_URL + 'volunteers/' + _id + '/addEvent', event);
+      },
 
       // Volunteer Stuff
       getAllTutors: function(){

@@ -19,6 +19,9 @@
    <p> This is some filler-text explaining tutoring stuff and encouraging members of the community so sign up and tutor. It's really exciting. You should do it. Do it. Just do it.</p>
    <form class="form-horizontal" ng-submit="registerTutor()">
         <input type="hidden" name="_csrf"/>
+        <div class = "row">
+          <input type="date" class="datepicker">
+        </div>
         <div class="row">
           <div class="input-field col l6 m6 s6">
             <input type="text" id="firstName" class="validate" ng-model="tutor.firstName" ng-required="true"/>

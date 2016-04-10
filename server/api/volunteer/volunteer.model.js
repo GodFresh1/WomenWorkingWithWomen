@@ -10,7 +10,8 @@ var VolunteerSchema = new Schema({
   phone: Number,
   gender: String,
   age: Number,
-  eventsAttended: [{type: mongoose.Types.ObjectId, ref: 'Event'}]
+  checkedIn: {type:Boolean, default:false},
+  events: [{type: mongoose.Types.ObjectId, ref: 'Event'}] //events attended
 });
 
 /*VolunteerSchema.virtual('email').get(function(){

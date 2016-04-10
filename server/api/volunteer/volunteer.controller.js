@@ -60,6 +60,17 @@ exports.update = function(req, res) {
   });
 };
 
+exports.addEvent = function(req, res) {
+  Event.update({'_id': req.params.id}, {$addToSet: {eventsAttended: req.body._id}}, function(err, result){
+    if(err) { return handleError(res, err); }
+    if(result.nModified==0) {
+      return res.status(409).send("This volunteer has already attended.");
+    }
+    return res.status(200).json(result);
+  });
+
+};
+
 // Deletes a volunteer from the DB.
 exports.destroy = function(req, res) {
   Volunteer.findById(req.params.id, function (err, volunteer) {
