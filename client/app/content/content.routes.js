@@ -58,25 +58,20 @@ angular.module('womenWorkingWithWomenApp')
         templateUrl: 'app/content/events/upcomingevents.html',
         controller: 'EventsCtrl'
       })
-      .state('events.attendeeinformation', {
-        url: '/attendeeinformation',
-        templateUrl: 'app/content/events/attendee/attendeeinformation.html',
-        controller: 'AttendeeCtrl'
-      })
-      .state('events.vendorinformation', {
-        url: '/vendorinformation',
-        templateUrl: 'app/content/events/vendor/vendorinformation.html',
-        controller: 'VendorCtrl'
-      })
-      .state('events.vendorregistration', {
-        url: '/vendorregistration',
-        templateUrl: 'app/content/events/vendor/vendorregistration.html',
-        controller: 'VendorCtrl'
+      .state('events.conferenceinformation', {
+        url: '/conferenceinformation',
+        templateUrl: 'app/content/events/conferenceinformation.html',
+        controller: 'EventsCtrl'
       })
       .state('events.attendeeregistration', {
         url: '/attendeeregistration',
         templateUrl: 'app/content/events/attendee/attendeeregistration.html',
         controller: 'AttendeeCtrl'
+      })
+      .state('events.vendorregistration', {
+        url: '/vendorregistration',
+        templateUrl: 'app/content/events/vendor/vendorregistration.html',
+        controller: 'VendorCtrl'
       })
       .state('events.attendeeregistration.success', {
         url: '/attendeeregistrationsuccess',

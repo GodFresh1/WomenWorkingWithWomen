@@ -105,4 +105,5 @@ angular.module('womenWorkingWithWomenApp')
        e.preventDefault();
        return false;
     });
+
 }]);
