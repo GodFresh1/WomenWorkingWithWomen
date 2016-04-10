@@ -10,6 +10,7 @@ var VolunteerSchema = new Schema({
   phone: Number,
   gender: String,
   age: Number,
+  checkedIn: {type:Boolean, default:false},
   eventsAttended: [{type: mongoose.Types.ObjectId, ref: 'Event'}]
 });
 
