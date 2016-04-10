@@ -113,9 +113,9 @@ angular.module('womenWorkingWithWomenApp')
         templateUrl: 'app/content/services/professional.html',
         controller: 'ServicesCtrl'
       })
-      .state('services.personal', {
-        url: '/personal',
-        templateUrl: 'app/content/services/personal.html',
+      .state('services.community', {
+        url: '/community',
+        templateUrl: 'app/content/services/community.html',
         controller: 'ServicesCtrl'
       })
       .state('admin_dash', {
