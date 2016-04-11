@@ -149,3 +149,4 @@
 [0310/151110:ERROR:process_reader_win.cc(232)] ReadMemory at 0x263000 of 53248 bytes failed: Only part of a ReadProcessMemory or WriteProcessMemory request was completed. (0x12B)
 [0310/151110:ERROR:crash_report_exception_handler.cc(102)] WriteEverything failed
 [0310/151110:ERROR:scoped_process_suspend.cc(38)] NtResumeProcess, ntstatus=-1073741558
+[0411/092632:ERROR:file_io.cc(30)] read: expected 4, observed 0

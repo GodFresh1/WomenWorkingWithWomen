@@ -508,7 +508,22 @@ module.exports = function (grunt) {
         }
       }
     },
+
+
+    mocha_istanbul: {  
+      coverage: {
+        src: 'server/api/**/*.spec.js', // the folder, not the files
+        options: {
+          coverageFolder: 'coverage',
+          mask: '**/*.spec.js',
+          root: 'api/'
+        }
+      }
+    }
+
   });
+
+
 
   // Used for delaying livereload until after server has restarted
   grunt.registerTask('wait', function () {
@@ -625,4 +640,13 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+
+  // Adds "grunt-mocha-istanbul" npm task
+  grunt.loadNpmTasks('grunt-mocha-istanbul');
+
+  // Adding test task enabling "grunt test" command
+  grunt.registerTask('test', [  
+    'mocha_istanbul:coverage'
+  ]);
+  
 };

@@ -9,6 +9,9 @@ var event = new Event({
   title: "Test Event",
   start: new Date(2016, 11, 17, 2, 30, 0),
   end: new Date(2016, 11, 17, 4, 30, 0), // Note: this is a 2 hour event.
+  vendors: [],
+  attendees: [],
+  volunteers: [],
   description: "An event for testing.",
   location: "1234 Made Up St, Doesnt Exist, AL, 12345",
   imgUrl: "http://notarealurl.com"
@@ -28,6 +31,9 @@ describe('Event Model', function() {
       title: "Test Event",
       start: new Date(2016, 11, 17, 2, 30, 0),
       end: new Date(2016, 11, 17, 4, 30, 0), // Note: this is a 2 hour event.
+      vendors: [],
+      attendees: [],
+      volunteers: [],
       description: "An event for testing.",
       location: "1234 Made Up St, Doesnt Exist, AL, 12345",
       imgUrl: "http://notarealurl.com"
