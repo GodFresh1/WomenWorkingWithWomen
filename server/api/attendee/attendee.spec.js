@@ -29,6 +29,7 @@ describe('Attendee Model', function() {
       lastName: "Smith",
       phone: 12345678,
       age: 19
+
     });
     done();
   });

@@ -27,6 +27,7 @@
     "socketio-jwt": "^3.0.0"
   },
   "devDependencies": {
+    "browserify-istanbul": "^2.0.0",
     "connect-livereload": "~0.4.0",
     "grunt": "~0.4.4",
     "grunt-angular-templates": "^0.5.4",
@@ -48,6 +49,7 @@
     "grunt-google-cdn": "~0.4.0",
     "grunt-injector": "~0.5.4",
     "grunt-karma": "~0.8.2",
+    "grunt-mocha-istanbul": "^4.0.2",
     "grunt-mocha-test": "~0.10.2",
     "grunt-newer": "~0.7.0",
     "grunt-ng-annotate": "^0.2.3",
@@ -60,6 +62,7 @@
     "grunt-svgmin": "~0.4.0",
     "grunt-usemin": "~2.1.1",
     "grunt-wiredep": "~1.8.0",
+    "istanbul": "^0.4.3",
     "jit-grunt": "^0.5.0",
     "jshint-stylish": "~0.1.5",
     "karma": "~0.12.9",
@@ -76,6 +79,7 @@
     "karma-requirejs": "~0.2.1",
     "karma-script-launcher": "~0.1.0",
     "open": "~0.0.4",
+    "protractor": "^3.2.2",
     "requirejs": "~2.1.11",
     "should": "~3.3.1",
     "supertest": "~0.11.0",
