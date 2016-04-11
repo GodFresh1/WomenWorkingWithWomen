@@ -1,6 +1,6 @@
 'use strict';
 
-/*describe('Home Page', function() {
+describe('Home Page', function() {
 
   beforeEach(function() {
     browser.get('http://localhost:3000/');
@@ -27,8 +27,7 @@
   });
 });
 
-/*Log in is not working because of race conditions -- unsure how to fix*/
-/*describe('Log in functionality', function() {
+describe('Log in functionality', function() {
   beforeEach(function() {
     browser.get('http://localhost:3000/login');
     browser.sleep(6000);
@@ -74,92 +73,7 @@
     browser.get('http://localhost:3000/');
     expect(element(by.id('admindashlink')).isPresent()).toBe(false);
   });
-});*/
-
-
-/*describe('About Page', function() {
-
-  beforeEach(function() {
-    browser.get('http://localhost:3000/about/story');
-  });
-
-  it('should redirect to The Board page', function() {
-    element(by.id('boardlink')).click();
-    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/about/board');
-  });
-
-  it('should redirect to the Partners page', function() {
-    element(by.id('partnerslink')).click();
-    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/about/partners');
-  });
-
-  it('should redirect to the Testimonials page', function() {
-    element(by.id('testimonialslink')).click();
-    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/about/testimonials');
-  });
 });
-
-describe('Services Page', function() {
-
-  beforeEach(function() {
-    browser.get('http://localhost:3000/services/professional');
-  });
-
-  it('should redirect to Community page', function() {
-    element(by.id('personallink')).click();
-    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/services/community');
-  });
-});
-
-/*Log in is not working because of race conditions -- unsure how to fix*/
-/*describe('Log in functionality', function() {
-  beforeEach(function() {
-    browser.get('http://localhost:3000/login');
-    browser.sleep(6000);
-    browser.waitForAngular();
-  });
-
-  afterEach(function() {
-
-  });
-
-  it('should successfully login user as admin', function() {
-    browser.wait(function() {
-      element(by.id('emaillogin')).isPresent().then(function () {
-        element(by.name(emaillogin)).get(0).sendKeys('admin@admin.com');
-      });
-    });
-    browser.wait(function() {
-      element(by.id('passwordlogin')).isPresent().then(function () {
-        element(by.name(passwordlogin)).get(0).sendKeys('admin');
-      });
-    });
-    element(by.id('loginbutton')).click();
-    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/');
-    expect(element(by.id('admindashlink')).isPresent()).toBe(true);
-  });
-
-  it('should successfully logout user as admin', function() {
-    element(by.name(email)).sendKeys('admin@admin.com');
-    element(by.name(password)).sendKeys('admin');
-    element(by.id('loginbutton')).click();
-    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/');
-    expect(element(by.id('admindashlink')).isPresent()).toBe(true);
-    element(by.id('logoutbutton')).click();
-    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/');
-    expect(element(by.id('admindashlink')).isPresent()).toBe(true);
-  });
-
-  it('should fail when trying to login with incorrect credentials', function() {
-    element(by.name(email)).sendKeys('test@admin.com');
-    element(by.name(password)).sendKeys('admin');
-    element(by.id('loginbutton')).click();
-    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/login');
-    browser.get('http://localhost:3000/');
-    expect(element(by.id('admindashlink')).isPresent()).toBe(false);
-  });
-});*/
-
 
 describe('About Page', function() {
 
@@ -191,10 +105,6 @@ describe('Services Page', function() {
 
   beforeEach(function() {
     browser.get('http://localhost:3000/services/professional');
-  });
-
-  afterEach(function() {
-
   });
 
   it('should redirect to Community page', function() {
@@ -266,12 +176,107 @@ describe('Donations Page', function() {
     //Check that a toast is present?
     //Check database?
   });
-});*/
+});
 
 describe('Contact Us Page', function() {
 
   beforeEach(function() {
     browser.get('http://localhost:3000/contact_us');
+  });
+
+  it('should be able to contact', function() {
+    //Populate fields and click to contact
+    //Check that a toast is present?
+  });
+
+  it('should redirect to Personal page', function() {
+    element(by.id('personallink')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/services/personal');
+  });
+});
+
+describe('Gallery Page', function() {
+
+  beforeEach(function() {
+    browser.get('http://localhost:3000/gallery');
+  });
+
+  afterEach(function() {
+
+  });
+
+  it('should load the images', function() {
+  });
+
+  it('should be able to click and share images', function() {
+  });
+});
+
+describe('Events Page', function() {
+
+  beforeEach(function() {
+    browser.get('http://localhost:3000/events/upcomingevents');
+  });
+
+  afterEach(function() {
+
+  });
+
+  it('should be able to click on the flyers for more information', function() {
+    element(by.id('eventinfopicture')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/events/attendeeinformation');
+  });
+
+  it('should redirect to Attendee Information page', function() {
+    element(by.id('attendeeinfolink')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/events/attendeeinformation');
+  });
+
+  it('should redirect to Vendor Information page', function() {
+    element(by.id('vendorinfolink')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/events/vendorinformation');
+  });
+
+  it('should be able register as attendee', function() {
+    element(by.id('attendeeregistrationlink')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/events/attendeeregistration');
+    //Click on event, populate fields, click to register
+    //Check if toast is present
+  });
+
+  it('should be able register as vendor', function() {
+    element(by.id('vendorregistrationlink')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/events/vendorregistration');
+    //Click on event, populate fields, click to register
+    //Check if toast is present
+  });
+});
+
+describe('Donations Page', function() {
+
+  beforeEach(function() {
+    browser.get('http://localhost:3000/donations');
+  });
+
+  afterEach(function() {
+
+  });
+
+  it('should be able to donate', function() {
+    //Populate fields and click to donate
+    //Check that a toast is present?
+    //Check database?
+  });
+});
+
+describe('Contact Us Page', function() {
+
+  beforeEach(function() {
+    browser.get('http://localhost:3000/contact_us');
+  });
+
+  afterEach(function() {
+
   });
 
   it('should be able to contact', function() {
@@ -328,4 +333,4 @@ describe('Admin Dashboard Page', function() {
     //Click on button
     //Somehow check??
   });
-});*/
+});
