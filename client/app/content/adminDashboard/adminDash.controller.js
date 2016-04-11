@@ -390,7 +390,23 @@ angular.module('womenWorkingWithWomenApp')
         });
     }
 
-    $scope.checkBox = function(attendee, $event){
+    $scope.checkIn = function(tutor) {
+      if($scope.isAdmin()){
+        var currDate = new Date();
+        tutor.datesTutored.push(currDate);
+        Api.updateTutor(tutor._id, tutor).then(function(response){
+          $mdToast.show(
+              $mdToast.simple()
+                .content("Check-in for " + currDate + "succesful!")
+                .position('top right')
+                .hideDelay(3000)
+                .theme("success-toast")
+          );
+        });
+      }
+    }
+
+    $scope.checkBoxAttendee = function(attendee, $event){
       $event.preventDefault();
       if($scope.isAdmin()){
         if(attendee.checkedIn == false){
@@ -448,7 +464,7 @@ angular.module('womenWorkingWithWomenApp')
       }
     };
 
-    $scope.checkBox = function(volunteer, $event){
+    $scope.checkBoxVol = function(volunteer, $event){
       $event.preventDefault();
       if($scope.isAdmin()){
         if(volunteer.checkedIn == false){

@@ -34,6 +34,14 @@ angular.module('womenWorkingWithWomenApp')
            "telephone": "(256) 457 4766",
            "email": "my4atms@aol.com",
            "imgSrc": "http://i.imgur.com/XkiUykI.jpg"
+        },
+        {
+          "name":  "Eva M. Bartley",
+          "title": "Assitant Secretary",
+           "description": " filler info" ,
+           "telephone": "(904)553 4680",
+           "email": "filler@filler.com",
+           "imgSrc": "http://i.imgur.com/TXwRc0z.jpg"
         }
       ]
     }
