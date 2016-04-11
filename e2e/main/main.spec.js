@@ -123,6 +123,98 @@ describe('Services Page', function() {
   });
 });
 
+/*Log in is not working because of race conditions -- unsure how to fix*/
+/*describe('Log in functionality', function() {
+  beforeEach(function() {
+    browser.get('http://localhost:3000/login');
+    browser.sleep(6000);
+    browser.waitForAngular();
+  });
+
+  afterEach(function() {
+
+  });
+
+  it('should successfully login user as admin', function() {
+    browser.wait(function() {
+      element(by.id('emaillogin')).isPresent().then(function () {
+        element(by.name(emaillogin)).get(0).sendKeys('admin@admin.com');
+      });
+    });
+    browser.wait(function() {
+      element(by.id('passwordlogin')).isPresent().then(function () {
+        element(by.name(passwordlogin)).get(0).sendKeys('admin');
+      });
+    });
+    element(by.id('loginbutton')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/');
+    expect(element(by.id('admindashlink')).isPresent()).toBe(true);
+  });
+
+  it('should successfully logout user as admin', function() {
+    element(by.name(email)).sendKeys('admin@admin.com');
+    element(by.name(password)).sendKeys('admin');
+    element(by.id('loginbutton')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/');
+    expect(element(by.id('admindashlink')).isPresent()).toBe(true);
+    element(by.id('logoutbutton')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/');
+    expect(element(by.id('admindashlink')).isPresent()).toBe(true);
+  });
+
+  it('should fail when trying to login with incorrect credentials', function() {
+    element(by.name(email)).sendKeys('test@admin.com');
+    element(by.name(password)).sendKeys('admin');
+    element(by.id('loginbutton')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/login');
+    browser.get('http://localhost:3000/');
+    expect(element(by.id('admindashlink')).isPresent()).toBe(false);
+  });
+});*/
+
+
+describe('About Page', function() {
+
+  beforeEach(function() {
+    browser.get('http://localhost:3000/about/story');
+  });
+
+  afterEach(function() {
+
+  });
+
+  it('should redirect to The Board page', function() {
+    element(by.id('boardlink')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/about/board');
+  });
+
+  it('should redirect to the Partners page', function() {
+    element(by.id('partnerslink')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/about/partners');
+  });
+
+  it('should redirect to the Testimonials page', function() {
+    element(by.id('testimonialslink')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/about/testimonials');
+  });
+});
+
+describe('About Page', function() {
+
+  beforeEach(function() {
+    browser.get('http://localhost:3000/services/professional');
+  });
+
+  afterEach(function() {
+
+  });
+
+  it('should redirect to Personal page', function() {
+    element(by.id('personallink')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/services/personal');
+  });
+});
+
 describe('Gallery Page', function() {
 
   beforeEach(function() {
@@ -146,13 +238,9 @@ describe('Events Page', function() {
     browser.get('http://localhost:3000/events/upcomingevents');
   });
 
-  afterEach(function() {
-
-  });
-
   it('should be able to click on the flyers for more information', function() {
     element(by.id('eventinfopicture')).click();
-    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/events/attendeeinformation');
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/events/conferenceinformation');
   });
 
   it('should redirect to Conference Information page', function() {
