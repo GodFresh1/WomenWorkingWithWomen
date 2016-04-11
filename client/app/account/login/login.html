@@ -8,21 +8,21 @@
         <form name="form" ng-submit="login(form)" novalidate>
           <md-input-container>
             <label>Email</label>
-            <input required type="email" name="email" ng-model="user.email">
+            <input required type="email" id="emaillogin" name="email" ng-model="user.email">
             <div ng-messages="form.email.$error">
               <div ng-message="required">This is required.</div>
             </div>
           </md-input-container>
           <md-input-container>
             <label>Password</label>
-            <input required type="password" name="password" ng-model="user.password">
+            <input required type="password" id="passwordlogin" name="password" ng-model="user.password">
             <div ng-messages="form.password.$error">
               <div ng-message="required">This is required.</div>
             </div>
           </md-input-container>
           <div layout="row">
-            <md-button class="md-primary" type="submit">Login</md-button>
-            <md-button flex type="submit" href="/signup">Register</md-button>
+            <md-button class="md-primary" type="submit" id="loginbutton">Login</md-button>
+            <md-button flex type="submit" href="/signup" id="registerbutton">Register</md-button>
           </div>
         </form>
       </md-card-content>

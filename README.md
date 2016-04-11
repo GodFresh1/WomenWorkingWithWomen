@@ -2,11 +2,12 @@
 ## Women Working With Women
 A web application for Women Working with Women!
 
-## Website Link:
+## Website Link: http://womenworkingwithwomen.org/
 
 ## Credits
-Thank you to 
-
+- AngularJS Full-Stack generator: https://github.com/angular-fullstack/generator-angular-fullstack
+- Angular Material: https://material.angularjs.org/latest/
+- Angular UI Calendar: http://angular-ui.github.io/ui-calendar/
 
 ## Project Features
 Website featuring Women Working With Women, local nonprofit organization

@@ -6,7 +6,7 @@ var request = require('supertest');
 var Volunteer = require('./volunteer.model');
 
 var volunteer = new Volunteer({
-  _id: "testEmail@email.com",
+  email: "testEmail@gmail.com",
   firstName: "John",
   lastName: "Smith",
   phone: 12345678
@@ -23,7 +23,7 @@ describe('Volunteer Model', function() {
   beforeEach(function(done){
     // Set the volunteer to this before each test is ran.
     volunteer = new Volunteer({
-      _id: "testEmail@email.com",
+      email: "testEmail@gmail.com",
       firstName: "John",
       lastName: "Smith",
       phone: 12345678
