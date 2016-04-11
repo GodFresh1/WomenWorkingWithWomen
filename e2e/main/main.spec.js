@@ -189,9 +189,9 @@ describe('Contact Us Page', function() {
     //Check that a toast is present?
   });
 
-  it('should redirect to Personal page', function() {
+  it('should redirect to Community page', function() {
     element(by.id('personallink')).click();
-    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/services/personal');
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/services/community');
   });
 });
 
