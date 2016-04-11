@@ -61,7 +61,7 @@
                     <td width="30%">{{attendee.firstName}} {{attendee.lastName}}</td>
                     <td width="60%">{{attendee.email}}  </td>
                     <td class="check-in" >
-                      <input type="checkbox" id="{{attendee._id}}"  ng-checked="attendee.checkedIn" ng-click="checkBox(attendee, $event)"/>
+                      <input type="checkbox" id="{{attendee._id}}"  ng-checked="attendee.checkedIn" ng-click="checkBoxAttendee(attendee, $event)"/>
                       <label for="{{attendee._id}}"></label>
                     </td>
                   </tr>
@@ -89,7 +89,7 @@
                     <td width="30%">{{volunteer.firstName}} {{volunteer.lastName}}</td>
                     <td width="60%">{{volunteer.email}}  </td>
                     <td class="check-in">
-                      <input type="checkbox" id="{{volunteer._id}}" ng-checked="volunteer.checkedIn" ng-click="checkBox(volunteer, $event)"/>
+                      <input type="checkbox" id="{{volunteer._id}}" ng-checked="volunteer.checkedIn" ng-click="checkBoxVol(volunteer, $event)"/>
                       <label for="{{volunteer._id}}"></label>
                     </td>
                   </tr>
@@ -165,9 +165,9 @@
             <tbody>
               <tr ng-repeat="tutor in tutors">
                   <td width="30%">{{tutor.firstName}} {{tutor.lastName}}</td>
-                  <td width="60%">{{tutor.email}}  </td>
+                  <td width="30%">{{tutor.email}}  </td>
                   <td class="check-in">
-                    <input type="checkbox" id="{{tutor._id}}" ng-disabled="tutor.checkedIn"  ng-checked="tutor.checkedIn" ng-click="checkBox(tutor)"/>
+                    <button type="btn" ng-click = "checkIn(tutor)" class="btn btn btn-primary submit">Check In For Today</button>
                     <label for="{{tutor._id}}"></label>
                   </td>
               </tr>
