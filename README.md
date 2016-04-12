@@ -12,13 +12,15 @@ A web application for Women Working with Women!
 ## Project Features
 Website featuring Women Working With Women, local nonprofit organization
 
+![home-page](http://i.imgur.com/32UdZTu.png)
+
 Users can:
-	- Register for events as an attendee or vendor
-	- Request for more information about the organization
-	- Request to become a partner of the organization
-	- Donate through PayPal
-	- View an organized gallery and share content through social media
-	- Register to be a volunteer/tutor
+- Register for events as an attendee or vendor
+- Request for more information about the organization
+- Request to become a partner of the organization
+- Donate through PayPal
+- View an organized gallery and share content through social media
+- Register to be a volunteer/tutor
 
 Administration dashboard to monitor event information, check in attendees/vendors/volunteers, and export content to an Excel spreadsheet
 

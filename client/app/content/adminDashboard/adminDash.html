@@ -22,7 +22,8 @@
          <a id="excel-btn3" class="btn-floating" ng-click="produceVolunteerCSV(event)"><i style="font-size:7px">{{'Volunteers'}}</i></a>
        </div>
        <div class="new-event-container">
-           <button class="btn btn-default" ng-click="createEvent()">Create Event</button>
+           <button class="btn btn-default" ng-click="createEvent()" id="createeventbutton">Create Event</button>
+         </div>
        </h2>
      </md-toolbar>
      <md-content>
@@ -34,11 +35,11 @@
                  <h3>{{event.title}}</h3>
                  <h4>{{event.startDate}}</h4>
                  <p>{{event.description}}</p>
-                 <button class="btn btn-default" ng-click="editDetails(event)" style = "margin-top: 20px">Edit Event</button>
+                 <button class="btn btn-default" ng-click="editDetails(event)" style = "margin-top: 20px" id="editeventbutton">Edit Event</button>
                </div>
                <div id="event-controls"class="col l2 m4 s4 clearfix" >
                  <div class="time">{{event.startTime}} - {{event.endTime}}</div>
-                 <a id="event-details-btn" class="btn-floating" ng-click="showDetails(event)"><i class="material-icons">{{showDetails[event._id] ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</i></a>
+                 <a id="event-details-btn" class="btn-floating" ng-click="showDetails(event)"><i class="material-icons" id="showdetailsbutton">{{showDetails[event._id] ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</i></a>
                </div>
              </div>
              <div id="detailed-info" class="row" ng-show="showDetails[event._id]">
@@ -124,7 +125,7 @@
                 </tbody>
               </table>
               <div class="new-event-container">
-                <button class="btn btn-default" ng-click="deleteEvent(event)" style = "margin-top: 40px">Delete Event</button>
+                <button class="btn btn-default" ng-click="deleteEvent(event)" style = "margin-top: 40px" id="deleteeventbutton">Delete Event</button>
               </div>
            </div>
            <hr class="simple-hr">
