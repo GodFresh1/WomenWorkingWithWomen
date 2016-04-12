@@ -1,11 +1,11 @@
 'use strict';
 
+
 /*describe('Home Page', function() {
 
   beforeEach(function() {
     browser.get('http://localhost:3000/');
   });
-
   it('should redirect to the About Story page when Learn More is clicked', function() {
     element(by.id('learnmorebutton')).click();
     expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/about/story');
@@ -76,7 +76,6 @@
   });
 });*/
 
-
 /*describe('About Page', function() {
 
   beforeEach(function() {
@@ -124,6 +123,24 @@ describe('Gallery Page', function() {
   it('should be able to click and share images', function() {
 
   });
+
+  it('should redirect to Community page', function() {
+    element(by.id('personallink')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/services/community');
+  });
+});
+
+describe('Gallery Page', function() {
+
+  beforeEach(function() {
+    browser.get('http://localhost:3000/gallery');
+  });
+
+  it('should load the images', function() {
+  });
+
+  it('should be able to click and share images', function() {
+  });
 });
 
 describe('Events Page', function() {
@@ -140,6 +157,15 @@ describe('Events Page', function() {
   it('should redirect to Conference Information page', function() {
     element(by.id('attendeeinfolink')).click();
     expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/events/conferenceinformation');
+
+  it('should redirect to Attendee Information page', function() {
+    element(by.id('attendeeinfolink')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/events/attendeeinformation');
+  });
+
+  it('should redirect to Vendor Information page', function() {
+    element(by.id('vendorinfolink')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/events/vendorinformation');
   });
 
   it('should be able register as attendee', function() {
@@ -164,6 +190,7 @@ describe('Donations Page', function() {
     browser.get('http://localhost:3000/donations');
   });
 
+
   it('should be able to donate', function() {
     //Populate fields and click to donate
     element(by.model('donation.amount')).sendKeys('10.00');
@@ -175,6 +202,13 @@ describe('Donations Page', function() {
     //Check database?
   });
 });*/
+
+  it('should be able to donate', function() {
+    //Populate fields and click to donate
+    //Check that a toast is present?
+    //Check database?
+  });
+});
 
 describe('Contact Us Page', function() {
 
