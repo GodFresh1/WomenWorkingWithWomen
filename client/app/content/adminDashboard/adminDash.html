@@ -187,7 +187,6 @@
               <tr>
                 <th data-field="name">Name</th>
                 <th data-field="email">Email</th>
-                <th class="check-in" data-field="checked in">Check in</th>
               </tr>
             </thead>
             <tbody>
@@ -195,9 +194,10 @@
                   <td width="30%">{{tutor.firstName}} {{tutor.lastName}}</td>
                   <td width="30%">{{tutor.email}}  </td>
                   <td class="check-in">
-                    <button type="btn" ng-click = "checkIn(tutor)" class="btn btn btn-primary submit">Check In For Today</button>
+                    <button type="btn" ng-click = "checkIn(tutor)" class="btn btn btn-primary submit">Check In</button>
                     <label for="{{tutor._id}}"></label>
                   </td>
+                  <td> <button type="btn" ng-click = "deleteTutor(tutor)" class="btn btn btn-primary"> <label for="{{tutor._id}}"></label>X</button>
               </tr>
             </tbody>
         </table>
