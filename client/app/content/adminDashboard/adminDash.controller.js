@@ -12,6 +12,7 @@ angular.module('womenWorkingWithWomenApp')
     $scope.volunteers = [];
     $scope.donations = [];
     $scope.tutors = [];
+    $scope.vendors = [];
     $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
     var testid;
 
@@ -53,6 +54,18 @@ angular.module('womenWorkingWithWomenApp')
 
     Api.getAllTutors().then(function(response){
       $scope.tutors = response.data;
+    }, function(err){
+      $mdToast.show(
+        $mdToast.simple()
+          .content('Error: Could not connect to the server. ')
+          .position('top right')
+          .hideDelay(3000)
+          .theme("error-toast")
+      );
+    });
+
+    Api.getAllVendors().then(function(response){
+      $scope.vendors = response.data;
     }, function(err){
       $mdToast.show(
         $mdToast.simple()
@@ -242,52 +255,6 @@ angular.module('womenWorkingWithWomenApp')
 
     }
 
-    $scope.createEvent = function($event){
-      var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
-       $mdDialog.show({
-         controller: DialogController,
-         templateUrl: '/app/content/adminDashboard/newEventDialog.html',
-         parent: angular.element(document.body),
-         targetEvent: $event,
-         clickOutsideToClose:true,
-         fullscreen: useFullScreen
-       })
-       .then(function(event) {
-
-         Api.createEvent(event).then(function(response){
-            $mdToast.show(
-            $mdToast.simple()
-              .content('Add event succesfull!')
-              .position('top right')
-              .hideDelay(3000)
-              .theme("success-toast")
-         );
-         });
-
-         //Updates the array of events which will be populated on the admin dashboard
-         Api.getAllEvents().then(function(response){
-            $scope.events = response.data;
-         }, function(err){
-          $mdToast.show(
-          $mdToast.simple()
-            .content('Error: Could not connect to the server. ')
-            .position('top right')
-            .hideDelay(3000)
-            .theme("error-toast")
-          );
-         });
-
-         console.log(event);
-       }, function() {
-         console.log("Add event canceled.")
-       });
-       $scope.$watch(function() {
-         return $mdMedia('xs') || $mdMedia('sm');
-       }, function(wantsFullScreen) {
-         $scope.customFullscreen = (wantsFullScreen === true);
-       });
-    }
-
      $scope.editDetails = function($event){
        console.log($event._id);
 
@@ -311,7 +278,6 @@ angular.module('womenWorkingWithWomenApp')
                .theme("success-toast")
           );
 
-
              //Updates the array of events which will be populated on the admin dashboard
              Api.getAllEvents().then(function(response){
              $scope.events = response.data;
@@ -325,8 +291,6 @@ angular.module('womenWorkingWithWomenApp')
               );
             });
           });
-
-          
 
           // Add the event to the database.
           console.log(event);
@@ -522,7 +486,63 @@ angular.module('womenWorkingWithWomenApp')
       }
     };
 
-   
+    $scope.checkBox = function(vendor, $event){
+      $event.preventDefault();
+      if($scope.isAdmin()){
+        if(vendor.approved == false){
+          vendor.approved = true;
+          Api.updateVendor(vendor._id, vendor).then(function(response){
+            $($event.target).prop('checked', true); // Show the box as checked.
+            $mdToast.show(
+              $mdToast.simple()
+                .content('Approval succesful!')
+                .position('top right')
+                .hideDelay(3000)
+                .theme("success-toast")
+            );
+          }, function(err){
+            $mdToast.show(
+              $mdToast.simple()
+                .content('Error: Could not approve vendor.')
+                .position('top right')
+                .hideDelay(3000)
+                .theme("error-toast")
+            );
+          });
+        }else{
+          // Make the admin confirm the unapproval.
+          var confirm = $mdDialog.confirm()
+          .title('Are you sure you want to unapprove this vendor?')
+          .textContent('This vendor will no longer be marked as approved.')
+          .ariaLabel('Lucky day')
+          .ok('Confirm')
+          .cancel('Cancel');
+          $mdDialog.show(confirm).then(function() {
+            
+            vendor.approved = false;
+            Api.updateVendor(vendor._id, vendor).then(function(response){
+              $($event.target).prop('checked', false); // Show the box as checked.
+              $mdToast.show(
+                $mdToast.simple()
+                  .content('Unapproval succesful!')
+                  .position('top right')
+                  .hideDelay(3000)
+                  .theme("success-toast")
+              );
+            }, function(err){
+              $mdToast.show(
+                $mdToast.simple()
+                  .content('Error: Could not unapprove vendor.')
+                  .position('top right')
+                  .hideDelay(3000)
+                  .theme("error-toast")
+              );
+            });
+          }, function() {
+          });
+        }
+      }
+    };
 
     function DialogController($scope, $mdDialog) {
       $scope.event = {};

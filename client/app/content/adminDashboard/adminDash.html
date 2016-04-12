@@ -22,7 +22,7 @@
          <a id="excel-btn3" class="btn-floating" ng-click="produceVolunteerCSV(event)"><i style="font-size:7px">{{'Volunteers'}}</i></a>
        </div>
        <div class="new-event-container">
-           <button class="btn btn-default" ng-click="createEvent()">Create Event.</button>
+           <button class="btn btn-default" ng-click="createEvent()">Create Event</button>
        </h2>
      </md-toolbar>
      <md-content>
@@ -91,6 +91,34 @@
                     <td class="check-in">
                       <input type="checkbox" id="{{volunteer._id}}" ng-checked="volunteer.checkedIn" ng-click="checkBoxVol(volunteer, $event)"/>
                       <label for="{{volunteer._id}}"></label>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+           </div>
+           <br>
+           <div id="detailed-info" class="row" ng-show="showDetails[event._id]">
+               <md-toolbar class="md-theme-light small-toolbar">
+                <h2 class="md-toolbar-tools small-toolbar">
+                  <span ng-show="event.vendors.length > 0">Vendors</span>
+                  <span ng-show="event.vendors.length < 1">There are no vendors for this event.</span>
+                </h2>
+              </md-toolbar>
+               <table ng-show="event.vendors.length > 0" class="striped">
+                <thead>
+                  <tr>
+                    <th data-field="name">Name</th>
+                    <th data-field="email">Organization</th>
+                    <th class="check-in" data-field="checked in">Approve</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="vendor in event.vendors">
+                    <td width="30%">{{vendor.firstName}} {{vendor.lastName}}</td>
+                    <td width="60%">{{vendor.organizationName}}  </td>
+                    <td class="check-in">
+                      <input type="checkbox" id="{{vendor._id}}" ng-checked="vendor.approved" ng-click="checkBox(vendor, $event)"/>
+                      <label for="{{vendor._id}}"></label>
                     </td>
                   </tr>
                 </tbody>

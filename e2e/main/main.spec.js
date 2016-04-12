@@ -1,13 +1,9 @@
 'use strict';
 
-describe('Home Page', function() {
+/*describe('Home Page', function() {
 
   beforeEach(function() {
     browser.get('http://localhost:3000/');
-  });
-
-  afterEach(function() {
-
   });
 
   it('should redirect to the About Story page when Learn More is clicked', function() {
@@ -81,14 +77,10 @@ describe('Home Page', function() {
 });*/
 
 
-describe('About Page', function() {
+/*describe('About Page', function() {
 
   beforeEach(function() {
     browser.get('http://localhost:3000/about/story');
-  });
-
-  afterEach(function() {
-
   });
 
   it('should redirect to The Board page', function() {
@@ -111,10 +103,6 @@ describe('Services Page', function() {
 
   beforeEach(function() {
     browser.get('http://localhost:3000/services/professional');
-  });
-
-  afterEach(function() {
-
   });
 
   it('should redirect to Community page', function() {
@@ -221,14 +209,12 @@ describe('Gallery Page', function() {
     browser.get('http://localhost:3000/gallery');
   });
 
-  afterEach(function() {
-
-  });
-
   it('should load the images', function() {
+    expect(element(by.id('gallery')).isPresent()).toBe(true);
   });
 
   it('should be able to click and share images', function() {
+
   });
 });
 
@@ -263,31 +249,29 @@ describe('Events Page', function() {
   });
 });
 
+
 describe('Donations Page', function() {
 
   beforeEach(function() {
     browser.get('http://localhost:3000/donations');
   });
 
-  afterEach(function() {
-
-  });
-
   it('should be able to donate', function() {
     //Populate fields and click to donate
+    element(by.model('donation.amount')).sendKeys('10.00');
+    element(by.id('first_name')).sendKeys('John');
+    element(by.id('last_name')).sendKeys('Doe');
+    element(by.id('email')).sendKeys('johndoe@test.com');
+    element(by.id('submitbutton')).click();
     //Check that a toast is present?
     //Check database?
   });
-});
+});*/
 
 describe('Contact Us Page', function() {
 
   beforeEach(function() {
     browser.get('http://localhost:3000/contact_us');
-  });
-
-  afterEach(function() {
-
   });
 
   it('should be able to contact', function() {
@@ -302,10 +286,6 @@ describe('Take Action Page', function() {
     browser.get('http://localhost:3000/take_action/volunteer/');
   });
 
-  afterEach(function() {
-
-  });
-
   it('should be able to register to volunteer', function() {
     //Populate fields and click to sign up to volunteer
     //Check that a toast is present?
@@ -318,10 +298,6 @@ describe('Admin Dashboard Page', function() {
   beforeEach(function() {
     //Login as an admin
     browser.get('http://localhost:3000/take_action/admin_dash/');
-  });
-
-  afterEach(function() {
-
   });
 
   it('should be able to see more details', function() {
@@ -352,4 +328,4 @@ describe('Admin Dashboard Page', function() {
     //Click on button
     //Somehow check??
   });
-});
+});*/
