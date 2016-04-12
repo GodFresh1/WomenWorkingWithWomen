@@ -81,10 +81,6 @@ describe('About Page', function() {
     browser.get('http://localhost:3000/about/story');
   });
 
-  afterEach(function() {
-
-  });
-
   it('should redirect to The Board page', function() {
     element(by.id('boardlink')).click();
     expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/about/board');
@@ -188,11 +184,6 @@ describe('Contact Us Page', function() {
     //Populate fields and click to contact
     //Check that a toast is present?
   });
-
-  it('should redirect to Community page', function() {
-    element(by.id('personallink')).click();
-    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/services/community');
-  });
 });
 
 describe('Gallery Page', function() {
@@ -201,14 +192,12 @@ describe('Gallery Page', function() {
     browser.get('http://localhost:3000/gallery');
   });
 
-  afterEach(function() {
-
-  });
-
   it('should load the images', function() {
+    expect(element(by.id('gallery')).isPresent()).toBe(true);
   });
 
   it('should be able to click and share images', function() {
+
   });
 });
 
@@ -218,13 +207,9 @@ describe('Events Page', function() {
     browser.get('http://localhost:3000/events/upcomingevents');
   });
 
-  afterEach(function() {
-
-  });
-
   it('should be able to click on the flyers for more information', function() {
     element(by.id('eventinfopicture')).click();
-    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/events/attendeeinformation');
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/events/conferenceinformation');
   });
 
   it('should redirect to Attendee Information page', function() {
@@ -252,18 +237,20 @@ describe('Events Page', function() {
   });
 });
 
+
 describe('Donations Page', function() {
 
   beforeEach(function() {
     browser.get('http://localhost:3000/donations');
   });
 
-  afterEach(function() {
-
-  });
-
   it('should be able to donate', function() {
     //Populate fields and click to donate
+    element(by.model('donation.amount')).sendKeys('10.00');
+    element(by.id('first_name')).sendKeys('John');
+    element(by.id('last_name')).sendKeys('Doe');
+    element(by.id('email')).sendKeys('johndoe@test.com');
+    element(by.id('submitbutton')).click();
     //Check that a toast is present?
     //Check database?
   });
@@ -273,10 +260,6 @@ describe('Contact Us Page', function() {
 
   beforeEach(function() {
     browser.get('http://localhost:3000/contact_us');
-  });
-
-  afterEach(function() {
-
   });
 
   it('should be able to contact', function() {
