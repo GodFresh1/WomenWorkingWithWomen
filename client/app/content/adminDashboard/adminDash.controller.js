@@ -305,6 +305,49 @@ angular.module('womenWorkingWithWomenApp')
         });
      }
 
+     $scope.deleteTutor = function($tutor){
+      console.log($tutor._id);
+      testid = $tutor._id;
+      var confirm = $mdDialog.confirm()
+      .title('Are you sure you want to permenantly delete this tutor?')
+      .textContent('This tutor will no longer be registered.')
+      .ariaLabel('Lucky day')
+      .ok('Confirm')
+      .cancel('Cancel');
+      $mdDialog.show(confirm).then(function(tutor){
+        //delete tutor
+        Api.deleteTutor($tutor._id).then(function(response){
+          $mdToast.show(
+              $mdToast.simple()
+              .content('Deletion succesful!')
+              .position('top right')
+              .hideDelay(3000)
+              .theme("success-toast")
+          );
+
+          Api.getAllTutors().then(function(reponse){
+            $scope.tutors = response.data;
+          }, function(err){
+            $mdToast.show(
+            $mdToast.simple()
+              .content('Error: Could not connect to the server. ')
+              .position('top right')
+              .hideDelay(3000)
+              .theme("error-toast")
+            );
+          });
+        }, function(err){
+          $mdToast.show(
+                $mdToast.simple()
+                .content('Error: Could not delete the tutor.')
+                .position('top right')
+                .hideDelay(3000)
+                .theme("error-toast")
+          );
+        })
+      });
+    };
+
     $scope.deleteEvent = function($event){
       console.log($event._id);
       testid = $event._id;
@@ -322,7 +365,7 @@ angular.module('womenWorkingWithWomenApp')
           Api.deleteEvent($event._id).then(function(response){
             $mdToast.show(
               $mdToast.simple()
-              .content('Deletion succesfull!')
+              .content('Deletion succesful!')
               .position('top right')
               .hideDelay(3000)
               .theme("success-toast")
@@ -358,14 +401,11 @@ angular.module('womenWorkingWithWomenApp')
       if($scope.isAdmin()){
         var currDate = new Date();
         tutor.datesTutored.push(currDate);
+        alert = $mdDialog.alert()
+          .title('This tutor has been checked in for ' + currDate)
+          .ok('Close'); 
         Api.updateTutor(tutor._id, tutor).then(function(response){
-          $mdToast.show(
-              $mdToast.simple()
-                .content("Check-in for " + currDate + "succesful!")
-                .position('top right')
-                .hideDelay(3000)
-                .theme("success-toast")
-          );
+          $mdDialog.show(alert);
         });
       }
     }
