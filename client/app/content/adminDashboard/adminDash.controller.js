@@ -5,7 +5,6 @@ angular.module('womenWorkingWithWomenApp')
   .controller('AdminDashCtrl', ['$scope', 'Api', '$mdToast', 'Auth', '$mdDialog', '$mdMedia', function($scope, Api, $mdToast, Auth, $mdDialog, $mdMedia) {
     $scope.events = [];
     $scope.showDetails = {};
-    $scope.csvTemp = [];
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
@@ -81,9 +80,8 @@ angular.module('womenWorkingWithWomenApp')
       $scope.showDetails[event._id] = (isShown == undefined || !isShown) ? true : false;
     }
 
-    $scope.produceAttendeeCSV = function(event){
+    $scope.produceAttendeeCSV = function(){
       Api.getAllEvents().then(function(response){
-        $scope.csvTemp = response.data;
         var CSV = '';
         CSV += 'Attendees' + '\r\n\n';
         for (var i = 0; i < response.data.length; i++){
@@ -122,9 +120,8 @@ angular.module('womenWorkingWithWomenApp')
       });
     }
 
-    $scope.produceVendorCSV = function(event){
+    $scope.produceVendorCSV = function(){
       Api.getAllEvents().then(function(response){
-        $scope.csvEventTemp = response.data;
         var CSV = '';
         CSV += 'Vendors' + '\r\n\n';
         for (var i = 0; i < response.data.length; i++){
@@ -166,9 +163,8 @@ angular.module('womenWorkingWithWomenApp')
       });
     }
 
-    $scope.produceVolunteerCSV = function(event){
+    $scope.produceVolunteerCSV = function(){
       Api.getAllEvents().then(function(response){
-        $scope.csvTemp = response.data;
         var CSV = '';
         CSV += 'Volunteers' + '\r\n\n';
         for (var i = 0; i < response.data.length; i++){
@@ -206,6 +202,45 @@ angular.module('womenWorkingWithWomenApp')
       });
     }
 
+    $scope.produceDonationCSV = function(){
+      Api.getAllDonations().then(function(response){
+        console.log(response.data);
+        // var CSV = '';
+        // CSV += 'Donations' + '\r\n\n';
+        // for (var i = 0; i < response.data.length; i++){
+        //   CSV += 'Event: '+ response.data[i].title.toString() + '\r\n';
+        //   if(response.data[i].volunteers.length == 0){
+        //     CSV += 'No volunteers'+ '\r\n';
+        //   }
+        //   else{
+        //     CSV += 'First Name' + ',' + 'Last Name' + ',' + 'Age' + ',' + 'Email' + ',' + 'Phone' + '\r\n';
+        //     for (var j = 0; j < response.data[i].volunteers.length; j++){
+        //     CSV += '"' + response.data[i].volunteers[j].firstName.toString() + '"' + ',';
+        //     CSV += '"' + response.data[i].volunteers[j].lastName.toString() + '"' + ',';
+        //     CSV += '"' + response.data[i].volunteers[j].age.toString() + '"' + ',';
+        //     CSV += '"' + response.data[i].volunteers[j].email.toString() + '"' + ',';
+        //     CSV += '"' + response.data[i].volunteers[j].phone.toString() + '"' +  '\r\n';
+        //     }
+        //   }
+        // }
+        // var uri = 'data:text/csv;charset=utf-8,' + escape(CSV);
+        // var link = document.createElement("a");
+        // link.href = uri;
+        // link.style = "visibility:hidden";
+        // link.download =  "Volunteers.csv";
+        // document.body.appendChild(link);
+        // link.click();
+        // document.body.removeChild(link);
+      }, function(err){
+        $mdToast.show(
+          $mdToast.simple()
+            .content('Error: Could not connect to the server. ')
+            .position('top right')
+            .hideDelay(3000)
+            .theme("error-toast")
+          );
+      });
+    }
 
     $scope.createEvent = function($event){
       var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
@@ -403,7 +438,7 @@ angular.module('womenWorkingWithWomenApp')
         tutor.datesTutored.push(currDate);
         alert = $mdDialog.alert()
           .title('This tutor has been checked in for ' + currDate)
-          .ok('Close'); 
+          .ok('Close');
         Api.updateTutor(tutor._id, tutor).then(function(response){
           $mdDialog.show(alert);
         });
@@ -500,7 +535,7 @@ angular.module('womenWorkingWithWomenApp')
           .ok('Confirm')
           .cancel('Cancel');
           $mdDialog.show(confirm).then(function() {
-            
+
             volunteer.checkedIn = false;
             Api.updateVolunteer(volunteer._id, volunteer).then(function(response){
               $($event.target).prop('checked', false); // Show the box as checked.
@@ -558,7 +593,7 @@ angular.module('womenWorkingWithWomenApp')
           .ok('Confirm')
           .cancel('Cancel');
           $mdDialog.show(confirm).then(function() {
-            
+
             vendor.approved = false;
             Api.updateVendor(vendor._id, vendor).then(function(response){
               $($event.target).prop('checked', false); // Show the box as checked.
