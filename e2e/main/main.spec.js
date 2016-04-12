@@ -1,5 +1,6 @@
 'use strict';
 
+
 describe('Home Page', function() {
 
   beforeEach(function() {
@@ -53,7 +54,7 @@ describe('Log in functionality', function() {
 
 describe('About Page', function() {
 
-  beforeEach(function() {
+  beforeAll(function() {
     browser.get('http://localhost:3000/about/story');
   });
 
@@ -94,8 +95,6 @@ describe('Gallery Page', function() {
   it('should load the images', function() {
     expect(element(by.id('gallery')).isPresent()).toBe(true);
   });
-
-  });
 });
 
 describe('Events Page', function() {
@@ -113,6 +112,15 @@ describe('Events Page', function() {
     browser.get('http://localhost:3000/events/upcomingevents');
     element(by.id('attendeeinfolink')).click();
     expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/events/conferenceinformation');
+
+  it('should redirect to Attendee Information page', function() {
+    element(by.id('attendeeinfolink')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/events/attendeeinformation');
+  });
+
+  it('should redirect to Vendor Information page', function() {
+    element(by.id('vendorinfolink')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/events/vendorinformation');
   });
 
   it('should redirect to Vendor Information page', function() {
