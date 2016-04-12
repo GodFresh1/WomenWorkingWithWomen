@@ -1,5 +1,6 @@
 'use strict';
 
+
 describe('Home Page', function() {
 
   beforeEach(function() {
@@ -50,7 +51,6 @@ describe('Log in functionality', function() {
     expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/login');
   });
 });
-
 
 describe('About Page', function() {
 
@@ -112,6 +112,15 @@ describe('Events Page', function() {
     browser.get('http://localhost:3000/events/upcomingevents');
     element(by.id('attendeeinfolink')).click();
     expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/events/conferenceinformation');
+
+  it('should redirect to Attendee Information page', function() {
+    element(by.id('attendeeinfolink')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/events/attendeeinformation');
+  });
+
+  it('should redirect to Vendor Information page', function() {
+    element(by.id('vendorinfolink')).click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/events/vendorinformation');
   });
 
   it('should be able register as attendee', function() {
