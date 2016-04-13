@@ -359,7 +359,10 @@ module.exports = function (grunt) {
             'assets/fonts/**/*',
             'assets/icons/**/*',
             'assets/iconsets/**/*',
-            'index.html'
+            'index.html',
+            'package.json', //add this
+            'server.js',    //this 
+            'Procfile'        //and this
           ]
         }, {
           expand: true,
@@ -394,7 +397,7 @@ module.exports = function (grunt) {
       heroku: {
         options: {
           remote: 'https://git.heroku.com/womenworkingwithwomen.git',
-          branch: 'develop'
+          branch: 'master'
         }
       },
       openshift: {
@@ -644,6 +647,8 @@ module.exports = function (grunt) {
     'build'
   ]);
 
+  grunt.loadNpmTasks('grunt-build-control');  
+  
   // Adds "grunt-mocha-istanbul" npm task
   grunt.loadNpmTasks('grunt-mocha-istanbul');
 
