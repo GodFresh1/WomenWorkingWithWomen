@@ -204,6 +204,42 @@ angular.module('womenWorkingWithWomenApp')
 
     $scope.produceDonationCSV = function(){
       Api.getAllDonations().then(function(response){
+        var CSV = '';
+        CSV += 'Donations' + '\r\n\n';
+        if(response.data.length == 0){
+          CSV += 'No donations'+ '\r\n';
+        }
+        else{
+          CSV += 'First Name' + ',' + 'Last Name' + ',' + 'Email' + ',' + 'Level' + ',' + 'Amount' + '\r\n';
+          for (var i = 0; i < response.data.length; i++){
+            CSV += '"' + response.data[i].firstName.toString() + '"' + ',';
+            CSV += '"' + response.data[i].lastName.toString() + '"' + ',';
+            CSV += '"' + response.data[i]._id.toString() + '"' + ',';
+            CSV += '"' + response.data[i].level.toString() + '"' + ',';
+            CSV += '"' + response.data[i].amount.toString() + '"' +  '\r\n';
+            }
+        }
+        var uri = 'data:text/csv;charset=utf-8,' + escape(CSV);
+        var link = document.createElement("a");
+        link.href = uri;
+        link.style = "visibility:hidden";
+        link.download =  "Donations.csv";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }, function(err){
+        $mdToast.show(
+          $mdToast.simple()
+            .content('Error: Could not connect to the server. ')
+            .position('top right')
+            .hideDelay(3000)
+            .theme("error-toast")
+          );
+      });
+    }
+
+    $scope.produceTutorCSV = function(){
+      Api.getAllTutors().then(function(response){
         console.log(response.data);
         // var CSV = '';
         // CSV += 'Donations' + '\r\n\n';
