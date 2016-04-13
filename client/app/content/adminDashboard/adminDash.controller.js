@@ -240,33 +240,56 @@ angular.module('womenWorkingWithWomenApp')
 
     $scope.produceTutorCSV = function(){
       Api.getAllTutors().then(function(response){
-        console.log(response.data);
-        // var CSV = '';
-        // CSV += 'Donations' + '\r\n\n';
-        // for (var i = 0; i < response.data.length; i++){
-        //   CSV += 'Event: '+ response.data[i].title.toString() + '\r\n';
-        //   if(response.data[i].volunteers.length == 0){
-        //     CSV += 'No volunteers'+ '\r\n';
-        //   }
-        //   else{
-        //     CSV += 'First Name' + ',' + 'Last Name' + ',' + 'Age' + ',' + 'Email' + ',' + 'Phone' + '\r\n';
-        //     for (var j = 0; j < response.data[i].volunteers.length; j++){
-        //     CSV += '"' + response.data[i].volunteers[j].firstName.toString() + '"' + ',';
-        //     CSV += '"' + response.data[i].volunteers[j].lastName.toString() + '"' + ',';
-        //     CSV += '"' + response.data[i].volunteers[j].age.toString() + '"' + ',';
-        //     CSV += '"' + response.data[i].volunteers[j].email.toString() + '"' + ',';
-        //     CSV += '"' + response.data[i].volunteers[j].phone.toString() + '"' +  '\r\n';
-        //     }
-        //   }
-        // }
-        // var uri = 'data:text/csv;charset=utf-8,' + escape(CSV);
-        // var link = document.createElement("a");
-        // link.href = uri;
-        // link.style = "visibility:hidden";
-        // link.download =  "Volunteers.csv";
-        // document.body.appendChild(link);
-        // link.click();
-        // document.body.removeChild(link);
+        var CSV = '';
+        CSV += 'Tutors' + '\r\n\n';
+        if(response.data.length == 0){
+          CSV += 'No volunteers'+ '\r\n';
+        }
+        else{
+          CSV += 'First Name' + ',' + 'Last Name' + ',' + 'Age' + ',' + 'Email' + ',' + 'Phone' + ',' + 'Subjects' + ',' + 'Dates Tutored' + '\r\n';
+          for (var i = 0; i < response.data.length; i++){
+            CSV += '"' + response.data[i].firstName.toString() + '"' + ',';
+            CSV += '"' + response.data[i].lastName.toString() + '"' + ',';
+            CSV += '"' + response.data[i].age.toString() + '"' + ',';
+            CSV += '"' + response.data[i].email.toString() + '"' + ',';
+            CSV += '"' + response.data[i].phone.toString() + '"' + ',';
+            if(response.data[i].subject.length == 0){
+              CSV +=  '"' + 'No subjects'+ '"' + ',';
+            }
+            else{
+              CSV += '"';
+              for (var j = 0; j < response.data[i].subject.length; j++){
+                CSV +=  response.data[i].subject[j].toString();
+                if(j < response.data[i].subject.length -1){
+                  CSV += ', ';
+                }
+              }
+              CSV += '",';
+            }
+            if(response.data[i].datesTutored.length == 0){
+              CSV +=  '"' + 'No Dates'+ '"' + ',';
+            }
+            else{
+              CSV += '"';
+              for (var k = 0; k < response.data[i].datesTutored.length; k++){
+                CSV +=  response.data[i].datesTutored[k].toString();
+                if(k < response.data[i].datesTutored.length -1){
+                  CSV += ', ';
+                }
+              }
+              CSV += '"';
+            }
+            CSV += '\r\n';
+          }
+        }
+        var uri = 'data:text/csv;charset=utf-8,' + escape(CSV);
+        var link = document.createElement("a");
+        link.href = uri;
+        link.style = "visibility:hidden";
+        link.download =  "Tutors.csv";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
       }, function(err){
         $mdToast.show(
           $mdToast.simple()
