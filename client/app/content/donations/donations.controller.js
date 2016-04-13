@@ -10,7 +10,7 @@ angular.module('womenWorkingWithWomenApp')
         $scope.donation.level = "sapphire";
       }else if($scope.donation.amount > 100 && $scope.donation.amount <= 499){
         $scope.donation.level = "emerald";
-      }else if($scope.donation.amount > 500 && $scope.donation.amount <= 999){
+      }else if($scope.donation.amount >= 500 && $scope.donation.amount <= 999){
         $scope.donation.level = "ruby";
       }else if($scope.donation.amount >= 1000){
         $scope.donation.level = "diamond";
