@@ -277,7 +277,10 @@ module.exports = function (grunt) {
           cwd: '<%= yeoman.client %>/assets/images',
           src: '{,*/}*.{png,jpg,jpeg,gif}',
           dest: '<%= yeoman.dist %>/public/assets/images'
-        }]
+        }],
+        options: {
+          cache: false
+        }
       }
     },
 
@@ -390,8 +393,8 @@ module.exports = function (grunt) {
       },
       heroku: {
         options: {
-          remote: 'heroku',
-          branch: 'master'
+          remote: 'https://git.heroku.com/womenworkingwithwomen.git',
+          branch: 'develop'
         }
       },
       openshift: {
