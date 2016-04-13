@@ -13,7 +13,9 @@ angular.module('womenWorkingWithWomenApp')
     $scope.tutors = [];
     $scope.vendors = [];
     $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
-    var testid;
+
+    //var editId;
+    var editEvent;
 
     Api.getAllEvents().then(function(response){
       $scope.events = response.data;
@@ -351,7 +353,9 @@ angular.module('womenWorkingWithWomenApp')
 
      $scope.editDetails = function($event){
        console.log($event._id);
-
+       //editId = $event._id;
+       editEvent = Api.getOneEvent($event._id);
+       console.log("here"+$event._id)
        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
         $mdDialog.show({
           controller: DialogController,
@@ -444,7 +448,6 @@ angular.module('womenWorkingWithWomenApp')
 
     $scope.deleteEvent = function($event){
       console.log($event._id);
-      testid = $event._id;
 
        // Make the admin confirm the deletion.
         var confirm = $mdDialog.confirm()
@@ -680,6 +683,14 @@ angular.module('womenWorkingWithWomenApp')
 
     function DialogController($scope, $mdDialog) {
       $scope.event = {};
+
+
+      $scope.editDefaultTitle = "test";
+      $scope.editDefaultStart = "test";
+      $scope.editDefaultEnd = "test";
+      $scope.editDefaultLoc = "test";
+      $scope.editDefaultDescrip = "test";
+
 
       $scope.hide = function() {
         $mdDialog.hide();

@@ -3,7 +3,7 @@
 angular.module('womenWorkingWithWomenApp')
   .controller('ShellCtrl', function ($mdSidenav, $mdDialog, $scope, $location, Auth) {
 
-    
+
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
