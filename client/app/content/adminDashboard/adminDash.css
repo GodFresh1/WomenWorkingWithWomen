@@ -24,14 +24,24 @@
 #excel-btn1{
 	position: absolute;
 	bottom: 10px;
-	right: 82px;
+	right: 162px;
 }
 #excel-btn2{
 	position: absolute;
 	bottom: 10px;
-	right: 42px;
+	right: 122px;
 }
 #excel-btn3{
+	position: absolute;
+	bottom: 10px;
+	right: 82px;
+}
+#excel-btn4{
+	position: absolute;
+	bottom: 10px;
+	right: 42px;
+}
+#excel-btn5{
 	position: absolute;
 	bottom: 10px;
 	right: 2px;

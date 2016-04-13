@@ -77,7 +77,7 @@ angular.module('womenWorkingWithWomenApp')
       updateTutor: function(_id, tutor){
         return $http.put(API_BASE_URL + 'tutors/' + _id, tutor);
       },
-      deleteTutors: function(_id){
+      deleteTutor: function(_id){
         return $http.delete(API_BASE_URL + 'tutors/' + _id);
       },
 

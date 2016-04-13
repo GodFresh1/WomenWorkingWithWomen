@@ -13,16 +13,23 @@
        <h2 class="md-toolbar-tools">
          <span>Upcoming Events</span>
          <div>
-         <a id="excel-btn1" class="btn-floating" ng-click="produceAttendeeCSV(event)"><i style="font-size:7px">{{'Attendees'}}</i></a>
+         <a id="excel-btn1" class="btn-floating" ng-click="produceAttendeeCSV()"><i style="font-size:7px">{{'Attendees'}}</i></a>
        </div>
         <div>
-         <a id="excel-btn2" class="btn-floating" ng-click="produceVendorCSV(event)"><i style="font-size:7px">{{'Vendors'}}</i></a>
+         <a id="excel-btn2" class="btn-floating" ng-click="produceVendorCSV()"><i style="font-size:7px">{{'Vendors'}}</i></a>
        </div>
        <div>
-         <a id="excel-btn3" class="btn-floating" ng-click="produceVolunteerCSV(event)"><i style="font-size:7px">{{'Volunteers'}}</i></a>
+         <a id="excel-btn3" class="btn-floating" ng-click="produceVolunteerCSV()"><i style="font-size:7px">{{'Volunteers'}}</i></a>
+       </div>
+       <div>
+         <a id="excel-btn4" class="btn-floating" ng-click="produceDonationCSV()"><i style="font-size:7px">{{'Donations'}}</i></a>
+       </div>
+       <div>
+         <a id="excel-btn5" class="btn-floating" ng-click="produceTutorCSV()"><i style="font-size:7px">{{'Tutors'}}</i></a>
        </div>
        <div class="new-event-container">
-           <button class="btn btn-default" ng-click="createEvent()">Create Event.</button>
+           <button class="btn btn-default" ng-click="createEvent()" id="createeventbutton">Create Event</button>
+         </div>
        </h2>
      </md-toolbar>
      <md-content>
@@ -34,11 +41,11 @@
                  <h3>{{event.title}}</h3>
                  <h4>{{event.startDate}}</h4>
                  <p>{{event.description}}</p>
-                 <button class="btn btn-default" ng-click="editDetails(event)" style = "margin-top: 20px">Edit Event</button>
+                 <button class="btn btn-default" ng-click="editDetails(event)" style = "margin-top: 20px" id="editeventbutton">Edit Event</button>
                </div>
                <div id="event-controls"class="col l2 m4 s4 clearfix" >
                  <div class="time">{{event.startTime}} - {{event.endTime}}</div>
-                 <a id="event-details-btn" class="btn-floating" ng-click="showDetails(event)"><i class="material-icons">{{showDetails[event._id] ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</i></a>
+                 <a id="event-details-btn" class="btn-floating" ng-click="showDetails(event)"><i class="material-icons" id="showdetailsbutton">{{showDetails[event._id] ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</i></a>
                </div>
              </div>
              <div id="detailed-info" class="row" ng-show="showDetails[event._id]">
@@ -61,7 +68,7 @@
                     <td width="30%">{{attendee.firstName}} {{attendee.lastName}}</td>
                     <td width="60%">{{attendee.email}}  </td>
                     <td class="check-in" >
-                      <input type="checkbox" id="{{attendee._id}}"  ng-checked="attendee.checkedIn" ng-click="checkBox(attendee, $event)"/>
+                      <input type="checkbox" id="{{attendee._id}}"  ng-checked="attendee.checkedIn" ng-click="checkBoxAttendee(attendee, $event)"/>
                       <label for="{{attendee._id}}"></label>
                     </td>
                   </tr>
@@ -89,14 +96,42 @@
                     <td width="30%">{{volunteer.firstName}} {{volunteer.lastName}}</td>
                     <td width="60%">{{volunteer.email}}  </td>
                     <td class="check-in">
-                      <input type="checkbox" id="{{volunteer._id}}" ng-checked="volunteer.checkedIn" ng-click="checkBox(volunteer, $event)"/>
+                      <input type="checkbox" id="{{volunteer._id}}" ng-checked="volunteer.checkedIn" ng-click="checkBoxVol(volunteer, $event)"/>
                       <label for="{{volunteer._id}}"></label>
                     </td>
                   </tr>
                 </tbody>
               </table>
+           </div>
+           <br>
+           <div id="detailed-info" class="row" ng-show="showDetails[event._id]">
+               <md-toolbar class="md-theme-light small-toolbar">
+                <h2 class="md-toolbar-tools small-toolbar">
+                  <span ng-show="event.vendors.length > 0">Vendors</span>
+                  <span ng-show="event.vendors.length < 1">There are no vendors for this event.</span>
+                </h2>
+              </md-toolbar>
+               <table ng-show="event.vendors.length > 0" class="striped">
+                <thead>
+                  <tr>
+                    <th data-field="name">Name</th>
+                    <th data-field="email">Organization</th>
+                    <th class="check-in" data-field="checked in">Approve</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="vendor in event.vendors">
+                    <td width="30%">{{vendor.firstName}} {{vendor.lastName}}</td>
+                    <td width="60%">{{vendor.organizationName}}  </td>
+                    <td class="check-in">
+                      <input type="checkbox" id="{{vendor._id}}" ng-checked="vendor.approved" ng-click="checkBox(vendor, $event)"/>
+                      <label for="{{vendor._id}}"></label>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
               <div class="new-event-container">
-                <button class="btn btn-default" ng-click="deleteEvent(event)" style = "margin-top: 40px">Delete Event</button>
+                <button class="btn btn-default" ng-click="deleteEvent(event)" style = "margin-top: 40px" id="deleteeventbutton">Delete Event</button>
               </div>
            </div>
            <hr class="simple-hr">
@@ -159,17 +194,17 @@
               <tr>
                 <th data-field="name">Name</th>
                 <th data-field="email">Email</th>
-                <th class="check-in" data-field="checked in">Check in</th>
               </tr>
             </thead>
             <tbody>
               <tr ng-repeat="tutor in tutors">
                   <td width="30%">{{tutor.firstName}} {{tutor.lastName}}</td>
-                  <td width="60%">{{tutor.email}}  </td>
+                  <td width="30%">{{tutor.email}}  </td>
                   <td class="check-in">
-                    <input type="checkbox" id="{{tutor._id}}" ng-disabled="tutor.checkedIn"  ng-checked="tutor.checkedIn" ng-click="checkBox(tutor)"/>
+                    <button type="btn" ng-click = "checkIn(tutor)" class="btn btn btn-primary submit">Check In</button>
                     <label for="{{tutor._id}}"></label>
                   </td>
+                  <td> <button type="btn" ng-click = "deleteTutor(tutor)" class="btn btn btn-primary"> <label for="{{tutor._id}}"></label>X</button>
               </tr>
             </tbody>
         </table>

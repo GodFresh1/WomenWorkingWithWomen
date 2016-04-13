@@ -13,11 +13,11 @@
       </div>
       <div class="row">
         <div class="input-field col l6 m6 s6">
-          <span style="color: #9e9e9e;">Start Date:</span>
+          <span style="color: #9e9e9e;">Start Date: *</span>
           <input type="date" id="start" class="datepicker" ng-model="event.start" ng-required="true"/>
         </div>
         <div class="input-field col l6 m6 s6">
-          <span style="color: #9e9e9e;">End Date:</span>
+          <span style="color: #9e9e9e;">End Date: *</span>
           <input type="date" id="end" class="validate datepicker" ng-model="event.end" ng-required="true"/>
         </div>
       </div>
@@ -39,7 +39,7 @@
       </div>
       <div class="form-group">
         <div class="col-sm-offset-3 col-sm-4">
-          <button type="submit-btn" class="btn btn btn-primary submit">Submit</button>
+          <button type="submit-btn" class="btn btn btn-primary submit" id="submitbutton">Submit</button>
           <button type="cancel-btn" class="btn btn btn-primary cancel" ng-click="cancel()">Cancel</button>
         </div>
       </div>

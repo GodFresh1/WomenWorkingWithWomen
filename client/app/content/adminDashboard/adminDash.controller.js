@@ -5,13 +5,13 @@ angular.module('womenWorkingWithWomenApp')
   .controller('AdminDashCtrl', ['$scope', 'Api', '$mdToast', 'Auth', '$mdDialog', '$mdMedia', function($scope, Api, $mdToast, Auth, $mdDialog, $mdMedia) {
     $scope.events = [];
     $scope.showDetails = {};
-    $scope.csvTemp = [];
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
     $scope.volunteers = [];
     $scope.donations = [];
     $scope.tutors = [];
+    $scope.vendors = [];
     $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 
     //var editId;
@@ -65,14 +65,25 @@ angular.module('womenWorkingWithWomenApp')
       );
     });
 
+    Api.getAllVendors().then(function(response){
+      $scope.vendors = response.data;
+    }, function(err){
+      $mdToast.show(
+        $mdToast.simple()
+          .content('Error: Could not connect to the server. ')
+          .position('top right')
+          .hideDelay(3000)
+          .theme("error-toast")
+      );
+    });
+
     $scope.showDetails = function(event){
       var isShown = $scope.showDetails[event._id];
       $scope.showDetails[event._id] = (isShown == undefined || !isShown) ? true : false;
     }
 
-    $scope.produceAttendeeCSV = function(event){
+    $scope.produceAttendeeCSV = function(){
       Api.getAllEvents().then(function(response){
-        $scope.csvTemp = response.data;
         var CSV = '';
         CSV += 'Attendees' + '\r\n\n';
         for (var i = 0; i < response.data.length; i++){
@@ -111,9 +122,8 @@ angular.module('womenWorkingWithWomenApp')
       });
     }
 
-    $scope.produceVendorCSV = function(event){
+    $scope.produceVendorCSV = function(){
       Api.getAllEvents().then(function(response){
-        $scope.csvEventTemp = response.data;
         var CSV = '';
         CSV += 'Vendors' + '\r\n\n';
         for (var i = 0; i < response.data.length; i++){
@@ -155,9 +165,8 @@ angular.module('womenWorkingWithWomenApp')
       });
     }
 
-    $scope.produceVolunteerCSV = function(event){
+    $scope.produceVolunteerCSV = function(){
       Api.getAllEvents().then(function(response){
-        $scope.csvTemp = response.data;
         var CSV = '';
         CSV += 'Volunteers' + '\r\n\n';
         for (var i = 0; i < response.data.length; i++){
@@ -195,6 +204,104 @@ angular.module('womenWorkingWithWomenApp')
       });
     }
 
+    $scope.produceDonationCSV = function(){
+      Api.getAllDonations().then(function(response){
+        var CSV = '';
+        CSV += 'Donations' + '\r\n\n';
+        if(response.data.length == 0){
+          CSV += 'No donations'+ '\r\n';
+        }
+        else{
+          CSV += 'First Name' + ',' + 'Last Name' + ',' + 'Email' + ',' + 'Level' + ',' + 'Amount' + '\r\n';
+          for (var i = 0; i < response.data.length; i++){
+            CSV += '"' + response.data[i].firstName.toString() + '"' + ',';
+            CSV += '"' + response.data[i].lastName.toString() + '"' + ',';
+            CSV += '"' + response.data[i]._id.toString() + '"' + ',';
+            CSV += '"' + response.data[i].level.toString() + '"' + ',';
+            CSV += '"' + response.data[i].amount.toString() + '"' +  '\r\n';
+            }
+        }
+        var uri = 'data:text/csv;charset=utf-8,' + escape(CSV);
+        var link = document.createElement("a");
+        link.href = uri;
+        link.style = "visibility:hidden";
+        link.download =  "Donations.csv";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }, function(err){
+        $mdToast.show(
+          $mdToast.simple()
+            .content('Error: Could not connect to the server. ')
+            .position('top right')
+            .hideDelay(3000)
+            .theme("error-toast")
+          );
+      });
+    }
+
+    $scope.produceTutorCSV = function(){
+      Api.getAllTutors().then(function(response){
+        var CSV = '';
+        CSV += 'Tutors' + '\r\n\n';
+        if(response.data.length == 0){
+          CSV += 'No volunteers'+ '\r\n';
+        }
+        else{
+          CSV += 'First Name' + ',' + 'Last Name' + ',' + 'Age' + ',' + 'Email' + ',' + 'Phone' + ',' + 'Subjects' + ',' + 'Dates Tutored' + '\r\n';
+          for (var i = 0; i < response.data.length; i++){
+            CSV += '"' + response.data[i].firstName.toString() + '"' + ',';
+            CSV += '"' + response.data[i].lastName.toString() + '"' + ',';
+            CSV += '"' + response.data[i].age.toString() + '"' + ',';
+            CSV += '"' + response.data[i].email.toString() + '"' + ',';
+            CSV += '"' + response.data[i].phone.toString() + '"' + ',';
+            if(response.data[i].subject.length == 0){
+              CSV +=  '"' + 'No subjects'+ '"' + ',';
+            }
+            else{
+              CSV += '"';
+              for (var j = 0; j < response.data[i].subject.length; j++){
+                CSV +=  response.data[i].subject[j].toString();
+                if(j < response.data[i].subject.length -1){
+                  CSV += ', ';
+                }
+              }
+              CSV += '",';
+            }
+            if(response.data[i].datesTutored.length == 0){
+              CSV +=  '"' + 'No Dates'+ '"' + ',';
+            }
+            else{
+              CSV += '"';
+              for (var k = 0; k < response.data[i].datesTutored.length; k++){
+                CSV +=  response.data[i].datesTutored[k].toString();
+                if(k < response.data[i].datesTutored.length -1){
+                  CSV += ', ';
+                }
+              }
+              CSV += '"';
+            }
+            CSV += '\r\n';
+          }
+        }
+        var uri = 'data:text/csv;charset=utf-8,' + escape(CSV);
+        var link = document.createElement("a");
+        link.href = uri;
+        link.style = "visibility:hidden";
+        link.download =  "Tutors.csv";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }, function(err){
+        $mdToast.show(
+          $mdToast.simple()
+            .content('Error: Could not connect to the server. ')
+            .position('top right')
+            .hideDelay(3000)
+            .theme("error-toast")
+          );
+      });
+    }
 
     $scope.createEvent = function($event){
       var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
@@ -268,7 +375,6 @@ angular.module('womenWorkingWithWomenApp')
                .theme("success-toast")
           );
 
-
              //Updates the array of events which will be populated on the admin dashboard
              Api.getAllEvents().then(function(response){
              $scope.events = response.data;
@@ -283,8 +389,6 @@ angular.module('womenWorkingWithWomenApp')
             });
           });
 
-
-
           // Add the event to the database.
           console.log(event);
         }, function() {
@@ -297,6 +401,49 @@ angular.module('womenWorkingWithWomenApp')
           $scope.customFullscreen = (wantsFullScreen === true);
         });
      }
+
+     $scope.deleteTutor = function($tutor){
+      console.log($tutor._id);
+      testid = $tutor._id;
+      var confirm = $mdDialog.confirm()
+      .title('Are you sure you want to permenantly delete this tutor?')
+      .textContent('This tutor will no longer be registered.')
+      .ariaLabel('Lucky day')
+      .ok('Confirm')
+      .cancel('Cancel');
+      $mdDialog.show(confirm).then(function(tutor){
+        //delete tutor
+        Api.deleteTutor($tutor._id).then(function(response){
+          $mdToast.show(
+              $mdToast.simple()
+              .content('Deletion succesful!')
+              .position('top right')
+              .hideDelay(3000)
+              .theme("success-toast")
+          );
+
+          Api.getAllTutors().then(function(reponse){
+            $scope.tutors = response.data;
+          }, function(err){
+            $mdToast.show(
+            $mdToast.simple()
+              .content('Error: Could not connect to the server. ')
+              .position('top right')
+              .hideDelay(3000)
+              .theme("error-toast")
+            );
+          });
+        }, function(err){
+          $mdToast.show(
+                $mdToast.simple()
+                .content('Error: Could not delete the tutor.')
+                .position('top right')
+                .hideDelay(3000)
+                .theme("error-toast")
+          );
+        })
+      });
+    };
 
     $scope.deleteEvent = function($event){
       console.log($event._id);
@@ -314,7 +461,7 @@ angular.module('womenWorkingWithWomenApp')
           Api.deleteEvent($event._id).then(function(response){
             $mdToast.show(
               $mdToast.simple()
-              .content('Deletion succesfull!')
+              .content('Deletion succesful!')
               .position('top right')
               .hideDelay(3000)
               .theme("success-toast")
@@ -346,7 +493,20 @@ angular.module('womenWorkingWithWomenApp')
         });
     }
 
-    $scope.checkBox = function(attendee, $event){
+    $scope.checkIn = function(tutor) {
+      if($scope.isAdmin()){
+        var currDate = new Date();
+        tutor.datesTutored.push(currDate);
+        alert = $mdDialog.alert()
+          .title('This tutor has been checked in for ' + currDate)
+          .ok('Close');
+        Api.updateTutor(tutor._id, tutor).then(function(response){
+          $mdDialog.show(alert);
+        });
+      }
+    }
+
+    $scope.checkBoxAttendee = function(attendee, $event){
       $event.preventDefault();
       if($scope.isAdmin()){
         if(attendee.checkedIn == false){
@@ -404,7 +564,7 @@ angular.module('womenWorkingWithWomenApp')
       }
     };
 
-    $scope.checkBox = function(volunteer, $event){
+    $scope.checkBoxVol = function(volunteer, $event){
       $event.preventDefault();
       if($scope.isAdmin()){
         if(volunteer.checkedIn == false){
@@ -461,18 +621,66 @@ angular.module('womenWorkingWithWomenApp')
         }
       }
     };
+    $scope.checkBox = function(vendor, $event){
+      $event.preventDefault();
+      if($scope.isAdmin()){
+        if(vendor.approved == false){
+          vendor.approved = true;
+          Api.updateVendor(vendor._id, vendor).then(function(response){
+            $($event.target).prop('checked', true); // Show the box as checked.
+            $mdToast.show(
+              $mdToast.simple()
+                .content('Approval succesful!')
+                .position('top right')
+                .hideDelay(3000)
+                .theme("success-toast")
+            );
+          }, function(err){
+            $mdToast.show(
+              $mdToast.simple()
+                .content('Error: Could not approve vendor.')
+                .position('top right')
+                .hideDelay(3000)
+                .theme("error-toast")
+            );
+          });
+        }else{
+          // Make the admin confirm the unapproval.
+          var confirm = $mdDialog.confirm()
+          .title('Are you sure you want to unapprove this vendor?')
+          .textContent('This vendor will no longer be marked as approved.')
+          .ariaLabel('Lucky day')
+          .ok('Confirm')
+          .cancel('Cancel');
+          $mdDialog.show(confirm).then(function() {
 
-
+            vendor.approved = false;
+            Api.updateVendor(vendor._id, vendor).then(function(response){
+              $($event.target).prop('checked', false); // Show the box as checked.
+              $mdToast.show(
+                $mdToast.simple()
+                  .content('Unapproval succesful!')
+                  .position('top right')
+                  .hideDelay(3000)
+                  .theme("success-toast")
+              );
+            }, function(err){
+              $mdToast.show(
+                $mdToast.simple()
+                  .content('Error: Could not unapprove vendor.')
+                  .position('top right')
+                  .hideDelay(3000)
+                  .theme("error-toast")
+              );
+            });
+          }, function() {
+          });
+        }
+      }
+    };
 
     function DialogController($scope, $mdDialog) {
       $scope.event = {};
-
-
-      $scope.editDefaultTitle = "test";
-      $scope.editDefaultStart = "test";
-      $scope.editDefaultEnd = "test";
-      $scope.editDefaultLoc = "test";
-      $scope.editDefaultDescrip = "test";
 
 
       $scope.hide = function() {

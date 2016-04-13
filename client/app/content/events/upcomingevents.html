@@ -10,8 +10,8 @@
       <h5>Events</h5>
       <ul class="links-list">
         <li class="active-page"><a ui-sref="events.upcomingevents">UPCOMING EVENTS</a></li>
-        <li><a ui-sref="events.attendeeregistration">ATTENDEE REGISTRATION</a></li>
-        <li><a ui-sref="events.vendorregistration">VENDOR REGISTRATION</a></li>
+        <li><a ui-sref="events.attendeeregistration" id="attendeeregistrationlink">ATTENDEE REGISTRATION</a></li>
+        <li><a ui-sref="events.vendorregistration" id="vendorregistrationlink">VENDOR REGISTRATION</a></li>
         <li><a ui-sref="events.conferenceinformation" id="attendeeinfolink">CONFERENCE INFORMATION</a></li>
       </ul>
     </div>
@@ -22,7 +22,7 @@
             <h4>We encourage everyone to join us for our events!</h4>
             <p>Click on the event to find out more information.</p>
             <div class="row flyers-container">
-              <a ui-sref="events.attendeeinformation" id="eventinfopicture"><img src="http://i.imgur.com/qdSHGxm.jpg"></a>
+              <a ui-sref="events.conferenceinformation" ><img src="http://i.imgur.com/qdSHGxm.jpg" id="eventinfopicture"></a>
             </div>
           </div>
         <div class="calendar" ng-model="eventSources" calendar="myCalendar" ui-calendar="uiConfig.calendar"></div>
