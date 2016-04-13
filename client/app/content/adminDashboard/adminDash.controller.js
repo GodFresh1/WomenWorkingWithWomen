@@ -413,6 +413,7 @@ angular.module('womenWorkingWithWomenApp')
       .cancel('Cancel');
       $mdDialog.show(confirm).then(function(tutor){
         //delete tutor
+        console.log($tutor._id);
         Api.deleteTutor($tutor._id).then(function(response){
           $mdToast.show(
               $mdToast.simple()
@@ -422,17 +423,18 @@ angular.module('womenWorkingWithWomenApp')
               .theme("success-toast")
           );
 
-          Api.getAllTutors().then(function(reponse){
+          Api.getAllTutors().then(function(response){
             $scope.tutors = response.data;
           }, function(err){
             $mdToast.show(
-            $mdToast.simple()
+              $mdToast.simple()
               .content('Error: Could not connect to the server. ')
               .position('top right')
               .hideDelay(3000)
               .theme("error-toast")
             );
           });
+
         }, function(err){
           $mdToast.show(
                 $mdToast.simple()
@@ -441,9 +443,10 @@ angular.module('womenWorkingWithWomenApp')
                 .hideDelay(3000)
                 .theme("error-toast")
           );
-        })
+        });
+      }, function() {
       });
-    };
+    }
 
     $scope.deleteEvent = function($event){
       console.log($event._id);
