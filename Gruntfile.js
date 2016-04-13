@@ -649,6 +649,9 @@ module.exports = function (grunt) {
 
   grunt.loadNpmTasks('grunt-build-control');  
   
+  // Load the plugin that provides the "uglify" task.
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+
   // Adds "grunt-mocha-istanbul" npm task
   grunt.loadNpmTasks('grunt-mocha-istanbul');
 
