@@ -404,7 +404,7 @@ angular.module('womenWorkingWithWomenApp')
 
      $scope.deleteTutor = function($tutor){
       console.log($tutor._id);
-      testid = $tutor._id;
+      //testid = $tutor._id;
       var confirm = $mdDialog.confirm()
       .title('Are you sure you want to permenantly delete this tutor?')
       .textContent('This tutor will no longer be registered.')
