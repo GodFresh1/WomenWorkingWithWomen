@@ -13,7 +13,9 @@ angular.module('womenWorkingWithWomenApp')
     $scope.donations = [];
     $scope.tutors = [];
     $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
-    var testid;
+
+    //var editId;
+    var editEvent;
 
     Api.getAllEvents().then(function(response){
       $scope.events = response.data;
@@ -239,58 +241,13 @@ angular.module('womenWorkingWithWomenApp')
        }, function(wantsFullScreen) {
          $scope.customFullscreen = (wantsFullScreen === true);
        });
-
-    }
-
-    $scope.createEvent = function($event){
-      var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
-       $mdDialog.show({
-         controller: DialogController,
-         templateUrl: '/app/content/adminDashboard/newEventDialog.html',
-         parent: angular.element(document.body),
-         targetEvent: $event,
-         clickOutsideToClose:true,
-         fullscreen: useFullScreen
-       })
-       .then(function(event) {
-
-         Api.createEvent(event).then(function(response){
-            $mdToast.show(
-            $mdToast.simple()
-              .content('Add event succesfull!')
-              .position('top right')
-              .hideDelay(3000)
-              .theme("success-toast")
-         );
-         });
-
-         //Updates the array of events which will be populated on the admin dashboard
-         Api.getAllEvents().then(function(response){
-            $scope.events = response.data;
-         }, function(err){
-          $mdToast.show(
-          $mdToast.simple()
-            .content('Error: Could not connect to the server. ')
-            .position('top right')
-            .hideDelay(3000)
-            .theme("error-toast")
-          );
-         });
-
-         console.log(event);
-       }, function() {
-         console.log("Add event canceled.")
-       });
-       $scope.$watch(function() {
-         return $mdMedia('xs') || $mdMedia('sm');
-       }, function(wantsFullScreen) {
-         $scope.customFullscreen = (wantsFullScreen === true);
-       });
     }
 
      $scope.editDetails = function($event){
        console.log($event._id);
-
+       //editId = $event._id;
+       editEvent = Api.getOneEvent($event._id);
+       console.log("here"+$event._id)
        var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
         $mdDialog.show({
           controller: DialogController,
@@ -326,7 +283,7 @@ angular.module('womenWorkingWithWomenApp')
             });
           });
 
-          
+
 
           // Add the event to the database.
           console.log(event);
@@ -343,7 +300,6 @@ angular.module('womenWorkingWithWomenApp')
 
     $scope.deleteEvent = function($event){
       console.log($event._id);
-      testid = $event._id;
 
        // Make the admin confirm the deletion.
         var confirm = $mdDialog.confirm()
@@ -480,7 +436,7 @@ angular.module('womenWorkingWithWomenApp')
           .ok('Confirm')
           .cancel('Cancel');
           $mdDialog.show(confirm).then(function() {
-            
+
             volunteer.checkedIn = false;
             Api.updateVolunteer(volunteer._id, volunteer).then(function(response){
               $($event.target).prop('checked', false); // Show the box as checked.
@@ -506,10 +462,18 @@ angular.module('womenWorkingWithWomenApp')
       }
     };
 
-   
+
 
     function DialogController($scope, $mdDialog) {
       $scope.event = {};
+
+
+      $scope.editDefaultTitle = "test";
+      $scope.editDefaultStart = "test";
+      $scope.editDefaultEnd = "test";
+      $scope.editDefaultLoc = "test";
+      $scope.editDefaultDescrip = "test";
+
 
       $scope.hide = function() {
         $mdDialog.hide();
