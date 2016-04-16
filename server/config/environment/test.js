@@ -7,7 +7,7 @@ module.exports = {
   mongo: {
     uri: 'mongodb://dev:dev@ds055515.mongolab.com:55515/women_working_with_women'
   },
-  seedDB: true,
+  seedDB: false,
   smtp: {
       uri: 'smtps://womenworkingcontactrequest%40gmail.com:womenworkingwithwomen@smtp.gmail.com'
     }
