@@ -348,10 +348,6 @@ angular.module('womenWorkingWithWomenApp')
        }, function(wantsFullScreen) {
          $scope.customFullscreen = (wantsFullScreen === true);
        });
-<<<<<<< HEAD
-=======
-
->>>>>>> a7afe228dc83e06924be2c2844a10d8790172590
     }
 
      $scope.editDetails = function($event){
@@ -497,8 +493,6 @@ angular.module('womenWorkingWithWomenApp')
           });
 
         }, function() {
-<<<<<<< HEAD
-=======
         });
     }
 
@@ -511,9 +505,9 @@ angular.module('womenWorkingWithWomenApp')
           .ok('Close');
         Api.updateTutor(tutor._id, tutor).then(function(response){
           $mdDialog.show(alert);
->>>>>>> a7afe228dc83e06924be2c2844a10d8790172590
         });
     }
+  }
 
     $scope.checkIn = function(tutor) {
       if($scope.isAdmin()){
