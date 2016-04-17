@@ -657,4 +657,8 @@ module.exports = function (grunt) {
     'mocha_istanbul:coverage'
   ]);
 
+  // change the tasks in the list to your production tasks
+grunt.registerTask('heroku',
+    ['compass:dist', 'autoprefixer', 'imagemin']);
+
 };
