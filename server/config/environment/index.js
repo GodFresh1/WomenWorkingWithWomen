@@ -24,8 +24,6 @@ var all = {
   // Server IP
   ip: process.env.IP || '0.0.0.0',
 
-  // Should we populate the DB with sample data?
-  seedDB: false,
 
   // Secret for session, you will want to change this and make it an environment variable
   secrets: {
@@ -39,7 +37,7 @@ var all = {
   mongo: {
     uri: 'mongodb://production:production@ds011251.mlab.com:11251/women-working-with-women'
   },
-  seedDB: false,
+  seedDB: true,
   smtp: {
       uri: 'smtps://womenworkingcontactrequest%40gmail.com:womenworkingwithwomen@smtp.gmail.com'
     }
