@@ -25,7 +25,7 @@ module.exports = {
 
   /*DEV SHIT*/
   mongo: {
-    uri: 'mongodb://dev:dev@ds055515.mongolab.com:55515/women_working_with_women'
+    uri: 'mongodb://production:production@ds011251.mlab.com:11251/women-working-with-women'
   },
   seedDB: false,
   smtp: {
