@@ -51,18 +51,18 @@ var Tutor = require('../api/tutor/tutor.model');
 //   });
 // });
 
-User.find({}).remove(function() {
-  User.create({
-    provider: 'local',
-    role: 'admin',
-    name: 'Belinda',
-    email: '4wsbms@gmail.com',
-    password: 'womenworking1'
-  },function() {
-      console.log('finished populating users');
-    }
-  );
-});
+// User.find({}).remove(function() {
+//   User.create({
+//     provider: 'local',
+//     role: 'admin',
+//     name: 'Belinda',
+//     email: '4wsbms@gmail.com',
+//     password: 'womenworking1'
+//   },function() {
+//       console.log('finished populating users');
+//     }
+//   );
+// });
 
 // // Seed Events
 // Event.find({}).remove(function(){
