@@ -122,6 +122,45 @@ angular.module('womenWorkingWithWomenApp')
       });
     }
 
+    $scope.produceEventAttendeeCSV = function($event){
+      Api.getOneEvent($event._id).then(function(response){
+        var CSV = '';
+        CSV += 'Attendees' + '\r\n\n';
+        CSV += 'Event: '+ response.data.title.toString() + '\r\n';
+        console.log(response.data.attendees);
+        if(response.data.attendees.length == 0){
+          CSV += 'No attendees'+ '\r\n';
+        }
+        else{
+          CSV += 'First Name' + ',' + 'Last Name' + ',' + 'Age' + ',' + 'Email' + ',' + 'Phone' + ',' + 'Check-in?' + '\r\n';
+          for (var j = 0; j < response.data.attendees.length; j++){
+            CSV += '"' + response.data.attendees[j].firstName.toString() + '"' + ',';
+            CSV += '"' + response.data.attendees[j].lastName.toString() + '"' + ',';
+            CSV += '"' + response.data.attendees[j].age.toString() + '"' + ',';
+            CSV += '"' + response.data.attendees[j].email.toString() + '"' + ',';
+            CSV += '"' + response.data.attendees[j].phone.toString() + '"' + ',';
+            CSV += '"' + response.data.attendees[j].checkedIn.toString() + '"' + '\r\n';
+          }
+        }
+        var uri = 'data:text/csv;charset=utf-8,' + escape(CSV);
+        var link = document.createElement("a");
+        link.href = uri;
+        link.style = "visibility:hidden";
+        link.download =  "Attendees.csv";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }, function(err){
+        $mdToast.show(
+          $mdToast.simple()
+            .content('Error: Could not connect to the server. ')
+            .position('top right')
+            .hideDelay(3000)
+            .theme("error-toast")
+          );
+      });
+    }
+
     $scope.produceVendorCSV = function(){
       Api.getAllEvents().then(function(response){
         var CSV = '';
@@ -165,6 +204,47 @@ angular.module('womenWorkingWithWomenApp')
       });
     }
 
+    $scope.produceEventVendorCSV = function($event){
+      Api.getOneEvent($event._id).then(function(response){
+        var CSV = '';
+        CSV += 'Vendors' + '\r\n\n';
+        CSV += 'Event: '+ response.data.title.toString() + '\r\n';
+        if(response.data.vendors.length == 0){
+          CSV += 'No vendors'+ '\r\n';
+        }
+        else{
+          CSV += 'First Name' + ',' + 'Last Name' + ',' + 'jobTitle' + ',' + 'Email' + ',' + 'Phone' + ',' + 'organizationName' + 'organizationAddress' + 'descriptionOfServices' + 'descriptionOfPrizes' + '\r\n';
+          for (var j = 0; j < response.data.vendors.length; j++){
+            CSV += '"' + response.data.vendors[j].firstName.toString() + '"' + ',';
+            CSV += '"' + response.data.vendors[j].lastName.toString() + '"' + ',';
+            CSV += '"' + response.data.vendors[j].jobTitle.toString() + '"' + ',';
+            CSV += '"' + response.data.vendors[j].email.toString() + '"' + ',';
+            CSV += '"' + response.data.vendors[j].phone.toString() + '"' + ',';
+            CSV += '"' + response.data.vendors[j].organizationName.toString() + '"' + ',';
+            CSV += '"' + response.data.vendors[j].organizationAddress.toString() + '"' + ',';
+            CSV += '"' + response.data.vendors[j].descriptionOfServices.toString() + '"' + ',';
+            CSV += '"' + response.data.vendors[j].descriptionOfPrizes.toString() + '"' + '\r\n';
+          }
+        }
+        var uri = 'data:text/csv;charset=utf-8,' + escape(CSV);
+        var link = document.createElement("a");
+        link.href = uri;
+        link.style = "visibility:hidden";
+        link.download =  "Vendors.csv";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }, function(err){
+        $mdToast.show(
+          $mdToast.simple()
+            .content('Error: Could not connect to the server. ')
+            .position('top right')
+            .hideDelay(3000)
+            .theme("error-toast")
+          );
+      });
+    }
+
     $scope.produceVolunteerCSV = function(){
       Api.getAllEvents().then(function(response){
         var CSV = '';
@@ -183,6 +263,43 @@ angular.module('womenWorkingWithWomenApp')
             CSV += '"' + response.data[i].volunteers[j].email.toString() + '"' + ',';
             CSV += '"' + response.data[i].volunteers[j].phone.toString() + '"' +  '\r\n';
             }
+          }
+        }
+        var uri = 'data:text/csv;charset=utf-8,' + escape(CSV);
+        var link = document.createElement("a");
+        link.href = uri;
+        link.style = "visibility:hidden";
+        link.download =  "Volunteers.csv";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }, function(err){
+        $mdToast.show(
+          $mdToast.simple()
+            .content('Error: Could not connect to the server. ')
+            .position('top right')
+            .hideDelay(3000)
+            .theme("error-toast")
+          );
+      });
+    }
+
+    $scope.produceEventVolunteerCSV = function($event){
+      Api.getOneEvent($event._id).then(function(response){
+        var CSV = '';
+        CSV += 'Volunteers' + '\r\n\n';
+        CSV += 'Event: '+ response.data.title.toString() + '\r\n';
+        if(response.data.volunteers.length == 0){
+          CSV += 'No volunteers'+ '\r\n';
+        }
+        else{
+          CSV += 'First Name' + ',' + 'Last Name' + ',' + 'Age' + ',' + 'Email' + ',' + 'Phone' + '\r\n';
+          for (var j = 0; j < response.data.volunteers.length; j++){
+            CSV += '"' + response.data.volunteers[j].firstName.toString() + '"' + ',';
+            CSV += '"' + response.data.volunteers[j].lastName.toString() + '"' + ',';
+            CSV += '"' + response.data.volunteers[j].age.toString() + '"' + ',';
+            CSV += '"' + response.data.volunteers[j].email.toString() + '"' + ',';
+            CSV += '"' + response.data.volunteers[j].phone.toString() + '"' +  '\r\n';
           }
         }
         var uri = 'data:text/csv;charset=utf-8,' + escape(CSV);
