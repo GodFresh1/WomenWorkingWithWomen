@@ -39,3 +39,4 @@ grunt serve
 ```
 
 ## How to update database and server connections:
+Out database is located at https://mlab.com/databases/women_working_with_women. If you want to change out your database, you will need to update the mongo uri in server/config/environment/development.js. 
