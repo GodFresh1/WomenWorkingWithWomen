@@ -14,7 +14,6 @@
     "angular-socket-io": "~0.6.0",
     "angular-ui-router": "~0.2.15",
     "Materialize": "materialize#^0.97.5",
-    "material-design-icons": "~2.2.1",
     "angular-ui-calendar": "^1.0.1",
     "angular-material-datetimepicker": "^1.4.0"
   },
