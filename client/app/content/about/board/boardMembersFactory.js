@@ -37,11 +37,11 @@ angular.module('womenWorkingWithWomenApp')
         },
         {
           "name":  "Eva M. Bartley",
-          "title": "Assitant Secretary",
-           "description": "" ,
-           "telephone": "(904)553 4680",
-           "email": "",
-           "imgSrc": "http://i.imgur.com/TXwRc0z.jpg"
+          "title": "Board of Director",
+           "description": "Conference Registration Director / Teen Workshop Seminar Presenter / Decorating Facilitator" ,
+           "telephone": "(904) 553 4680",
+           "email": "evam5350@yahoo.com",
+           "imgSrc": "http://i.imgur.com/p6lR3RB.jpg"
         }
       ]
     }
