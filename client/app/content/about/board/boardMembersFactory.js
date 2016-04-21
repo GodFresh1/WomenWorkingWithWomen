@@ -22,7 +22,7 @@ angular.module('womenWorkingWithWomenApp')
         {
           "name":  "Kayla Sutherland, MPH",
           "title": "Board Member",
-           "description": "Teen and Youth Workshop Presenter and Registration Director. " ,
+           "description": "Teen and Youth Workshop / Seminar Director" ,
            "telephone": "(786) 445 7266",
            "email": "kayla.hsutherland@gmail.com",
            "imgSrc": "http://i.imgur.com/IlD1TwP.jpg"
@@ -38,9 +38,9 @@ angular.module('womenWorkingWithWomenApp')
         {
           "name":  "Eva M. Bartley",
           "title": "Assitant Secretary",
-           "description": " filler info" ,
+           "description": "" ,
            "telephone": "(904)553 4680",
-           "email": "filler@filler.com",
+           "email": "",
            "imgSrc": "http://i.imgur.com/TXwRc0z.jpg"
         }
       ]
