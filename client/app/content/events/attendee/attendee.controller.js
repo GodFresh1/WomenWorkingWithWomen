@@ -6,6 +6,7 @@ angular.module('womenWorkingWithWomenApp')
     $scope.attendee = {};
     $scope.events = [];
     $scope.genders = ('Male Female Other').split(' ');
+    $scope.fashions = ('Yes No').split(' ');
 
     // Get all the events from the server.
     Api.getAllEvents().then(function(response){
@@ -112,7 +113,8 @@ angular.module('womenWorkingWithWomenApp')
          $scope.attendee.email + '</div></li><li class="collection-item"><div> '+
          $scope.attendee.phone + '</div></li><li class="collection-item"><div> '+
          $scope.attendee.age + '</div></li><li class="collection-item"><div> '+
-         $scope.attendee.gender + '</div></li></ul>',
+         $scope.attendee.gender + '</div></li></ul>' +
+         $scope.attendee.fashion + '</div></li></ul>',
         ok: 'Yes',
         cancel: 'No'
       });

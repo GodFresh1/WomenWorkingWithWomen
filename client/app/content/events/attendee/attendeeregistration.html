@@ -68,6 +68,17 @@
             </md-select>
           </div>
         </div>
+        <div class="row">
+          <p>(If applicable) Saturday night of the conference we will have a fashion show. All women can participate including Teens. Would you like to walk in the fashion show? If yes, you will be contacted by the fashion show coordinator with all of the details.</p>
+          <div class="input-field col l12 m12 s12">
+            <label>Fashion show?</label>
+            <md-select ng-model="attendee.fashion">
+              <md-option ng-repeat="fashion in fashions" value="{{fashion}}">
+                {{fashion}}
+              </md-option>
+            </md-select>
+          </div>
+        </div>
         <div class="form-group">
           <div class="col-sm-offset-3 col-sm-4">
             <button type="submit-btn" class="btn btn btn-primary submit" id="submitbutton">Submit</button>

@@ -92,13 +92,15 @@ angular.module('womenWorkingWithWomenApp')
             CSV += 'No attendees'+ '\r\n';
           }
           else{
-            CSV += 'First Name' + ',' + 'Last Name' + ',' + 'Age' + ',' + 'Email' + ',' + 'Phone' + ',' + 'Check-in?' + '\r\n';
+            CSV += 'First Name' + ',' + 'Last Name' + ',' + 'Age' + ',' + 'Gender' + ',' + 'Email' + ',' + 'Phone' + ',' + 'Fashion Show?' + ',' + 'Check-in?' + '\r\n';
             for (var j = 0; j < response.data[i].attendees.length; j++){
             CSV += '"' + response.data[i].attendees[j].firstName.toString() + '"' + ',';
             CSV += '"' + response.data[i].attendees[j].lastName.toString() + '"' + ',';
             CSV += '"' + response.data[i].attendees[j].age.toString() + '"' + ',';
+            CSV += '"' + response.data[i].attendees[j].gender.toString() + '"' + ',';
             CSV += '"' + response.data[i].attendees[j].email.toString() + '"' + ',';
             CSV += '"' + response.data[i].attendees[j].phone.toString() + '"' + ',';
+            CSV += '"' + response.data[i].attendees[j].fashion.toString() + '"' + ',';
             CSV += '"' + response.data[i].attendees[j].checkedIn.toString() + '"' + '\r\n';
             }
           }
