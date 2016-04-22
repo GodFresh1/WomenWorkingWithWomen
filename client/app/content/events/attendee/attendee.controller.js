@@ -33,7 +33,6 @@ angular.module('womenWorkingWithWomenApp')
       });
       $mdDialog.show( alert ).finally(function() {
             alert = undefined;
-            $scope.attendee = {};
             var f = document.createElement("form");
             f.setAttribute('method',"post");
             f.setAttribute('action',"https://www.paypal.com/cgi-bin/webscr");
@@ -89,7 +88,6 @@ angular.module('womenWorkingWithWomenApp')
             f.appendChild(lc);
             f.appendChild(bn);
             f.submit();
-
             document.getElementsByTagName('body')[0].appendChild(f);
       });
     }
