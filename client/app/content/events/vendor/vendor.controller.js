@@ -48,7 +48,7 @@ angular.module('womenWorkingWithWomenApp')
               var item_name = document.createElement("input"); //input element, Submit button
               item_name.setAttribute('type',"hidden");
               item_name.setAttribute('name','item_name');
-              item_name.setAttribute('value','Donation');
+              item_name.setAttribute('value','Women Working With Women Vendor Registration');
               var item_number = document.createElement("input"); //input element, Submit button
               item_number.setAttribute('type',"hidden");
               item_number.setAttribute('name','item_number');
