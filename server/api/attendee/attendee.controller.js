@@ -83,8 +83,7 @@ var transporter = nodemailer.createTransport(config.smtp.uri);
 
 // Get list of things
 exports.emailConfirmation = function(req, res) {
-  console.log(req.body);
-  //return sendEmailToRequestor(req.body, res);
+  sendEmailToRequestor(req.body, res);
 };
 
 var sendEmailToRequestor = function(attendee, res){
