@@ -32,7 +32,7 @@ angular.module('womenWorkingWithWomenApp')
         ok: 'Close'
       });
       $mdDialog.show( alert ).finally(function() {
-            Api.getOneEvent($scope.attendee.eventAttending).then(function(response){
+            Api.getOneEvent($scope.vendor.eventAttending).then(function(response){
               console.log(response.data.vendor_price);
               alert = undefined;
               var f = document.createElement("form");

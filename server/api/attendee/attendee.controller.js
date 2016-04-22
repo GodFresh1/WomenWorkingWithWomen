@@ -82,7 +82,7 @@ function handleError(res, err) {
 var transporter = nodemailer.createTransport(config.smtp.uri);
 
 // Get list of things
-exports.submitRequest = function(req, res) {
+exports.emailConfirmation = function(req, res) {
   return sendEmailToRequestor(req.body, res);
 };
 
