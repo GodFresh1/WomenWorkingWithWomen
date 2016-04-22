@@ -9,6 +9,6 @@ module.exports = {
   },
   seedDB: false,
   smtp: {
-      uri: 'smtps://womenworkingcontactrequest%40gmail.com:womenworkingwithwomen@smtp.gmail.com'
+      uri: 'smtps://womenworkingwithwomenapp%40gmail.com:womenworking1@smtp.gmail.com'
     }
 };
