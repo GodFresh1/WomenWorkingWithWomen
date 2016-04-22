@@ -55,7 +55,7 @@ angular.module('womenWorkingWithWomenApp')
             var amount = document.createElement("input"); //input element, Submit button
             amount.setAttribute('type',"text");
             amount.setAttribute('name','amount');
-            amount.setAttribute('value','10.00');
+            amount.setAttribute('value',$scope.vendor.eventAttending);
             var no_shipping = document.createElement("input"); //input element, Submit button
             no_shipping.setAttribute('type',"hidden");
             no_shipping.setAttribute('name','no_shipping');
