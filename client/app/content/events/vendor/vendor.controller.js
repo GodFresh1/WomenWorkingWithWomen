@@ -17,6 +17,8 @@ angular.module('womenWorkingWithWomenApp')
     var addVendorToEvent = function(eventID, vendor){
       Api.addVendorToEvent(eventID, vendor).then(function(response){
         handleSuccess();
+        Api.emailVendor(vendor).then(function(){
+        });
       }, function(error){
         handleError(error);
       });

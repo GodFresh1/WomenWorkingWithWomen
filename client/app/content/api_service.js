@@ -12,6 +12,7 @@ angular.module('womenWorkingWithWomenApp')
         return $http.post(API_BASE_URL + 'contact/submit-request', request);
       },
 
+
       // TODO: The endpoints below have not yet been tested.
       // Event Stuff
       getAllEvents: function(){
@@ -106,6 +107,9 @@ angular.module('womenWorkingWithWomenApp')
       deleteAttendee: function(_id){
         return $http.delete(API_BASE_URL + 'attendees/' + _id);
       },
+      emailAttendee: function(attendee){
+        return $http.post(API_BASE_URL + 'attendees/email-confirmation', attendee);
+      },
 
       // Vendor Stuff
       getAllVendors: function(){
@@ -127,6 +131,9 @@ angular.module('womenWorkingWithWomenApp')
       },
       deleteVendor: function(_id){
         return $http.delete(API_BASE_URL + 'vendors/' + _id);
+      },
+      emailVendor: function(vendor){
+        return $http.post(API_BASE_URL + 'vendors/email-confirmation', vendor);
       },
 
       // Donation Stuff
