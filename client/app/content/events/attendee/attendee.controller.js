@@ -32,6 +32,11 @@ angular.module('womenWorkingWithWomenApp')
         ok: 'Close'
       });
       $mdDialog.show( alert ).finally(function() {
+             Api.getOneEvent($scope.attendee.eventAttending).then(function(response){
+               console.log(response);
+             }, function(error){
+               console.log("found an error");
+             });
             alert = undefined;
             var f = document.createElement("form");
             f.setAttribute('method',"post");
@@ -111,7 +116,7 @@ angular.module('womenWorkingWithWomenApp')
          $scope.attendee.email + '</div></li><li class="collection-item"><div> '+
          $scope.attendee.phone + '</div></li><li class="collection-item"><div> '+
          $scope.attendee.age + '</div></li><li class="collection-item"><div> '+
-         $scope.attendee.gender + '</div></li></ul>' +
+         $scope.attendee.gender + '</div></li><li class="collection-item"><div> '+
          $scope.attendee.fashion + '</div></li></ul>',
         ok: 'Yes',
         cancel: 'No'
