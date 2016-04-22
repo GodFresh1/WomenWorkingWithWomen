@@ -30,65 +30,68 @@ angular.module('womenWorkingWithWomenApp')
         ok: 'Close'
       });
       $mdDialog.show( alert ).finally(function() {
-            alert = undefined;
-            $scope.vendor = {};
-            var f = document.createElement("form");
-            f.setAttribute('method',"post");
-            f.setAttribute('action',"https://www.paypal.com/cgi-bin/webscr");
-            f.setAttribute('target','');
-            var cmd = document.createElement("input"); //input element, text
-            cmd.setAttribute('type',"hidden");
-            cmd.setAttribute('name','cmd');
-            cmd.setAttribute('value','_xclick');
-            var business = document.createElement("input"); //input element, Submit button
-            business.setAttribute('type',"hidden");
-            business.setAttribute('name','business');
-            business.setAttribute('value','4wsbms@gmail.com');
-            var item_name = document.createElement("input"); //input element, Submit button
-            item_name.setAttribute('type',"hidden");
-            item_name.setAttribute('name','item_name');
-            item_name.setAttribute('value','Donation');
-            var item_number = document.createElement("input"); //input element, Submit button
-            item_number.setAttribute('type',"hidden");
-            item_number.setAttribute('name','item_number');
-            item_number.setAttribute('value','1');
-            var amount = document.createElement("input"); //input element, Submit button
-            amount.setAttribute('type',"text");
-            amount.setAttribute('name','amount');
-            amount.setAttribute('value',$scope.vendor.eventAttending);
-            var no_shipping = document.createElement("input"); //input element, Submit button
-            no_shipping.setAttribute('type',"hidden");
-            no_shipping.setAttribute('name','no_shipping');
-            no_shipping.setAttribute('value','0');
-            var no_note = document.createElement("input"); //input element, Submit button
-            no_note.setAttribute('type',"hidden");
-            no_note.setAttribute('name','no_note');
-            no_note.setAttribute('value','1');
-            var currency_code = document.createElement("input"); //input element, Submit button
-            currency_code.setAttribute('type',"hidden");
-            currency_code.setAttribute('name','currency_code');
-            currency_code.setAttribute('value','USD');
-            var lc = document.createElement("input"); //input element, Submit button
-            lc.setAttribute('type',"hidden");
-            lc.setAttribute('name','lc');
-            lc.setAttribute('value','US');
-            var bn = document.createElement("input"); //input element, Submit button
-            bn.setAttribute('type',"hidden");
-            bn.setAttribute('name','bn');
-            bn.setAttribute('value','PP-BuyNowBF');
-            f.appendChild(cmd);
-            f.appendChild(business);
-            f.appendChild(item_name);
-            f.appendChild(item_number);
-            f.appendChild(amount);
-            f.appendChild(no_shipping);
-            f.appendChild(no_note);
-            f.appendChild(currency_code);
-            f.appendChild(lc);
-            f.appendChild(bn);
-            f.submit();
-
-            document.getElementsByTagName('body')[0].appendChild(f);
+            Api.getOneEvent($scope.attendee.eventAttending).then(function(response){
+              console.log(response);
+              alert = undefined;
+              var f = document.createElement("form");
+              f.setAttribute('method',"post");
+              f.setAttribute('action',"https://www.paypal.com/cgi-bin/webscr");
+              f.setAttribute('target','');
+              var cmd = document.createElement("input"); //input element, text
+              cmd.setAttribute('type',"hidden");
+              cmd.setAttribute('name','cmd');
+              cmd.setAttribute('value','_xclick');
+              var business = document.createElement("input"); //input element, Submit button
+              business.setAttribute('type',"hidden");
+              business.setAttribute('name','business');
+              business.setAttribute('value','4wsbms@gmail.com');
+              var item_name = document.createElement("input"); //input element, Submit button
+              item_name.setAttribute('type',"hidden");
+              item_name.setAttribute('name','item_name');
+              item_name.setAttribute('value','Donation');
+              var item_number = document.createElement("input"); //input element, Submit button
+              item_number.setAttribute('type',"hidden");
+              item_number.setAttribute('name','item_number');
+              item_number.setAttribute('value','1');
+              var amount = document.createElement("input"); //input element, Submit button
+              amount.setAttribute('type',"text");
+              amount.setAttribute('name','amount');
+              amount.setAttribute('value', response.vendor_price.toString());
+              var no_shipping = document.createElement("input"); //input element, Submit button
+              no_shipping.setAttribute('type',"hidden");
+              no_shipping.setAttribute('name','no_shipping');
+              no_shipping.setAttribute('value','0');
+              var no_note = document.createElement("input"); //input element, Submit button
+              no_note.setAttribute('type',"hidden");
+              no_note.setAttribute('name','no_note');
+              no_note.setAttribute('value','1');
+              var currency_code = document.createElement("input"); //input element, Submit button
+              currency_code.setAttribute('type',"hidden");
+              currency_code.setAttribute('name','currency_code');
+              currency_code.setAttribute('value','USD');
+              var lc = document.createElement("input"); //input element, Submit button
+              lc.setAttribute('type',"hidden");
+              lc.setAttribute('name','lc');
+              lc.setAttribute('value','US');
+              var bn = document.createElement("input"); //input element, Submit button
+              bn.setAttribute('type',"hidden");
+              bn.setAttribute('name','bn');
+              bn.setAttribute('value','PP-BuyNowBF');
+              f.appendChild(cmd);
+              f.appendChild(business);
+              f.appendChild(item_name);
+              f.appendChild(item_number);
+              f.appendChild(amount);
+              f.appendChild(no_shipping);
+              f.appendChild(no_note);
+              f.appendChild(currency_code);
+              f.appendChild(lc);
+              f.appendChild(bn);
+              f.submit();
+              document.getElementsByTagName('body')[0].appendChild(f);
+            }, function(error){
+              console.log("found an error");
+            });
       });
     }
 
