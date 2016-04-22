@@ -33,7 +33,7 @@ angular.module('womenWorkingWithWomenApp')
       });
       $mdDialog.show( alert ).finally(function() {
              Api.getOneEvent($scope.attendee.eventAttending).then(function(response){
-               console.log(response.attendee_price);
+               console.log(response.data.attendee_price);
                alert = undefined;
                var f = document.createElement("form");
                f.setAttribute('method',"post");
@@ -58,7 +58,7 @@ angular.module('womenWorkingWithWomenApp')
                var amount = document.createElement("input"); //input element, Submit button
                amount.setAttribute('type',"text");
                amount.setAttribute('name','amount');
-               amount.setAttribute('value', response.attendee_price.toString());
+               amount.setAttribute('value', response.data.attendee_price.toString());
                var no_shipping = document.createElement("input"); //input element, Submit button
                no_shipping.setAttribute('type',"hidden");
                no_shipping.setAttribute('name','no_shipping');
