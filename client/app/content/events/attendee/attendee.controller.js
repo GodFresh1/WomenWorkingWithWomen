@@ -15,7 +15,7 @@ angular.module('womenWorkingWithWomenApp')
     $scope.check = function () {
       console.log($scope.registrations.number);
       var range = [];
-      for(var i=0;i<$scope.registrations.number;i++) {
+      for(var i=0; i< $scope.registrations.number; i++) {
         range.push(i);
       }
       $scope.range = range;
@@ -125,7 +125,7 @@ angular.module('womenWorkingWithWomenApp')
 
     $scope.confirmAttendee = function(){
       htmlContent = '';
-      for(int i = 0; i < $scope.attendee.length; i++){
+      for(var i = 0; i < $scope.attendee.length; i++){
         htmlContent += '<ul class="collection with-header"><li class="collection-header"><h4>Attendee ' + i + ' Information</h4>' +
          '<li class="collection-item"><div>' + $scope.attendee[i].lastName + ', ' + $scope.attendee[i].firstName + '</li><li class="collection-item"><div>' +
          $scope.attendee[i].email + '</div></li><li class="collection-item"><div> '+
@@ -151,7 +151,7 @@ angular.module('womenWorkingWithWomenApp')
 
     $scope.registerAttendee = function(){
         // See if this attendee already exists in the db.
-        for(int i = 0; i < $scope.attendee.length; i++){
+        for(var i = 0; i < $scope.attendee.length; i++){
 
         Api.getOneAttendeeByProperties($scope.attendee[i]).then(function(response){
           var attendee = response.data;
