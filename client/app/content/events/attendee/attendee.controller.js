@@ -36,7 +36,7 @@ angular.module('womenWorkingWithWomenApp')
         });
         totalSum += Api.getOneEvent(eventID).attendee_price;
 
-        if(index == attendee.length - 1){
+        if(index == $scope.attendee.length - 1){
           handleSuccess();
         }
       }, function(error){
