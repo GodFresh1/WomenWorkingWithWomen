@@ -117,6 +117,12 @@ angular.module('womenWorkingWithWomenApp')
 
     var handleError = function(error){
       console.log(error);
+      if(error.code == 11000){
+        var field = error.message.split(".$")[1];
+        field = field.split(" dup key")[0];
+        field = field.substring(0, field.lastIndexOf("_"));
+        console.log("An account with this " + field + " already exists.");
+      }
       $window.scrollTo(0, 0);
       var errorMessage = error.data!=null ? (error.data.message || error.data) : "Could not communicate with the server.";
       alert = $mdDialog.alert().title('Unsuccessful Registration, ').content(errorMessage).ok('Close');
