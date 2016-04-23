@@ -8,10 +8,12 @@ angular.module('womenWorkingWithWomenApp')
     $scope.genders = ('Male Female Other').split(' ');
     $scope.fashions = ('Yes No').split(' ');
     $scope.registrations;
+    $scope.numRegistrations = 1;
 
 
     $scope.check = function () {
       console.log($scope.registrations.number);
+      numRegistrations = 0;
     }
 
     // Get all the events from the server.

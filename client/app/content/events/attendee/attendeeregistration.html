@@ -23,12 +23,12 @@
               <label for="numRegistrations" class="control-label">How many people are you registering for? *</label>
             <div class="form-group">
               <div class="col-sm-offset-3 col-sm-4">
-                <button type="submit-btn" class="btn btn btn-primary submit" id="submitbutton" ng-click="check()">Submit</button>
+                <button type="submit-btn" class="btn btn btn-primary submit" id="submitbutton" ng-click="check()">Next</button>
               </div>
             </div>
           </div>
         </div>
-      <div data-ng-repeat="i in registrations.number">
+      <div ng-hide="numRegistrations" data-ng-repeat="i in registrations.number">
       <div class="container">
       <form class="form-horizontal" ng-submit="confirmAttendee()">
         <input type="hidden" name="_csrf"/>
