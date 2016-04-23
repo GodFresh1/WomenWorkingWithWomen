@@ -3,7 +3,7 @@
 
 angular.module('womenWorkingWithWomenApp')
   .controller('AttendeeCtrl', ['$scope', '$compile', '$timeout', 'uiCalendarConfig', 'Api','$mdDialog', '$window', function($scope, $compile, $timeout, uiCalendarConfig, Api, $mdDialog, $window) {
-    $scope.attendee = {};
+    $scope.attendee = [];
     $scope.events = [];
     $scope.genders = ('Male Female Other').split(' ');
     $scope.fashions = ('Yes No').split(' ');
@@ -17,7 +17,7 @@ angular.module('womenWorkingWithWomenApp')
       var range = [];
       for(var i=0; i< $scope.registrations.number; i++) {
         range.push(i);
-        attendee[i] = {};
+        $scope.attendee[i] = {};
       }
       $scope.range = range;
     }
