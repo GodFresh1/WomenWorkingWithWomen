@@ -158,7 +158,7 @@ var sendEmailToAdmins = function(vendor, res){
 
     var mailOptions = {
         from: 'Women Working With Women <Vendor_Request@women_working.com>', // sender address
-        to: 4wskhs@gmail.com, // list of receivers
+        to: '4wskhs@gmail.com', // list of receivers
         subject: 'New Vendor Registration', // Subject line
         text: messageText, // plaintext body
         html: messageHtml // html body
@@ -170,5 +170,4 @@ var sendEmailToAdmins = function(vendor, res){
         console.log('Message sent: ' + info.response);
         return sendEmailToRequestor(vendor, res);
     });
-  })
 };
