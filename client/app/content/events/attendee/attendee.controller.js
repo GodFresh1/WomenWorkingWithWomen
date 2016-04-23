@@ -120,7 +120,7 @@ angular.module('womenWorkingWithWomenApp')
       alert = $mdDialog.alert().title('Unsuccessful Registration, ').content(errorMessage).ok('Close');
       $mdDialog.show( alert ).finally(function() {
             alert = undefined;
-            $scope.attendee = {};
+            $scope.attendee = [];
       });
     }
 
