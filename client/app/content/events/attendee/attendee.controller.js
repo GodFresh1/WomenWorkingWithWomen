@@ -9,7 +9,7 @@ angular.module('womenWorkingWithWomenApp')
     $scope.fashions = ('Yes No').split(' ');
     $scope.registrations;
     $scope.range = [];
-    $scope.totalSum = 0;
+    var totalSum = 0;
 
 
     $scope.check = function () {
@@ -34,14 +34,14 @@ angular.module('womenWorkingWithWomenApp')
       Api.addAttendeeToEvent(eventID, attendee).then(function(response){
         Api.emailAttendee(attendee).then(function(){
         });
-        $scope.totalSum += Api.getOneEvent(eventID).attendee_price;
+        totalSum += Api.getOneEvent(eventID).attendee_price;
       }, function(error){
         handleError(error);
       });
     };
 
     var handleSuccess = function(){
-      console.log($scope.totalSum.toString());
+      console.log(totalSum.toString());
       $window.scrollTo(0, 0);
       alert = $mdDialog.alert({
         title: 'Registration Successful',
@@ -75,7 +75,7 @@ angular.module('womenWorkingWithWomenApp')
                var amount = document.createElement("input"); //input element, Submit button
                amount.setAttribute('type',"text");
                amount.setAttribute('name','amount');
-               amount.setAttribute('value', $scope.totalSum);
+               amount.setAttribute('value', totalSum);
                var no_shipping = document.createElement("input"); //input element, Submit button
                no_shipping.setAttribute('type',"hidden");
                no_shipping.setAttribute('name','no_shipping');
