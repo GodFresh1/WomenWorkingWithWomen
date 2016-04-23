@@ -7,7 +7,7 @@ angular.module('womenWorkingWithWomenApp')
     $scope.events = [];
     $scope.genders = ('Male Female Other').split(' ');
     $scope.fashions = ('Yes No').split(' ');
-    $scope.registrations;
+    $scope.registrations.number;
 
     // Get all the events from the server.
     Api.getAllEvents().then(function(response){
