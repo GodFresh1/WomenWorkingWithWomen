@@ -41,7 +41,7 @@ angular.module('womenWorkingWithWomenApp')
            "description": "Conference Registration Director / Teen Workshop Seminar Presenter / Decorating Facilitator" ,
            "telephone": "(904) 553 4680",
            "email": "evam5350@yahoo.com",
-           "imgSrc": "http://i.imgur.com/p6lR3RB.jpg"
+           "imgSrc": "http://i.imgur.com/pGI0YG4.jpg"
         }
       ]
     }

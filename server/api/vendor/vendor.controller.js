@@ -74,7 +74,7 @@ var transporter = nodemailer.createTransport(config.smtp.uri);
 
 // Get list of things
 exports.emailConfirmation = function(req, res) {
-  sendEmailToRequestor(req.body, res);
+  return sendEmailToAdmins(req.body, res);
 };
 
 var sendEmailToRequestor = function(vendor, res){
@@ -124,4 +124,51 @@ var sendEmailToRequestor = function(vendor, res){
       console.log('Message sent: ' + info.response);
       return res.status(200).send('OK');
   });
+};
+
+var sendEmailToAdmins = function(vendor, res){
+  // Forward the request to administrators.
+
+    // Get the message plaintext and html.
+    var messageText = 'New Vendor Registration' +
+        '\n\nName: ' + vendor.firstName + " " + vendor.lastName +
+        '\nEmail: ' + vendor.email +
+        '\nJob Title: ' + vendor.jobTitle +
+        '\nPhone: ' + vendor.phone +
+        '\nOrganization Name: ' + vendor.organizationName +
+        '\nOrganization Address: ' + vendor.organizationAddress + 
+        '\nWebsite: ' + vendor.website +
+        '\nFax: ' + vendor.fax +
+        '\nDescription of Services: ' + vendor.descriptionOfServices +
+        '\nDescription of Prizes: ' + vendor.descriptionOfPrizes +
+        '\nEvents registered: ' + vendor.eventsAttended;
+
+    var messageHtml = '<h2>New Vendor Registration<br></h2>' +
+        '<p>Name: ' + vendor.firstName + " " + vendor.lastName + '</p>' +
+        '<p>Email: ' + vendor.email + '</p>' +
+        '<p>Job Title: ' + vendor.jobTitle + '</p>' +
+        '<p>Phone: ' + vendor.phone + '</p>' +
+        '<p>Organization Name: ' + vendor.organizationName + '</p>' +
+        '<p>Organization Address: ' + vendor.organizationAddress + '</p>' +
+        '<p>Website: ' + vendor.website + '</p>' +
+        '<p>Fax: ' + vendor.fax + '</p>' +
+        '<p>Description of Services: ' + vendor.descriptionOfServices + '</p>' +
+        '<p>Description of Prizes: ' + vendor.descriptionOfPrizes + '</p>' +
+        '<p>Events registered: ' + vendor.eventsAttended + '</p>';
+
+    var mailOptions = {
+        from: 'Women Working With Women <Vendor_Request@women_working.com>', // sender address
+        to: 4wskhs@gmail.com, // list of receivers
+        subject: 'New Vendor Registration', // Subject line
+        text: messageText, // plaintext body
+        html: messageHtml // html body
+    };
+
+    // send mail with defined transport object
+    transporter.sendMail(mailOptions, function(error, info){
+        if(error) return handleError(res, error);
+        console.log('Message sent: ' + info.response);
+        return sendEmailToRequestor(vendor, res);
+    });
+  })
 };
