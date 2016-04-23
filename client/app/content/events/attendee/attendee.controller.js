@@ -151,7 +151,7 @@ angular.module('womenWorkingWithWomenApp')
     }
 
     $scope.registerAttendee = function(){
-        console.log($scope.attendee);
+        console.log($scope.attendee[0]);
         // See if this attendee already exists in the db.
         for(var i = 0; i < $scope.attendee.length; i++){
 
