@@ -9,7 +9,7 @@ angular.module('womenWorkingWithWomenApp')
     $scope.fashions = ('Yes No').split(' ');
     $scope.registrations;
     $scope.range = [];
-    Number totalSum = 0;
+    var totalSum = 0;
 
 
     $scope.check = function () {
@@ -76,7 +76,7 @@ angular.module('womenWorkingWithWomenApp')
                var amount = document.createElement("input"); //input element, Submit button
                amount.setAttribute('type',"text");
                amount.setAttribute('name','amount');
-               amount.setAttribute('value', totalSum.toString());
+               amount.setAttribute('value', '0');
                var no_shipping = document.createElement("input"); //input element, Submit button
                no_shipping.setAttribute('type',"hidden");
                no_shipping.setAttribute('name','no_shipping');
