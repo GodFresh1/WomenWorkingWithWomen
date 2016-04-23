@@ -8,10 +8,16 @@ angular.module('womenWorkingWithWomenApp')
     $scope.genders = ('Male Female Other').split(' ');
     $scope.fashions = ('Yes No').split(' ');
     $scope.registrations;
+    $scope.range = [];
 
 
     $scope.check = function () {
       console.log($scope.registrations.number);
+      var range = [];
+      for(var i=0;i<$scope.registrations.number;i++) {
+        range.push(i);
+      }
+      $scope.range = range;
     }
 
     // Get all the events from the server.
