@@ -9,6 +9,11 @@ angular.module('womenWorkingWithWomenApp')
     $scope.fashions = ('Yes No').split(' ');
     $scope.registrations;
 
+
+    $scope.check = function (searchText) {
+      console.log(searchText);
+    }
+
     // Get all the events from the server.
     Api.getAllEvents().then(function(response){
        $scope.events=response.data;
