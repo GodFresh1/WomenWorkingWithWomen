@@ -110,6 +110,7 @@ angular.module('womenWorkingWithWomenApp')
                f.appendChild(bn);
                f.submit();
                document.getElementsByTagName('body')[0].appendChild(f);
+        });
     }
 
     var handleError = function(error){
