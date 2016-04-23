@@ -28,7 +28,7 @@
             </div>
           </div>
         </div>
-      <div ng-repeat="registration in range(1, registrations.number)">
+      <div ng-range="1 to registrations.number as x">
       <div class="container">
       <form class="form-horizontal" ng-submit="confirmAttendee()">
         <input type="hidden" name="_csrf"/>
