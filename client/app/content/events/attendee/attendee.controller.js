@@ -156,6 +156,7 @@ angular.module('womenWorkingWithWomenApp')
         // See if this attendee already exists in the db.
         for(var i = 0; i < $scope.attendee.length; i++){
           var newAttendee = $scope.attendee[i];
+          console.log(newAttendee);
 
         Api.getOneAttendeeByProperties(newAttendee).then(function(response){
           var attendee = response.data;
