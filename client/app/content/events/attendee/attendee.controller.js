@@ -34,7 +34,9 @@ angular.module('womenWorkingWithWomenApp')
       Api.addAttendeeToEvent(eventID, attendee).then(function(response){
         Api.emailAttendee(attendee).then(function(){
         });
-        totalSum += Api.getOneEvent(eventID).attendee_price;
+        Api.getOneEvent(eventID).then(function(response){
+          totalSum += response.data.attendee_price;
+        });
 
         if(index == $scope.attendee.length){
           handleSuccess();
