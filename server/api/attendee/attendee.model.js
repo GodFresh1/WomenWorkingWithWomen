@@ -11,7 +11,7 @@ var AttendeeSchema = new Schema({
   phone: {type:Number, required:true},
   age: {type:Number, required:true},
   gender: String,
-  fashion: String,
+  fashion: {type:String, required:true},
   checkedIn: {type:Boolean, default:false}
 });
 
