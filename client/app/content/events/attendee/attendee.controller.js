@@ -47,7 +47,7 @@ angular.module('womenWorkingWithWomenApp')
         ok: 'Close'
       });
       $mdDialog.show( alert ).finally(function() {
-             Api.getOneEvent($scope.attendee.eventAttending).then(function(response){
+             Api.getOneEvent($scope.attendee[0].eventAttending).then(function(response){
                console.log(response.data.attendee_price);
                alert = undefined;
                var f = document.createElement("form");
@@ -124,7 +124,7 @@ angular.module('womenWorkingWithWomenApp')
     }
 
     $scope.confirmAttendee = function(){
-      htmlContent = '';
+      var htmlContent = '';
       for(var i = 0; i < $scope.attendee.length; i++){
         htmlContent += '<ul class="collection with-header"><li class="collection-header"><h4>Attendee ' + i + ' Information</h4>' +
          '<li class="collection-item"><div>' + $scope.attendee[i].lastName + ', ' + $scope.attendee[i].firstName + '</li><li class="collection-item"><div>' +
