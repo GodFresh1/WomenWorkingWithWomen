@@ -9,7 +9,7 @@ angular.module('womenWorkingWithWomenApp')
     $scope.fashions = ('Yes No').split(' ');
     $scope.registrations;
     $scope.range = [];
-    var totalSum = 0;
+    Number totalSum = 0;
 
 
     $scope.check = function () {
