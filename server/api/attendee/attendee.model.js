@@ -10,7 +10,7 @@ var AttendeeSchema = new Schema({
   lastName: {type:String, required:true},
   phone: {type:Number, required:true},
   age: {type:Number, required:true},
-  gender: String,
+  gender: {type: String},
   fashion: {type:String, required:true},
   checkedIn: {type:Boolean, default:false}
 });
