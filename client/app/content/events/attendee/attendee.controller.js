@@ -153,14 +153,14 @@ angular.module('womenWorkingWithWomenApp')
     $scope.registerAttendee = function(){
         // See if this attendee already exists in the db.
         for(var i = 0; i < $scope.attendee.length; i++){
-          console.log($scope.attendee[i]);
+          var newAttendee = $scope.attendee[i];
 
-        Api.getOneAttendeeByProperties($scope.attendee[i]).then(function(response){
+        Api.getOneAttendeeByProperties(newAttendee).then(function(response){
           var attendee = response.data;
           // Update the attendee
-          Api.updateAttendee(attendee._id, $scope.attendee[i]).then(function(response){
+          Api.updateAttendee(attendee._id, newAttendee).then(function(response){
             // Add this attenddee to the event attendee list.
-            addAttendeeToEvent($scope.attendee[i].eventAttending, attendee);
+            addAttendeeToEvent(newAttendee.eventAttending, attendee);
           }, function(error){
             handleError(error);
           });
@@ -168,9 +168,9 @@ angular.module('womenWorkingWithWomenApp')
         }, function(error){
           if(error.status==404){
             // This person is not in the database so create a new attendee.
-            Api.createAttendee($scope.attendee[i]).then(function(response){
+            Api.createAttendee(newAttendee).then(function(response){
               // Add this attendee to the events attendee list.
-              addAttendeeToEvent($scope.attendee[i].eventAttending, response.data);
+              addAttendeeToEvent(newAttendee.eventAttending, response.data);
             }, function(error){
               handleError(error);
             });
