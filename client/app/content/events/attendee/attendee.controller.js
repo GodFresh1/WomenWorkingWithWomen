@@ -52,7 +52,6 @@ angular.module('womenWorkingWithWomenApp')
         ok: 'Close'
       });
       $mdDialog.show( alert ).finally(function() { 
-               console.log(response.data.attendee_price);
                alert = undefined;
                var f = document.createElement("form");
                f.setAttribute('method',"post");
