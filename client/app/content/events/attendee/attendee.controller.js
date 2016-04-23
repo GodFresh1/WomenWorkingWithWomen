@@ -10,8 +10,8 @@ angular.module('womenWorkingWithWomenApp')
     $scope.registrations;
 
 
-    $scope.check = function (searchText) {
-      console.log(searchText);
+    $scope.check = function () {
+      console.log($scope.registrations);
     }
 
     // Get all the events from the server.
