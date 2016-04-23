@@ -41,7 +41,6 @@ angular.module('womenWorkingWithWomenApp')
     };
 
     var handleSuccess = function(){
-      console.log($scope.totalSum);
       $window.scrollTo(0, 0);
       alert = $mdDialog.alert({
         title: 'Registration Successful',
@@ -75,7 +74,7 @@ angular.module('womenWorkingWithWomenApp')
                var amount = document.createElement("input"); //input element, Submit button
                amount.setAttribute('type',"text");
                amount.setAttribute('name','amount');
-               amount.setAttribute('value', $scope.totalSum.toString());
+               amount.setAttribute('value', $scope.totalSum);
                var no_shipping = document.createElement("input"); //input element, Submit button
                no_shipping.setAttribute('type',"hidden");
                no_shipping.setAttribute('name','no_shipping');
