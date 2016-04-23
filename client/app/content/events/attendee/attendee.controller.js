@@ -168,6 +168,7 @@ angular.module('womenWorkingWithWomenApp')
 
         }, function(error){
           if(error.status==404){
+            console.log($scope.attendee[i]);
             // This person is not in the database so create a new attendee.
             Api.createAttendee($scope.attendee[i]).then(function(response){
               // Add this attendee to the events attendee list.
