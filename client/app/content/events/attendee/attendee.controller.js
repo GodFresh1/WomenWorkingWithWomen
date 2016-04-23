@@ -41,6 +41,7 @@ angular.module('womenWorkingWithWomenApp')
     };
 
     var handleSuccess = function(){
+      console.log($scope.totalSum);
       $window.scrollTo(0, 0);
       alert = $mdDialog.alert({
         title: 'Registration Successful',
