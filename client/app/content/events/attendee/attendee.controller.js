@@ -41,6 +41,7 @@ angular.module('womenWorkingWithWomenApp')
     };
 
     var handleSuccess = function(){
+      console.log(totalSum);
       console.log(totalSum.toString());
       $window.scrollTo(0, 0);
       alert = $mdDialog.alert({
