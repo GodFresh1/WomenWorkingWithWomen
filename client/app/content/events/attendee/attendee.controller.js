@@ -17,6 +17,7 @@ angular.module('womenWorkingWithWomenApp')
       var range = [];
       for(var i=0; i< $scope.registrations.number; i++) {
         range.push(i);
+        attendee[i] = {};
       }
       $scope.range = range;
     }
@@ -124,9 +125,11 @@ angular.module('womenWorkingWithWomenApp')
     }
 
     $scope.confirmAttendee = function(){
+      console.log($scope.attendee);
+
       var htmlContent = '';
       for(var i = 0; i < $scope.attendee.length; i++){
-        htmlContent += '<ul class="collection with-header"><li class="collection-header"><h4>Attendee ' + i + ' Information</h4>' +
+        htmlContent += '<ul class="collection with-header"><li class="collection-header"><h4>Attendee ' + (i + 1) + ' Information</h4>' +
          '<li class="collection-item"><div>' + $scope.attendee[i].lastName + ', ' + $scope.attendee[i].firstName + '</li><li class="collection-item"><div>' +
          $scope.attendee[i].email + '</div></li><li class="collection-item"><div> '+
          $scope.attendee[i].phone + '</div></li><li class="collection-item"><div> '+
