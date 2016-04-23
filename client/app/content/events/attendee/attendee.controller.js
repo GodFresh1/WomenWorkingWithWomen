@@ -9,6 +9,7 @@ angular.module('womenWorkingWithWomenApp')
     $scope.fashions = ('Yes No').split(' ');
     $scope.registrations;
     $scope.range = [];
+    $scope.totalSum = 0;
 
 
     $scope.check = function () {
@@ -32,7 +33,7 @@ angular.module('womenWorkingWithWomenApp')
       Api.addAttendeeToEvent(eventID, attendee).then(function(response){
         Api.emailAttendee(attendee).then(function(){
         });
-        handleSuccess();
+        $scope.totalSum += Api.getOneEvent(eventID).attendee_price;
       }, function(error){
         handleError(error);
       });
@@ -72,7 +73,7 @@ angular.module('womenWorkingWithWomenApp')
                var amount = document.createElement("input"); //input element, Submit button
                amount.setAttribute('type',"text");
                amount.setAttribute('name','amount');
-               amount.setAttribute('value', response.data.attendee_price.toString());
+               amount.setAttribute('value', $scope.totalSum.toString());
                var no_shipping = document.createElement("input"); //input element, Submit button
                no_shipping.setAttribute('type',"hidden");
                no_shipping.setAttribute('name','no_shipping');
@@ -123,15 +124,20 @@ angular.module('womenWorkingWithWomenApp')
     }
 
     $scope.confirmAttendee = function(){
+      htmlContent = '';
+      for(int i = 0; i < $scope.attendee.length; i++){
+        htmlContent += '<ul class="collection with-header"><li class="collection-header"><h4>Attendee ' + i + ' Information</h4>' +
+         '<li class="collection-item"><div>' + $scope.attendee[i].lastName + ', ' + $scope.attendee[i].firstName + '</li><li class="collection-item"><div>' +
+         $scope.attendee[i].email + '</div></li><li class="collection-item"><div> '+
+         $scope.attendee[i].phone + '</div></li><li class="collection-item"><div> '+
+         $scope.attendee[i].age + '</div></li><li class="collection-item"><div> '+
+         $scope.attendee[i].gender + '</div></li><li class="collection-item"><div> '+
+         $scope.attendee[i].fashion + '</div></li></ul>'
+      }
+
       confirm = $mdDialog.confirm({
         title: 'Confirm Details',
-        htmlContent: '<ul class="collection with-header"><li class="collection-header"><h4>' +
-         $scope.attendee.lastName + ', ' + $scope.attendee.firstName + '</h4></li><li class="collection-item"><div>' +
-         $scope.attendee.email + '</div></li><li class="collection-item"><div> '+
-         $scope.attendee.phone + '</div></li><li class="collection-item"><div> '+
-         $scope.attendee.age + '</div></li><li class="collection-item"><div> '+
-         $scope.attendee.gender + '</div></li><li class="collection-item"><div> '+
-         $scope.attendee.fashion + '</div></li></ul>',
+        htmlContent: htmlContent,
         ok: 'Yes',
         cancel: 'No'
       });
@@ -145,12 +151,14 @@ angular.module('womenWorkingWithWomenApp')
 
     $scope.registerAttendee = function(){
         // See if this attendee already exists in the db.
-        Api.getOneAttendeeByProperties($scope.attendee).then(function(response){
+        for(int i = 0; i < $scope.attendee.length; i++){
+
+        Api.getOneAttendeeByProperties($scope.attendee[i]).then(function(response){
           var attendee = response.data;
           // Update the attendee
-          Api.updateAttendee(attendee._id, $scope.attendee).then(function(response){
+          Api.updateAttendee(attendee._id, $scope.attendee[i]).then(function(response){
             // Add this attenddee to the event attendee list.
-            addAttendeeToEvent($scope.attendee.eventAttending, attendee);
+            addAttendeeToEvent($scope.attendee[i].eventAttending, attendee);
           }, function(error){
             handleError(error);
           });
@@ -158,9 +166,9 @@ angular.module('womenWorkingWithWomenApp')
         }, function(error){
           if(error.status==404){
             // This person is not in the database so create a new attendee.
-            Api.createAttendee($scope.attendee).then(function(response){
+            Api.createAttendee($scope.attendee[i]).then(function(response){
               // Add this attendee to the events attendee list.
-              addAttendeeToEvent($scope.attendee.eventAttending, response.data);
+              addAttendeeToEvent($scope.attendee[i].eventAttending, response.data);
             }, function(error){
               handleError(error);
             });
@@ -168,6 +176,8 @@ angular.module('womenWorkingWithWomenApp')
             handleError(error);
           }
         });
+      }
+      handleSuccess();
     };
 
     // Hacky fix to make the dropdown a required field.
