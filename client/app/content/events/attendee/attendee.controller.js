@@ -30,19 +30,21 @@ angular.module('womenWorkingWithWomenApp')
       // handle error here
     });
 
-    var addAttendeeToEvent = function(eventID, attendee){
+    var addAttendeeToEvent = function(eventID, attendee, index){
       Api.addAttendeeToEvent(eventID, attendee).then(function(response){
         Api.emailAttendee(attendee).then(function(){
         });
         totalSum += Api.getOneEvent(eventID).attendee_price;
+
+        if(i = attendee.length - 1){
+          handleSuccess();
+        }
       }, function(error){
         handleError(error);
       });
     };
 
     var handleSuccess = function(){
-      console.log(totalSum);
-      console.log(totalSum.toString());
       $window.scrollTo(0, 0);
       alert = $mdDialog.alert({
         title: 'Registration Successful',
@@ -76,7 +78,7 @@ angular.module('womenWorkingWithWomenApp')
                var amount = document.createElement("input"); //input element, Submit button
                amount.setAttribute('type',"text");
                amount.setAttribute('name','amount');
-               amount.setAttribute('value', totalSum);
+               amount.setAttribute('value', totalSum.toString());
                var no_shipping = document.createElement("input"); //input element, Submit button
                no_shipping.setAttribute('type',"hidden");
                no_shipping.setAttribute('name','no_shipping');
@@ -162,7 +164,7 @@ angular.module('womenWorkingWithWomenApp')
           // Update the attendee
           Api.updateAttendee(attendee._id, newAttendee).then(function(response){
             // Add this attenddee to the event attendee list.
-            addAttendeeToEvent(newAttendee.eventAttending, attendee);
+            addAttendeeToEvent(newAttendee.eventAttending, attendee, i);
           }, function(error){
             handleError(error);
           });
@@ -172,7 +174,7 @@ angular.module('womenWorkingWithWomenApp')
             // This person is not in the database so create a new attendee.
             Api.createAttendee(newAttendee).then(function(response){
               // Add this attendee to the events attendee list.
-              addAttendeeToEvent(newAttendee.eventAttending, response.data);
+              addAttendeeToEvent(newAttendee.eventAttending, response.data, i);
             }, function(error){
               handleError(error);
             });
@@ -181,7 +183,6 @@ angular.module('womenWorkingWithWomenApp')
           }
         });
       }
-      handleSuccess();
     };
 
     // Hacky fix to make the dropdown a required field.
