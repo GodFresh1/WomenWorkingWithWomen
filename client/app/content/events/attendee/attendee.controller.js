@@ -17,7 +17,7 @@ angular.module('womenWorkingWithWomenApp')
       var range = [];
       for(var i=0; i< $scope.registrations.number; i++) {
         range.push(i);
-        $scope.attendee[i] = {};
+        $scope.attendee[i];
       }
       $scope.range = range;
     }
