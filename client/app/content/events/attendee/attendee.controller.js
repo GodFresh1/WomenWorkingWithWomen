@@ -51,8 +51,7 @@ angular.module('womenWorkingWithWomenApp')
         htmlContent: '<div class="row"><h5 align="center">Redirecting to Paypal</h5></div>',
         ok: 'Close'
       });
-      $mdDialog.show( alert ).finally(function() {
-             Api.getOneEvent($scope.attendee[0].eventAttending).then(function(response){
+      $mdDialog.show( alert ).finally(function() { 
                console.log(response.data.attendee_price);
                alert = undefined;
                var f = document.createElement("form");
@@ -111,10 +110,6 @@ angular.module('womenWorkingWithWomenApp')
                f.appendChild(bn);
                f.submit();
                document.getElementsByTagName('body')[0].appendChild(f);
-             }, function(error){
-               console.log("found an error");
-             });
-      });
     }
 
     var handleError = function(error){
