@@ -8,7 +8,6 @@ angular.module('womenWorkingWithWomenApp')
     $scope.genders = ('Male Female Other').split(' ');
     $scope.fashions = ('Yes No').split(' ');
     $scope.registrations;
-    $scope.registrations.number = 3;
 
 
     $scope.check = function () {
