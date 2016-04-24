@@ -45,6 +45,7 @@ angular.module('womenWorkingWithWomenApp')
         $scope.number += 1;
 
       }, function(error){
+        console.log('Error in addAttendeeToEvent');
         handleError(error);
       });
     };
@@ -179,6 +180,7 @@ angular.module('womenWorkingWithWomenApp')
               // Add this attendee to the events attendee list.
               addAttendeeToEvent(newAttendee.eventAttending, response.data, i);
             }, function(error){
+              console.log('Error in registerAttendee');
               handleError(error);
             });
           }else{
