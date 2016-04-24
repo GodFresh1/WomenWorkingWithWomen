@@ -156,7 +156,36 @@ angular.module('womenWorkingWithWomenApp')
 
     $scope.registerAttendee = function(){
         // See if this attendee already exists in the db.
-        for(var i = 0; i < $scope.attendee.length; i++){
+
+        $scope.attendee.forEach(function(newAttendee, index) {
+          Api.getOneAttendeeByProperties(newAttendee).then(function(response){
+            var attendee = response.data;
+            // Update the attendee
+            Api.updateAttendee(attendee._id, newAttendee).then(function(response){
+              // Add this attenddee to the event attendee list.
+              addAttendeeToEvent(newAttendee.eventAttending, attendee, i);
+            }, function(error){
+              handleError(error);
+          });
+
+          }, function(error){
+            if(error.status==404){
+              var attendee = newAttendee;
+              console.log(attendee);
+              // This person is not in the database so create a new attendee.
+              Api.createAttendee(attendee).then(function(response){
+                // Add this attendee to the events attendee list.
+                addAttendeeToEvent(attendee.eventAttending, response.data, i);
+              }, function(error){
+                console.log('Error in registerAttendee at index ' + i);
+                handleError(error);
+              });
+            }else{
+              handleError(error);
+            }
+          });
+        })
+        /*for(var i = 0; i < $scope.attendee.length; i++){
           console.log(i);
           var newAttendee = $scope.attendee[i];
 
@@ -186,7 +215,7 @@ angular.module('womenWorkingWithWomenApp')
               handleError(error);
             }
           });
-        }
+        }*/
     };
 
     // Hacky fix to make the dropdown a required field.
