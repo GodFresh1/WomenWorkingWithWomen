@@ -23,7 +23,7 @@ angular.module('womenWorkingWithWomenApp')
     }
 
     var getAttendee = function(index) {
-      return attendee[i];
+      return $scope.attendee[i];
     }
 
     // Get all the events from the server.
