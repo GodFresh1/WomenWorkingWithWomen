@@ -22,10 +22,6 @@ angular.module('womenWorkingWithWomenApp')
       $scope.range = range;
     }
 
-    var getAttendee = function(index) {
-      return $scope.attendee[i];
-    }
-
     // Get all the events from the server.
     Api.getAllEvents().then(function(response){
        $scope.events=response.data;
@@ -164,33 +160,33 @@ angular.module('womenWorkingWithWomenApp')
           console.log(i);
           var newAttendee = $scope.attendee[i];
 
-        Api.getOneAttendeeByProperties(newAttendee).then(function(response){
-          var attendee = response.data;
-          // Update the attendee
-          Api.updateAttendee(attendee._id, newAttendee).then(function(response){
-            // Add this attenddee to the event attendee list.
-            addAttendeeToEvent(newAttendee.eventAttending, attendee, i);
-          }, function(error){
-            handleError(error);
+          Api.getOneAttendeeByProperties(newAttendee).then(function(response){
+            var attendee = response.data;
+            // Update the attendee
+            Api.updateAttendee(attendee._id, newAttendee).then(function(response){
+              // Add this attenddee to the event attendee list.
+              addAttendeeToEvent(newAttendee.eventAttending, attendee, i);
+            }, function(error){
+              handleError(error);
           });
 
-        }, function(error){
-          if(error.status==404){
-            console.log(i);
-            console.log(getAttendee(i));
-            // This person is not in the database so create a new attendee.
-            Api.createAttendee(getAttendee(i)).then(function(response){
-              // Add this attendee to the events attendee list.
-              addAttendeeToEvent(getAttendee(i).eventAttending, response.data, i);
-            }, function(error){
-              console.log('Error in registerAttendee at index ' + i);
+          }, function(error){
+            if(error.status==404){
+              var attendee = newAttendee;
+              console.log(attendee);
+              // This person is not in the database so create a new attendee.
+              Api.createAttendee(attendee).then(function(response){
+                // Add this attendee to the events attendee list.
+                addAttendeeToEvent(attendee.eventAttending, response.data, i);
+              }, function(error){
+                console.log('Error in registerAttendee at index ' + i);
+                handleError(error);
+              });
+            }else{
               handleError(error);
-            });
-          }else{
-            handleError(error);
-          }
-        });
-      }
+            }
+          });
+        }
     };
 
     // Hacky fix to make the dropdown a required field.
