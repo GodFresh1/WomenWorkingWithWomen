@@ -22,6 +22,10 @@ angular.module('womenWorkingWithWomenApp')
       $scope.range = range;
     }
 
+    var getAttendee = function(index) {
+      return attendee[i];
+    }
+
     // Get all the events from the server.
     Api.getAllEvents().then(function(response){
        $scope.events=response.data;
@@ -171,11 +175,11 @@ angular.module('womenWorkingWithWomenApp')
 
         }, function(error){
           if(error.status==404){
-            console.log($scope.attendee[i]);
+            console.log(getAttendee(i));
             // This person is not in the database so create a new attendee.
-            Api.createAttendee($scope.attendee[i]).then(function(response){
+            Api.createAttendee(getAttendee(i)).then(function(response){
               // Add this attendee to the events attendee list.
-              addAttendeeToEvent($scope.attendee[i].eventAttending, response.data, i);
+              addAttendeeToEvent(getAttendee(i).eventAttending, response.data, i);
             }, function(error){
               console.log('Error in registerAttendee at index ' + i);
               handleError(error);
