@@ -3,7 +3,7 @@
 
 angular.module('womenWorkingWithWomenApp')
   .controller('AttendeeCtrl', ['$scope', '$compile', '$timeout', 'uiCalendarConfig', 'Api','$mdDialog', '$window', function($scope, $compile, $timeout, uiCalendarConfig, Api, $mdDialog, $window) {
-    $scope.attendee = {};
+    $scope.attendee = [];
     $scope.events = [];
     $scope.genders = ('Male Female Other').split(' ');
     $scope.fashions = ('Yes No').split(' ');
@@ -18,7 +18,7 @@ angular.module('womenWorkingWithWomenApp')
       var range = [];
       for(var i=0; i< $scope.registrations.number; i++) {
         range.push(i);
-        //$scope.attendee[i];
+        $scope.attendee[i];
       }
       $scope.range = range;
     }
@@ -43,7 +43,7 @@ angular.module('womenWorkingWithWomenApp')
           //handleSuccess();
         }
         $scope.number += 1;
-        
+
       }, function(error){
         handleError(error);
       });
@@ -130,19 +130,8 @@ angular.module('womenWorkingWithWomenApp')
     }
 
     $scope.confirmAttendee = function(){
-      confirm = $mdDialog.confirm({
-        title: 'Confirm Details',
-        htmlContent: '<ul class="collection with-header"><li class="collection-header"><h4>' +
-         $scope.attendee.lastName + ', ' + $scope.attendee.firstName + '</h4></li><li class="collection-item"><div>' +
-         $scope.attendee.email + '</div></li><li class="collection-item"><div> '+
-         $scope.attendee.phone + '</div></li><li class="collection-item"><div> '+
-         $scope.attendee.age + '</div></li><li class="collection-item"><div> '+
-         $scope.attendee.gender + '</div></li></ul>',
-        ok: 'Yes',
-        cancel: 'No'
-      });
 
-      /*var htmlContent = '';
+      var htmlContent = '';
       for(var i = 0; i < $scope.attendee.length; i++){
         htmlContent += '<ul class="collection with-header"><li class="collection-header"><h4>Attendee ' + (i + 1) + ' Information</h4>' +
          '<li class="collection-item"><div>' + $scope.attendee[i].lastName + ', ' + $scope.attendee[i].firstName + '</li><li class="collection-item"><div>' +
@@ -158,7 +147,7 @@ angular.module('womenWorkingWithWomenApp')
         htmlContent: htmlContent,
         ok: 'Yes',
         cancel: 'No'
-      });*/
+      });
 
       $mdDialog.show( confirm ).then(function() {
         $scope.registerAttendee();
@@ -169,7 +158,7 @@ angular.module('womenWorkingWithWomenApp')
 
     $scope.registerAttendee = function(){
         // See if this attendee already exists in the db.
-        /*for(var i = 0; i < $scope.attendee.length; i++){
+        for(var i = 0; i < $scope.attendee.length; i++){
           var newAttendee = $scope.attendee[i];
           console.log(newAttendee);
 
@@ -196,32 +185,7 @@ angular.module('womenWorkingWithWomenApp')
             handleError(error);
           }
         });
-      }*/
-
-      // See if this attendee already exists in the db.
-        Api.getOneAttendeeByProperties($scope.attendee).then(function(response){
-          var attendee = response.data;
-          // Update the attendee
-          Api.updateAttendee(attendee._id, $scope.attendee).then(function(response){
-            // Add this attenddee to the event attendee list.
-            addAttendeeToEvent($scope.attendee.eventAttending, attendee);
-          }, function(error){
-            handleError(error);
-          });
-
-        }, function(error){
-          if(error.status==404){
-            // This person is not in the database so create a new attendee.
-            Api.createAttendee($scope.attendee).then(function(response){
-              // Add this attendee to the events attendee list.
-              addAttendeeToEvent($scope.attendee.eventAttending, response.data);
-            }, function(error){
-              handleError(error);
-            });
-          }else{
-            handleError(error);
-          }
-        });
+      }
     };
 
     // Hacky fix to make the dropdown a required field.
