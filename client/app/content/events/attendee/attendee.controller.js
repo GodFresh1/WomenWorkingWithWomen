@@ -39,7 +39,7 @@ angular.module('womenWorkingWithWomenApp')
         });
 
         if(index == $scope.attendee.length){
-          //handleSuccess();
+          handleSuccess();
         }
         $scope.number += 1;
 
@@ -185,37 +185,6 @@ angular.module('womenWorkingWithWomenApp')
             }
           });
         })
-        /*for(var i = 0; i < $scope.attendee.length; i++){
-          console.log(i);
-          var newAttendee = $scope.attendee[i];
-
-          Api.getOneAttendeeByProperties(newAttendee).then(function(response){
-            var attendee = response.data;
-            // Update the attendee
-            Api.updateAttendee(attendee._id, newAttendee).then(function(response){
-              // Add this attenddee to the event attendee list.
-              addAttendeeToEvent(newAttendee.eventAttending, attendee, i);
-            }, function(error){
-              handleError(error);
-          });
-
-          }, function(error){
-            if(error.status==404){
-              var attendee = newAttendee;
-              console.log(attendee);
-              // This person is not in the database so create a new attendee.
-              Api.createAttendee(attendee).then(function(response){
-                // Add this attendee to the events attendee list.
-                addAttendeeToEvent(attendee.eventAttending, response.data, i);
-              }, function(error){
-                console.log('Error in registerAttendee at index ' + i);
-                handleError(error);
-              });
-            }else{
-              handleError(error);
-            }
-          });
-        }*/
     };
 
     // Hacky fix to make the dropdown a required field.
