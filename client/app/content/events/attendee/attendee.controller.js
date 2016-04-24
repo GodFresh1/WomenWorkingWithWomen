@@ -171,11 +171,11 @@ angular.module('womenWorkingWithWomenApp')
 
         }, function(error){
           if(error.status==404){
-            console.log(newAttendee);
+            console.log($scope.attendee[i]);
             // This person is not in the database so create a new attendee.
-            Api.createAttendee(newAttendee).then(function(response){
+            Api.createAttendee($scope.attendee[i]).then(function(response){
               // Add this attendee to the events attendee list.
-              addAttendeeToEvent(newAttendee.eventAttending, response.data, i);
+              addAttendeeToEvent($scope.attendee[i].eventAttending, response.data, i);
             }, function(error){
               console.log('Error in registerAttendee at index ' + i);
               handleError(error);
