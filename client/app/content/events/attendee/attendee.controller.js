@@ -163,7 +163,7 @@ angular.module('womenWorkingWithWomenApp')
             // Update the attendee
             Api.updateAttendee(attendee._id, newAttendee).then(function(response){
               // Add this attenddee to the event attendee list.
-              addAttendeeToEvent(newAttendee.eventAttending, attendee, i);
+              addAttendeeToEvent(newAttendee.eventAttending, attendee, index);
             }, function(error){
               handleError(error);
           });
@@ -175,9 +175,8 @@ angular.module('womenWorkingWithWomenApp')
               // This person is not in the database so create a new attendee.
               Api.createAttendee(attendee).then(function(response){
                 // Add this attendee to the events attendee list.
-                addAttendeeToEvent(attendee.eventAttending, response.data, i);
+                addAttendeeToEvent(attendee.eventAttending, response.data, index);
               }, function(error){
-                console.log('Error in registerAttendee at index ' + i);
                 handleError(error);
               });
             }else{
