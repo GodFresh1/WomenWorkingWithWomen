@@ -158,7 +158,6 @@ angular.module('womenWorkingWithWomenApp')
         // See if this attendee already exists in the db.
         for(var i = 0; i < $scope.attendee.length; i++){
           var newAttendee = $scope.attendee[i];
-          console.log(newAttendee);
 
         Api.getOneAttendeeByProperties(newAttendee).then(function(response){
           var attendee = response.data;
@@ -172,6 +171,7 @@ angular.module('womenWorkingWithWomenApp')
 
         }, function(error){
           if(error.status==404){
+            console.log(newAttendee);
             // This person is not in the database so create a new attendee.
             Api.createAttendee(newAttendee).then(function(response){
               // Add this attendee to the events attendee list.
