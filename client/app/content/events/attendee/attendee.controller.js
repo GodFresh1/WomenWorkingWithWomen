@@ -14,7 +14,6 @@ angular.module('womenWorkingWithWomenApp')
 
 
     $scope.check = function () {
-      console.log($scope.registrations.number);
       var range = [];
       for(var i=0; i< $scope.registrations.number; i++) {
         range.push(i);
@@ -45,13 +44,11 @@ angular.module('womenWorkingWithWomenApp')
         $scope.number += 1;
 
       }, function(error){
-        console.log('Error in addAttendeeToEvent');
         handleError(error);
       });
     };
 
     var handleSuccess = function(){
-      console.log(totalSum.toString());
       $window.scrollTo(0, 0);
       alert = $mdDialog.alert({
         title: 'Registration Successful',
@@ -180,7 +177,7 @@ angular.module('womenWorkingWithWomenApp')
               // Add this attendee to the events attendee list.
               addAttendeeToEvent(newAttendee.eventAttending, response.data, i);
             }, function(error){
-              console.log('Error in registerAttendee');
+              console.log('Error in registerAttendee at index ' + i);
               handleError(error);
             });
           }else{
