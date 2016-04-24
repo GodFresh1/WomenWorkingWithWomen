@@ -39,7 +39,7 @@ angular.module('womenWorkingWithWomenApp')
         });
 
         if(index == $scope.attendee.length){
-          handleSuccess();
+          //handleSuccess();
         }
       }, function(error){
         handleError(error);
