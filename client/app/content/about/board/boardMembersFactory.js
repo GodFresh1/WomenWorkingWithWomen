@@ -4,7 +4,7 @@ angular.module('womenWorkingWithWomenApp')
     return {
       members: [
         {
-          "name":  "Belinda Smith",
+          "name":  "Elder Belinda Smith, CDT, CFDMI",
           "title": "Founder and President",
            "description": "Belinda is the founder of Women Working With Women and has worked hard to grow her community." ,
            "telephone": "(352) 872 8555",
