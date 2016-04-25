@@ -1,0 +1,53 @@
+<md-dialog>
+<md-dialog>
+  <div class="container">
+    <div class="row">
+      <h2>Add a New Board Member</h2>
+    </div>
+    <form class="row form-horizontal" ng-submit="create()">
+      <input type="hidden" name="_csrf"/>
+      <div class="row">
+        <div class="input-field col l12 m12 s12">
+          <input type="text" id="name" class="validate" ng-model="member.name" ng-required="true"/>
+          <label for="name" class="control-label">Name *</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col l12 m12 s12">
+          <input type="text" id="title" class="validate" ng-model="member.title" ng-required="true"/>
+          <label for="title" class="control-label">Title *</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col l12 m12 s12">
+          <textarea type="text" id="description" class="materialize-textarea validate" ng-required="true" ng-model="member.description" />
+          <label for="description" class="control-label">Description *</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col l12 m12 s12">
+          <textarea type="text" id="phone" class="validate" ng-required="true" ng-model="member.phone" />
+          <label for="phone" class="control-label">Telephone *</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col l12 m12 s12">
+          <textarea type="text" id="email" class="validate" ng-required="true" ng-model="member.email" />
+          <label for="email" class="control-label">Email *</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col l12 m12 s12">
+          <textarea type="text" id="imgSrc" class="validate" ng-required="true" ng-model="member.imgSrc" />
+          <label for="imgSrc" class="control-label">Image URL *</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-4">
+          <button type="submit-btn" class="btn btn btn-primary submit" id="submitbutton">Submit</button>
+          <button type="cancel-btn" class="btn btn btn-primary cancel" ng-click="cancel()">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</md-dialog>

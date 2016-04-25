@@ -2,7 +2,7 @@
 
 
 angular.module('womenWorkingWithWomenApp')
-  .controller('AdminDashCtrl', ['$scope', 'Api', '$mdToast', 'Auth', '$mdDialog', '$mdMedia', function($scope, Api, $mdToast, Auth, $mdDialog, $mdMedia) {
+  .controller('AdminDashCtrl', ['$scope', 'BoardMembers', 'Testimonials', 'Partners', 'Api', '$mdToast', 'Auth', '$mdDialog', '$mdMedia', function($scope, BoardMembers, Testimonials, Partners, Api, $mdToast, Auth, $mdDialog, $mdMedia) {
     $scope.events = [];
     $scope.showDetails = {};
     $scope.isLoggedIn = Auth.isLoggedIn;
@@ -13,6 +13,10 @@ angular.module('womenWorkingWithWomenApp')
     $scope.tutors = [];
     $scope.vendors = [];
     $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+    $scope.boardMembers = BoardMembers.members;
+    $scope.testimonials = Testimonials;
+    $scope.partners = Partners;
+    $scope.member;
 
     //var editId;
     var editEvent;
@@ -498,6 +502,72 @@ angular.module('womenWorkingWithWomenApp')
         });
     }
 
+    $scope.createBoard = function($member){
+      var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+       $mdDialog.show({
+         controller: MemberController,
+         templateUrl: '/app/content/adminDashboard/newBoardMember.html',
+         parent: angular.element(document.body),
+         targetEvent: $member,
+         clickOutsideToClose:true,
+         fullscreen: useFullScreen
+       })
+       .then(function(member) {
+
+         $scope.boardMembers.push(member);
+
+         // Add the event to the database.
+         console.log(member);
+       }, function() {
+         console.log("Add board member cancelled.")
+       });
+       $scope.$watch(function() {
+         return $mdMedia('xs') || $mdMedia('sm');
+       }, function(wantsFullScreen) {
+         $scope.customFullscreen = (wantsFullScreen === true);
+       });
+    }
+
+    $scope.deleteBoard = function(member){
+      // Make the admin confirm the deletion.
+        var confirm = $mdDialog.confirm()
+        .title('Are you sure you want to delete this board member')
+        .textContent('This board member will no longer show up.')
+        .ariaLabel('Lucky day')
+        .ok('Confirm')
+        .cancel('Cancel');
+        $mdDialog.show(confirm).then(function(event) {
+          // Delete the event.
+          $scope.boardMembers.splice($scope.boardMembers.indexOf(member), 1);
+        });
+    }
+
+    $scope.editBoard = function($member){
+      var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
+       $mdDialog.show({
+         controller: MemberController,
+         templateUrl: '/app/content/adminDashboard/editBoardMember.html',
+         parent: angular.element(document.body),
+         targetEvent: $member,
+         clickOutsideToClose:true,
+         fullscreen: useFullScreen
+       })
+       .then(function(newMember) {
+
+         $scope.boardMembers.splice($scope.boardMembers.indexOf($member), 1, newMember);
+
+         // Add the event to the database.
+         console.log(newMember);
+       }, function() {
+         console.log("Edit board member cancelled.")
+       });
+       $scope.$watch(function() {
+         return $mdMedia('xs') || $mdMedia('sm');
+       }, function(wantsFullScreen) {
+         $scope.customFullscreen = (wantsFullScreen === true);
+       });
+    }
+
     $scope.checkIn = function(tutor) {
       if($scope.isAdmin()){
         var currDate = new Date();
@@ -911,6 +981,24 @@ angular.module('womenWorkingWithWomenApp')
       };
       $scope.edit = function() {
         $mdDialog.hide($scope.event);
+      };
+    };
+
+    function MemberController($scope, $mdDialog) {
+      $scope.member;
+
+
+      $scope.hide = function() {
+        $mdDialog.hide();
+      };
+      $scope.cancel = function() {
+        $mdDialog.cancel();
+      };
+      $scope.create = function() {
+        $mdDialog.hide($scope.member);
+      };
+      $scope.edit = function() {
+        $mdDialog.hide($scope.member);
       };
     };
 }]);

@@ -214,6 +214,43 @@
        </div>
     </div>
   </div>
+
+
+  <div ng-show="isAdmin()" class = "row">
+    <div class="col s12 m12 l12">
+      <md-toolbar class="md-theme-light">
+       <h2 class="md-toolbar-tools">
+         <span>Board Members</span>
+         <div class="new-event-container">
+           <button class="btn btn-default" ng-click="createBoard()">Add Board Member</button>
+         </div>
+       </h2>
+     </md-toolbar>
+     <md-content>
+       <md-list>
+         <md-list-item class="md-3-line" ng-repeat="member in boardMembers">
+           <div class="md-list-item-text event-item" >
+             <div id="event-content" class="row">
+               <div class="col l12 m12 s12">
+                 <h3>{{member.name}}</h3>
+                 <p>{{member.title}}</p>
+                 <button class="btn btn-default" ng-click="editBoard(member)" style = "margin-top: 20px">Edit Board Member</button>
+                 <button class="btn btn-default" ng-click="deleteBoard(member)" style = "margin-top: 20px">Delete Board Member</button>
+               </div>
+             </div>
+             <hr class="simple-hr">
+           </div>
+         </md-list-item>
+
+       </md-list>
+     </md-content>
+     <div ng-hide="isAdmin()" class="row">
+      <h2>You are not an admin. Please log in as an admin to view this page.</h2>
+     </div>
+    </div>
+  </div>
+
+
 </div>
 
 
