@@ -38,6 +38,14 @@ EventSchema.virtual('startDate').get(function () {
   return month + " " + day + ", " + year;
 });
 
+EventSchema.virtual('endDate').get(function () {
+  var month = monthNames[this.end.getUTCMonth()]; //months from 1-12
+  var day = this.end.getUTCDate();
+  var year = this.end.getUTCFullYear();
+
+  return month + " " + day + ", " + year;
+});
+
 EventSchema.virtual('startTime').get(function () {
   return this.start.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
 });
