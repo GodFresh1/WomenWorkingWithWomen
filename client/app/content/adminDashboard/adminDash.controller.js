@@ -502,7 +502,8 @@ angular.module('womenWorkingWithWomenApp')
         });
     }
 
-    $scope.createBoard = function($member){
+    /*Currently does not save the edited data in factory*/
+    /*$scope.createBoard = function($member){
       var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
        $mdDialog.show({
          controller: MemberController,
@@ -566,7 +567,7 @@ angular.module('womenWorkingWithWomenApp')
        }, function(wantsFullScreen) {
          $scope.customFullscreen = (wantsFullScreen === true);
        });
-    }
+    }*/
 
     $scope.checkIn = function(tutor) {
       if($scope.isAdmin()){
