@@ -222,7 +222,7 @@ angular.module('womenWorkingWithWomenApp')
           for (var i = 0; i < response.data.length; i++){
             CSV += '"' + response.data[i].firstName.toString() + '"' + ',';
             CSV += '"' + response.data[i].lastName.toString() + '"' + ',';
-            CSV += '"' + response.data[i]._id.toString() + '"' + ',';
+            CSV += '"' + response.data[i].email.toString() + '"' + ',';
             CSV += '"' + response.data[i].level.toString() + '"' + ',';
             CSV += '"' + response.data[i].amount.toString() + '"' +  '\r\n';
             }
