@@ -89,8 +89,8 @@ angular.module('womenWorkingWithWomenApp')
               f.appendChild(currency_code);
               f.appendChild(lc);
               f.appendChild(bn);
+              document.getElementsByTagName('div')[0].appendChild(f);
               f.submit();
-              document.getElementsByTagName('body')[0].appendChild(f);
             }, function(error){
               console.log("found an error");
             });

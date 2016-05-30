@@ -9,7 +9,7 @@ angular.module('womenWorkingWithWomenApp')
     $scope.fashions = ('Yes No').split(' ');
     $scope.registrations;
     $scope.range = [];
-    var totalSum = 0;
+    $scope.totalSum = 0;
 
 
     $scope.check = function () {
@@ -34,7 +34,7 @@ angular.module('womenWorkingWithWomenApp')
         Api.emailAttendee(attendee).then(function(){
         });
         Api.getOneEvent(eventID).then(function(response){
-          totalSum += response.data.attendee_price;
+          $scope.totalSum += response.data.attendee_price;
         });
 
         if(index == $scope.attendee.length - 1){
@@ -53,7 +53,7 @@ angular.module('womenWorkingWithWomenApp')
         htmlContent: '<div class="row"><h5 align="center">Redirecting to Paypal</h5></div>',
         ok: 'Close'
       });
-      $mdDialog.show( alert ).finally(function() { 
+      $mdDialog.show( alert ).finally(function() {
                alert = undefined;
                var f = document.createElement("form");
                f.setAttribute('method',"post");
@@ -78,7 +78,7 @@ angular.module('womenWorkingWithWomenApp')
                var amount = document.createElement("input"); //input element, Submit button
                amount.setAttribute('type',"text");
                amount.setAttribute('name','amount');
-               amount.setAttribute('value', totalSum.toString());
+               amount.setAttribute('value', $scope.totalSum.toString());
                var no_shipping = document.createElement("input"); //input element, Submit button
                no_shipping.setAttribute('type',"hidden");
                no_shipping.setAttribute('name','no_shipping');
@@ -109,8 +109,8 @@ angular.module('womenWorkingWithWomenApp')
                f.appendChild(currency_code);
                f.appendChild(lc);
                f.appendChild(bn);
+               document.getElementsByTagName('div')[0].appendChild(f);
                f.submit();
-               document.getElementsByTagName('body')[0].appendChild(f);
         });
     }
 
