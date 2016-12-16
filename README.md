@@ -1,4 +1,3 @@
-# CEN 3031: Group 3A
 ## Women Working With Women
 A web application for Women Working with Women!
 
